@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rcc/utils/hexcolor.dart';
+import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
 
@@ -11,6 +12,8 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
+
+  var loading = false;
   final _formKey = GlobalKey<FormState>();
   final _items = [
     "Food",
@@ -60,11 +63,9 @@ class _TestPageState extends State<TestPage> {
               ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(
-                    onPressed: () {
-                      _formKey.currentState!.validate();
-                    },
-                    child: const Text("Validate Form")),
+                child: CustomButton(onClick: (){
+
+                }, title: 'আপডেট করুন', loading: loading,),
               )
             ],
           ),
