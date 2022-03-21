@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
+import 'package:rcc/widgets/custom_file_picker.dart';
 
 class TestPage extends StatefulWidget {
   const TestPage({Key? key}) : super(key: key);
@@ -10,7 +11,6 @@ class TestPage extends StatefulWidget {
 }
 
 class _TestPageState extends State<TestPage> {
-
   final _formKey = GlobalKey<FormState>();
   final _items = [
     "Food",
@@ -42,17 +42,29 @@ class _TestPageState extends State<TestPage> {
                   hint: "আপনার জন্ম তারিখ দিন",
                   require: true,
                   onChange: (value) {
-                    _formKey.currentState?.reset();
                     debugPrint("$value");
                   }),
               const SizedBox(
                 height: 16,
               ),
+              CustomFilePicker(
+                label: "আপনার এনআইডি (NID) সন্মুখভাগ",
+                hint: "ছবি আপলোড করুন",
+                onChange: (file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
+              ),
+              const SizedBox(
+                height: 16,
+              ),
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton(onPressed: (){
-                  _formKey.currentState!.validate();
-                }, child: const Text("Validate Form")),
+                child: ElevatedButton(
+                    onPressed: () {
+                      _formKey.currentState!.validate();
+                    },
+                    child: const Text("Validate Form")),
               )
             ],
           ),
