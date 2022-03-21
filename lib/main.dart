@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rcc/screens/main_page.dart';
+import 'package:rcc/screens/test_page.dart';
 import 'package:rcc/utils/palette.dart';
 
 void main() async {
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const MainPage(),
+      home: const TestPage(),
     );
   }
 }
