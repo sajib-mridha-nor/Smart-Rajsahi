@@ -9,7 +9,7 @@ class CustomDropdown extends StatefulWidget {
   final TextStyle? labelStyle;
   final List<String> items;
   final bool? require;
-  final Function onChange;
+  final Function(String? value) onChange;
 
   const CustomDropdown(
       {Key? key,

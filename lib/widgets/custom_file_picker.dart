@@ -12,7 +12,7 @@ class CustomFilePicker extends StatefulWidget {
   final String hint;
   final String? error;
   final bool? require;
-  final Function onChange;
+  final Function(File file) onChange;
   final Icon? endIcon;
   final List<String>? allowedExtensions;
   final int? maxFileSize;
