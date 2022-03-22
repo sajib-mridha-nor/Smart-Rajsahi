@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rcc/home/home_page.dart';
 import 'package:rcc/screens/auth/send_otp_page.dart';
 import 'package:rcc/screens/test_page.dart';
 import 'package:rcc/utils/palette.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const TestPage(),
+      home: const HomePage(),
     );
   }
 }
