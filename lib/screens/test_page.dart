@@ -1,6 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:rcc/screens/auth/login/login_page.dart';
+import 'package:rcc/screens/auth/sendotp_page.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_date_picker.dart';
@@ -107,12 +109,19 @@ class _TestPageState extends State<TestPage> {
                   width: double.infinity,
                   child: CustomButton(
                     onClick: () {
+                      
                       _formKey.currentState!.validate();
                     },
                     title: 'আপডেট করুন',
                     loading: loading,
                   ),
-                )
+                ),
+                ElevatedButton(onPressed: (){
+Get.to(SendOtpPage());
+                }, child: Text('Next Page')),
+                ElevatedButton(onPressed: (){
+                  Get.to(LoginPage());
+                }, child: Text('Login Page'))
               ],
             ),
           ),

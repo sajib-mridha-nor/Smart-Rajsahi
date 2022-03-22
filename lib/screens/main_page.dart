@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/widgets/edittext_widget.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 
@@ -17,12 +16,10 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: NewGradientAppBar(
           title: const Text('স্মার্ট রাজশাহী'),
-          gradient: LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])
-      ),
+          gradient:
+              LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: Column(
-        children: [
-          CustomTextField(label: 'আপনার ফোন নম্বর দিন')
-        ],
+        children: [],
       ),
     );
   }
