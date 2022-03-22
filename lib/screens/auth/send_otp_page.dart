@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rcc/screens/auth/verifyotp_page.dart';
+import 'package:rcc/screens/auth/verify_otp_page.dart';
 import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
@@ -51,6 +51,7 @@ class _SendOtpPageState extends State<SendOtpPage> {
                 height: 65,
               ),
               CustomTextField(
+                keyboardType: TextInputType.number,
                   label: "আপনার ফোন নম্বর দিন",
                   hint: "আপনার ফোন নম্বর দিন",
                   require: true,

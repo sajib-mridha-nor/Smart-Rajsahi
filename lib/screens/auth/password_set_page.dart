@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:rcc/screens/auth/passwordset_page.dart';
 import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
-import 'package:rcc/widgets/gradient_text.dart';
 
-class VerifyOtpPage extends StatefulWidget {
-  const VerifyOtpPage({Key? key}) : super(key: key);
+class PasswordSetPage extends StatefulWidget {
+  const PasswordSetPage({Key? key}) : super(key: key);
 
   @override
-  State<VerifyOtpPage> createState() => _VerifyOtpPageState();
+  State<PasswordSetPage> createState() => _PasswordSetPageState();
 }
 
-class _VerifyOtpPageState extends State<VerifyOtpPage> {
+class _PasswordSetPageState extends State<PasswordSetPage> {
   var loading = false;
   final _formKey = GlobalKey<FormState>();
 
@@ -51,8 +48,9 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                 height: 65,
               ),
               CustomTextField(
-                  label: "আপনার ফোন কোডটি  দিন (ওটিপি) ",
-                  hint: "আপনার ফোন কোডটি দিন",
+                isPasswordField: true,
+                  label: "পাসওয়ার্ড সেট করুন ",
+                  hint: "পাসওয়ার্ড  দিন",
                   require: true,
                   onChange: (String value) {
                     debugPrint("$value");
@@ -66,36 +64,13 @@ class _VerifyOtpPageState extends State<VerifyOtpPage> {
                   onClick: () {
                     _formKey.currentState!.validate();
                   },
-                  title: 'সাবমিট করুন',
+                  title: 'সাইন আপ',
                   loading: loading,
                 ),
               ),
               const SizedBox(
-                height: 24,
+                height: 32,
               ),
-              Row(
-                children: [
-                  const Text(
-                    'কোড যায়নি ? ',
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.w500,
-                      // fontFamily: 'HindSiliguri ',
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(PasswordSetPage());
-                    },
-                    child: const GradientText(
-                      "পুনরায় কোড পাঠান",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
-              )
             ],
           ),
         ),

@@ -49,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
               ),
               CustomTextField(
+                  keyboardType: TextInputType.number,
                   label: "আপনার ফোন নম্বর দিন",
                   hint: "আপনার ফোন নম্বর দিন",
                   require: true,
@@ -59,6 +60,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 16.0,
               ),
               CustomTextField(
+                  isPasswordField: true,
                   label: "আপনার পাসওয়ার্ড দিন",
                   hint: "পাসওয়ার্ড  দিন",
                   require: true,
