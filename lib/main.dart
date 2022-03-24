@@ -3,10 +3,15 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rcc/screens/academic_page.dart';
+import 'package:rcc/screens/form%20design/engineering_form.dart';
+import 'package:rcc/screens/section/academic_page.dart';
 
 import 'package:rcc/screens/auth/send_otp_page.dart';
+import 'package:rcc/screens/section/bin_page.dart';
+import 'package:rcc/screens/section/health_page.dart';
+import 'package:rcc/screens/section/engineering_page.dart';
 import 'package:rcc/screens/home/home_page.dart';
+import 'package:rcc/screens/section/revenue_page.dart';
 import 'package:rcc/screens/test_page.dart';
 import 'package:rcc/utils/palette.dart';
 
@@ -35,7 +40,8 @@ class MyApp extends StatelessWidget {
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const AcademicPage(),
+      home: const HomePage(),
     );
   }
 }
+

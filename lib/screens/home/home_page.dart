@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/section/academic_page.dart';
+import 'package:rcc/screens/section/bin_page.dart';
+import 'package:rcc/screens/section/engineering_page.dart';
+import 'package:rcc/screens/section/health_page.dart';
+import 'package:rcc/screens/section/revenue_page.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
-import 'package:rcc/widgets/custom_card_text.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -65,160 +70,189 @@ class _HomePageState extends State<HomePage> {
               const SizedBox(
                 height: 16,
               ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Card(
-                    // semanticContainer: true,
-                    // clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Container(
-                      child: Column(
-                        children: const <Widget>[
-                          ImageIcon(
-                            AssetImage("assets/images/academic.png"),
-                            color: Colors.orange,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "প্রশাসনিক বিভাগ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
+              Container(
+                margin: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Card(
+                      // semanticContainer: true,
+                      // clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      padding: const EdgeInsets.all(16),
-                    ),
-                    elevation: 8,
-                  )),
-                  Expanded(
-                      child: Card(
-                    // semanticContainer: true,
-                    // clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Container(
-                      child: Column(
-                        children: const <Widget>[
-                          ImageIcon(
-                            AssetImage("assets/images/revenue.png"),
-                            color: Colors.green,
-                            size: 30,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(const AcademicPage());
+                        },
+                        child: Container(
+                          child: Column(
+                            children: const <Widget>[
+                              ImageIcon(
+                                AssetImage("assets/images/academic.png"),
+                                color: Colors.orange,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "প্রশাসনিক বিভাগ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
                           ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "রাজস্ব বিভাগ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
+                          padding: const EdgeInsets.all(16),
+                        ),
                       ),
-                      padding: const EdgeInsets.all(16),
-                    ),
-                    elevation: 8,
-                  )),
-                ],
+                      elevation: 6,
+                    )),
+                    Expanded(
+                        child: Card(
+                      // semanticContainer: true,
+                      // clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(RevenuePage());
+                        },
+                        child: Container(
+                          child: Column(
+                            children: const <Widget>[
+                              ImageIcon(
+                                AssetImage("assets/images/revenue.png"),
+                                color: Colors.green,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "রাজস্ব বিভাগ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(16),
+                        ),
+                      ),
+                      elevation: 6,
+                    )),
+                  ],
+                ),
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              Row(
-                children: <Widget>[
-                  Expanded(
-                      child: Card(
-                    // semanticContainer: true,
-                    // clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Container(
-                      child: Column(
-                        children: const <Widget>[
-                          ImageIcon(
-                            AssetImage("assets/images/engineering.png"),
-                            color: Colors.orange,
-                            size: 30,
-                          ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "প্রকৌশল বিভাগ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
+              Container(
+                margin: const EdgeInsets.all(8.0),
+                child: Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: Card(
+                      // semanticContainer: true,
+                      // clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
                       ),
-                      padding: const EdgeInsets.all(16),
-                    ),
-                    elevation: 8,
-                  )),
-                  Expanded(
-                      child: Card(
-                    // semanticContainer: true,
-                    // clipBehavior: Clip.antiAliasWithSaveLayer,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Container(
-                      child: Column(
-                        children: const <Widget>[
-                          ImageIcon(
-                            AssetImage("assets/images/health.png"),
-                            color: Colors.red,
-                            size: 30,
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(const EngineeringPage());
+                        },
+                        child: Container(
+                          child: Column(
+                            children: const <Widget>[
+                              ImageIcon(
+                                AssetImage("assets/images/engineering.png"),
+                                color: Colors.orange,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "প্রকৌশল বিভাগ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            "স্বাস্থ্য বিভাগ",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          )
-                        ],
+                          padding: const EdgeInsets.all(16),
+                        ),
                       ),
-                      padding: const EdgeInsets.all(16),
-                    ),
-                    elevation: 8,
-                  )),
-                ],
+                      elevation: 6,
+                    )),
+                    Expanded(
+                        child: Card(
+                      // semanticContainer: true,
+                      // clipBehavior: Clip.antiAliasWithSaveLayer,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(const HealthPage());
+                        },
+                        child: Container(
+                          child: Column(
+                            children: const <Widget>[
+                              ImageIcon(
+                                AssetImage("assets/images/health.png"),
+                                color: Colors.red,
+                                size: 30,
+                              ),
+                              SizedBox(
+                                height: 8,
+                              ),
+                              Text(
+                                "স্বাস্থ্য বিভাগ",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(16),
+                        ),
+                      ),
+                      elevation: 6,
+                    )),
+                  ],
+                ),
               ),
               Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-                elevation: 8,
-                child: Container(
-                  width: double.infinity,
-                  child: Column(
-                    children: const <Widget>[
-                      ImageIcon(
-                        AssetImage("assets/images/clean.png"),
-                        color: Colors.grey,
-                        size: 24,
-                      ),
-                      Text(
-                        "বর্জ্য ব্যবস্থাপনা বিভাগ",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
+                elevation: 6,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(const BinPage());
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.all(8.0),
+                    width: double.infinity,
+                    child: Column(
+                      children: const <Widget>[
+                        ImageIcon(
+                          AssetImage("assets/images/clean.png"),
+                          color: Colors.grey,
+                          size: 24,
                         ),
-                      )
-                    ],
+                        Text(
+                          "বর্জ্য ব্যবস্থাপনা বিভাগ",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    padding: const EdgeInsets.all(16),
                   ),
-                  padding: const EdgeInsets.all(16),
                 ),
               ),
               const SizedBox(
@@ -236,8 +270,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-              const CustomCardText(
-                  title: 'বিবাহবিচ্ছেদ', icon: 'assets/images/groupicon.png'),
             ],
           ),
         ));
