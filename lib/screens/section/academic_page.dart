@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/form%20design/academic%20form%20/academic_form.dart';
+import 'package:rcc/screens/form%20design/academic%20form%20/academic_place_rent_form.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
@@ -63,12 +66,22 @@ class _AcademicPageState extends State<AcademicPage> {
               const CustomCardText(
                   title: 'বিরোধ নিষ্পত্তি',
                   icon: 'assets/images/groupicon.png'),
-              const CustomCardText(
-                  title: 'সিটি কর্পোরেশনের জায়গা ভাড়া',
-                  icon: 'assets/images/groupicon.png'),
-              const CustomCardText(
-                  title: 'আর্থিক সহায়তা প্রদান',
-                  icon: 'assets/images/groupicon.png'),
+              GestureDetector(
+                onTap: (){
+                  Get.to(const AcademicPlaceRentForm());
+                },
+                child: const CustomCardText(
+                    title: 'সিটি কর্পোরেশনের জায়গা ভাড়া',
+                    icon: 'assets/images/groupicon.png'),
+              ),
+              GestureDetector(
+                onTap: (){
+                  Get.to(AcademicForm());
+                },
+                child: const CustomCardText(
+                    title: 'আর্থিক সহায়তা প্রদান',
+                    icon: 'assets/images/groupicon.png'),
+              ),
               const CustomCardText(
                   title: 'নাগরিকত্বের সনদপত্র',
                   icon: 'assets/images/groupicon.png'),

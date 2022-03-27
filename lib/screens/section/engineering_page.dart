@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/form%20design/engineering_form/land_use_form.dart';
+import 'package:rcc/screens/form%20design/engineering_form/vehicle_and_agency_form.dart';
+import 'package:rcc/screens/form%20design/engineering_water_gas_form.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
@@ -56,22 +60,36 @@ class _EngineeringPageState extends State<EngineeringPage> {
                   ),
                 ),
               ),
-              const CustomCardText(
-
-                  title: 'জল এবং গ্যাস সংযোগ পরিষেবা',
-                  icon: 'assets/images/groupicon2.png'),
-              const CustomCardText(
-                  title: 'যানবাহন / যন্ত্রপাতি ভাড়া',
-                  icon: 'assets/images/groupicon2.png'),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const EngineeringFormPage());
+                },
+                child: const CustomCardText(
+                    title: 'জল এবং গ্যাস সংযোগ পরিষেবা',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const VehicleAgencyFormPage());
+                },
+                child: const CustomCardText(
+                    title: 'যানবাহন / যন্ত্রপাতি ভাড়া',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
               const CustomCardText(
                   title: 'ঠিকাদার লাইসেন্স / তালিকাভুক্ত',
                   icon: 'assets/images/groupicon2.png'),
               const CustomCardText(
                   title: 'ঠিকাদার লাইসেন্স / তালিকাভুক্ত',
                   icon: 'assets/images/groupicon2.png'),
-              const CustomCardText(
-                  title: 'ভূমি ব্যবহার অনাপত্তি ছাড়পত্রের জন্য আবেদন',
-                  icon: 'assets/images/groupicon2.png'),
+              GestureDetector(
+                onTap: (){
+                  Get.to(const LnadUseFormPage());
+                },
+                child: const CustomCardText(
+                    title: 'ভূমি ব্যবহার অনাপত্তি ছাড়পত্রের জন্য আবেদন',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
             ],
           ),
         ));
