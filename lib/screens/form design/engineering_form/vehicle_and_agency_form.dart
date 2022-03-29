@@ -140,7 +140,8 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomDatePicker(
+                    child:
+                    CustomDatePicker(
                       label: 'কাজের তারিখ',
                       hint: 'mm/dd/yyyy',
                       onChange: (value) {},
