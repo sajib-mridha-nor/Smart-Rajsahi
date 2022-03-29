@@ -4,23 +4,23 @@ import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_button.dart';
+import 'package:rcc/widgets/custom_date_picker.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
-import 'package:rcc/widgets/custom_radio_group.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
-class RegistrationPrivateEducationalForm extends StatefulWidget {
-  const RegistrationPrivateEducationalForm({Key? key}) : super(key: key);
+class NominationApplicationFormPage extends StatefulWidget {
+  const NominationApplicationFormPage({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationPrivateEducationalForm> createState() =>
-      _RegistrationPrivateEducationalFormState();
+  State<NominationApplicationFormPage> createState() =>
+      _NominationApplicationFormPageState();
 }
 
-class _RegistrationPrivateEducationalFormState
-    extends State<RegistrationPrivateEducationalForm> {
+class _NominationApplicationFormPageState
+    extends State<NominationApplicationFormPage> {
   final _items = [
     "1",
     "2",
@@ -66,7 +66,7 @@ class _RegistrationPrivateEducationalFormState
 
                 // margin: const EdgeInsets.all(10.0),
                 child: const GradientText(
-                  "বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নিবন্ধনকরণ",
+                  "নামজারি আবেদন (হোল্ডিং)",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -87,8 +87,13 @@ class _RegistrationPrivateEducationalFormState
               const SizedBox(
                 height: 8,
               ),
+              CustomTextField(
+                  label: 'হোল্ডিং/বাড়ির নং', hint: '', onChange: () {}),
+              const SizedBox(
+                height: 8,
+              ),
               const Text(
-                "সাধারণ তথ্য",
+                "যে হোল্ডিং টির ক্ষেত্রে নামজারি করা হইবে",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -108,7 +113,7 @@ class _RegistrationPrivateEducationalFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নাম্বার', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং/বাড়ির নং', hint: '', onChange: () {}),
                   ),
                   const SizedBox(
                     width: 8,
@@ -117,24 +122,6 @@ class _RegistrationPrivateEducationalFormState
                     flex: 5,
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "1",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "থানা",
                         items: _items,
                         hint: "------",
                         require: true,
@@ -148,9 +135,9 @@ class _RegistrationPrivateEducationalFormState
                   Expanded(
                     flex: 5,
                     child: CustomDropdown(
-                        label: "জেলা",
+                        label: "মহল্লার নাম",
                         items: _items,
-                        hint: "রাজশাহী",
+                        hint: "------",
                         require: true,
                         onChange: (String? value) {
                           debugPrint("$value");
@@ -159,10 +146,36 @@ class _RegistrationPrivateEducationalFormState
                 ],
               ),
               const SizedBox(
-                height: 8.0,
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "ষোল আনা/আংশিক",
+                        items: _items,
+                        hint: "নির্বাচন করুন",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'জমির পরিমাণ', hint: '', onChange: () {}),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
               ),
               const Text(
-                "শিক্ষাপ্রতিষ্ঠানের তথ্য",
+                "কি প্রকার দলিল নথিপত্র নামজারির জন্য জমা দেওয়া হইল",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -181,117 +194,8 @@ class _RegistrationPrivateEducationalFormState
                 children: [
                   Expanded(
                     flex: 5,
-                    child: CustomTextField(
-                        label: 'শিক্ষাপ্রতিষ্ঠানের নাম',
-                        hint: '',
-                        onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'প্রতিষ্ঠান স্থান (এলাকার নাম)',
-                        hint: '',
-                        onChange: () {}),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomTextField(
-                  label: 'শিক্ষাপ্রতিষ্ঠানের ঠিকানা (বিস্তারিত লিখুন)',
-                  hint: '',
-                  onChange: () {}),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomDropdown(
-                  label: "প্রতিষ্ঠানের ধরণ",
-                  items: _items,
-                  hint: "-----",
-                  require: true,
-                  onChange: (String? value) {
-                    debugPrint("$value");
-                  }),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["নিজের", "ভাড়ার"],
-                      label: "প্রতিষ্ঠান স্থান নিজের না ভাড়ার",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "কমপক্ষে তিন সদস্য বিশিষ্ট পরিষদ আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomTextField(
-                  label:
-                      'স্থানটি নিজস্ব হলে কর্পোরেশনের হালনাগাদ ট্যাক্সের রশিদ এবং ভাড়া হলে তার রশিদ',
-                  hint: '',
-                  onChange: () {}),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
                     child: CustomFilePicker(
-                      label:
-                          "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
+                      label: "খরিদ সূত্রের দলিল",
                       hint: "Choose File",
                       onChange: (File file) {
                         debugPrint("${file.path}");
@@ -305,8 +209,7 @@ class _RegistrationPrivateEducationalFormState
                   Expanded(
                     flex: 5,
                     child: CustomFilePicker(
-                      label:
-                          "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
+                      label: "ওয়ারিশ সূত্রে প্রত্যয়নপত্র",
                       hint: "Choose File",
                       onChange: (File file) {
                         debugPrint("${file.path}");
@@ -323,45 +226,13 @@ class _RegistrationPrivateEducationalFormState
                 children: [
                   Expanded(
                     flex: 5,
-                    child: CustomDropdown(
-                        label: "হাল নাগাদ ট্রেড লাইসেন্স নাম্বার",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "ছাত্র-ছাত্রী সংখ্যা",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "স্বাস্থ্য সম্মত পরিচ্ছন্ন পরিবেশ আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
+                    child: CustomFilePicker(
+                      label: "আদালত কর্তৃক ডিগ্রী বা সাকসেশন সার্টিফিকেট",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
                       },
+                      require: true,
                     ),
                   ),
                   const SizedBox(
@@ -369,13 +240,13 @@ class _RegistrationPrivateEducationalFormState
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "গাড়ি পার্কিং করার ব্যবস্থা আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
+                    child: CustomFilePicker(
+                      label: "হেবা এওয়াজনাম দলিল",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
                       },
+                      require: true,
                     ),
                   ),
                 ],
@@ -387,13 +258,13 @@ class _RegistrationPrivateEducationalFormState
                 children: [
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "ছাত্র ছাত্রীর অভিভাবকের বসার ব্যবস্থা আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
+                    child: CustomFilePicker(
+                      label: "সোলেনামা অনুমোদিত দলিল",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
                       },
+                      require: true,
                     ),
                   ),
                   const SizedBox(
@@ -401,13 +272,13 @@ class _RegistrationPrivateEducationalFormState
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "পাঠদানের ভবনটি ঝুঁকিপূর্ণ কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
+                    child: CustomFilePicker(
+                      label: "দানসূত্রের দলিল",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
                       },
+                      require: true,
                     ),
                   ),
                 ],
@@ -419,13 +290,13 @@ class _RegistrationPrivateEducationalFormState
                 children: [
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
+                    child: CustomFilePicker(
+                      label: "সংশোধিত দলিল",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
                       },
+                      require: true,
                     ),
                   ),
                   const SizedBox(
@@ -433,13 +304,144 @@ class _RegistrationPrivateEducationalFormState
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "শিক্ষকদের বায়োডাটা রেজিস্টারে লিপিবদ্ধ আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
+                    child: CustomFilePicker(
+                      label: "লিজ দলিল",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
                       },
+                      require: true,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: "সি. এস. পর্চা",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
+                      },
+                      require: true,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: "আর. এস. পর্চা",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
+                      },
+                      require: true,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: "এস. এ. পর্চা",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
+                      },
+                      require: true,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: "ডিসিআর/বি. এস. পর্চা",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
+                      },
+                      require: true,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              CustomFilePicker(
+                label: "খাজনার রশিদ (হাল নাগাদ)",
+                hint: "Choose File",
+                onChange: (File file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              CustomFilePicker(
+                label: "ইমারতের ছবি সংযুক্ত করতে হবে (ইমেজ ফাইল)",
+                hint: "Choose File",
+                onChange: (File file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              const Text(
+                "বকেয়া পৌরকর সহ চলতি কিস্তির কর থাকলে",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+                indent: 1.0,
+                color: Colors.grey,
+                endIndent: 12.0,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: "রশিদ / বিল নং",
+                      hint: "Choose File",
+                      onChange: (File file) {
+                        debugPrint("${file.path}");
+                      },
+                      require: true,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDatePicker(
+                      label: 'তারিখ',
+                      hint: 'mm/dd/yyyy',
+                      onChange: (value) {},
                     ),
                   ),
                 ],

@@ -11,16 +11,14 @@ import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
-class RegistrationPrivateEducationalForm extends StatefulWidget {
-  const RegistrationPrivateEducationalForm({Key? key}) : super(key: key);
+class PayShopRentFormPage extends StatefulWidget {
+  const PayShopRentFormPage({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationPrivateEducationalForm> createState() =>
-      _RegistrationPrivateEducationalFormState();
+  State<PayShopRentFormPage> createState() => _PayShopRentFormPageState();
 }
 
-class _RegistrationPrivateEducationalFormState
-    extends State<RegistrationPrivateEducationalForm> {
+class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
   final _items = [
     "1",
     "2",
@@ -66,7 +64,7 @@ class _RegistrationPrivateEducationalFormState
 
                 // margin: const EdgeInsets.all(10.0),
                 child: const GradientText(
-                  "বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নিবন্ধনকরণ",
+                  "বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নবায়ন",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -249,6 +247,29 @@ class _RegistrationPrivateEducationalFormState
                 children: [
                   Expanded(
                     flex: 5,
+                    child: CustomTextField(
+                        label: 'পূর্বের নিবন্ধন নং', hint: '', onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: 'পূর্বের নিবন্ধন সন',
+                      hint: 'mm/dd/yyyy',
+                      onChange: (value) {},
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
                     child: CustomRadioGroup(
                       initialValue: "Pen ding",
                       items: const ["নিজের", "ভাড়ার"],
@@ -274,14 +295,6 @@ class _RegistrationPrivateEducationalFormState
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomTextField(
-                  label:
-                      'স্থানটি নিজস্ব হলে কর্পোরেশনের হালনাগাদ ট্যাক্সের রশিদ এবং ভাড়া হলে তার রশিদ',
-                  hint: '',
-                  onChange: () {}),
               const SizedBox(
                 height: 8.0,
               ),

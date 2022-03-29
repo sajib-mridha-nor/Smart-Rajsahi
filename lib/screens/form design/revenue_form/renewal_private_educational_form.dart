@@ -11,16 +11,14 @@ import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
-class RegistrationPrivateEducationalForm extends StatefulWidget {
-  const RegistrationPrivateEducationalForm({Key? key}) : super(key: key);
+class RenewalPrivateEducationalFormPage extends StatefulWidget {
+  const RenewalPrivateEducationalFormPage({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationPrivateEducationalForm> createState() =>
-      _RegistrationPrivateEducationalFormState();
+  State<RenewalPrivateEducationalFormPage> createState() => _RenewalPrivateEducationalFormPageState();
 }
 
-class _RegistrationPrivateEducationalFormState
-    extends State<RegistrationPrivateEducationalForm> {
+class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducationalFormPage> {
   final _items = [
     "1",
     "2",
@@ -51,7 +49,7 @@ class _RegistrationPrivateEducationalFormState
                 )),
           ],
           gradient:
-              LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
+          LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -66,7 +64,7 @@ class _RegistrationPrivateEducationalFormState
 
                 // margin: const EdgeInsets.all(10.0),
                 child: const GradientText(
-                  "বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নিবন্ধনকরণ",
+                  "বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নবায়ন",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -249,6 +247,31 @@ class _RegistrationPrivateEducationalFormState
                 children: [
                   Expanded(
                     flex: 5,
+                    child: CustomTextField(
+                        label: 'পূর্বের নিবন্ধন নং',
+                        hint: '',
+                        onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomFilePicker(
+                      label: 'পূর্বের নিবন্ধন সন',
+                      hint: 'mm/dd/yyyy',
+                      onChange: (value) {},
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
                     child: CustomRadioGroup(
                       initialValue: "Pen ding",
                       items: const ["নিজের", "ভাড়ার"],
@@ -277,21 +300,13 @@ class _RegistrationPrivateEducationalFormState
               const SizedBox(
                 height: 8.0,
               ),
-              CustomTextField(
-                  label:
-                      'স্থানটি নিজস্ব হলে কর্পোরেশনের হালনাগাদ ট্যাক্সের রশিদ এবং ভাড়া হলে তার রশিদ',
-                  hint: '',
-                  onChange: () {}),
-              const SizedBox(
-                height: 8.0,
-              ),
               Row(
                 children: [
                   Expanded(
                     flex: 5,
                     child: CustomFilePicker(
                       label:
-                          "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
+                      "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
                       hint: "Choose File",
                       onChange: (File file) {
                         debugPrint("${file.path}");
@@ -306,7 +321,7 @@ class _RegistrationPrivateEducationalFormState
                     flex: 5,
                     child: CustomFilePicker(
                       label:
-                          "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
+                      "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
                       hint: "Choose File",
                       onChange: (File file) {
                         debugPrint("${file.path}");

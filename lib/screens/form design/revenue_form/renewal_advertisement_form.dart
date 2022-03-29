@@ -10,16 +10,16 @@ import 'package:rcc/widgets/custom_radio_group.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 
-
-
 class RenewalAdvertisementFormPage extends StatefulWidget {
   const RenewalAdvertisementFormPage({Key? key}) : super(key: key);
 
   @override
-  State<RenewalAdvertisementFormPage> createState() => _RenewalAdvertisementFormPageState();
+  State<RenewalAdvertisementFormPage> createState() =>
+      _RenewalAdvertisementFormPageState();
 }
 
-class _RenewalAdvertisementFormPageState extends State<RenewalAdvertisementFormPage> {
+class _RenewalAdvertisementFormPageState
+    extends State<RenewalAdvertisementFormPage> {
   final _items = [
     "1",
     "2",
@@ -50,7 +50,7 @@ class _RenewalAdvertisementFormPageState extends State<RenewalAdvertisementFormP
                 )),
           ],
           gradient:
-          LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
+              LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -131,7 +131,6 @@ class _RenewalAdvertisementFormPageState extends State<RenewalAdvertisementFormP
               const SizedBox(
                 height: 8.0,
               ),
-
               CustomTextField(
                   label: 'ব্যবসা প্রতিষ্ঠানের হোল্ডিং/দোকান নং',
                   hint: '',
@@ -250,7 +249,7 @@ class _RenewalAdvertisementFormPageState extends State<RenewalAdvertisementFormP
               ),
               CustomTextField(
                   label:
-                  'বিজ্ঞাপনের ধরন (উপরের তালিকাতে না থাকিলে এখানে লিখুন)',
+                      'বিজ্ঞাপনের ধরন (উপরের তালিকাতে না থাকিলে এখানে লিখুন)',
                   hint: '',
                   onChange: () {}),
               const SizedBox(
