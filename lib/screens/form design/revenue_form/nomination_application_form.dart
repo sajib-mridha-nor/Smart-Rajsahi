@@ -222,38 +222,30 @@ class _NominationApplicationFormPageState
               const SizedBox(
                 height: 8.0,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomFilePicker(
-                      label: "আদালত কর্তৃক ডিগ্রী বা সাকসেশন সার্টিফিকেট",
-                      hint: "Choose File",
-                      onChange: (File file) {
-                        debugPrint("${file.path}");
-                      },
-                      require: true,
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomFilePicker(
-                      label: "হেবা এওয়াজনাম দলিল",
-                      hint: "Choose File",
-                      onChange: (File file) {
-                        debugPrint("${file.path}");
-                      },
-                      require: true,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
+          CustomFilePicker(
+            label: "আদালত কর্তৃক ডিগ্রী বা সাকসেশন সার্টিফিকেট",
+            hint: "Choose File",
+            onChange: (File file) {
+              debugPrint("${file.path}");
+            },
+            require: true,
+          ),
+
+        const SizedBox(
+          height: 8.0,
+        ),
+          CustomFilePicker(
+            label: "হেবা এওয়াজনাম দলিল",
+            hint: "Choose File",
+            onChange: (File file) {
+              debugPrint("${file.path}");
+            },
+            require: true,
+
+        ),
+        const SizedBox(
+          height: 8.0,
+        ),
               Row(
                 children: [
                   Expanded(

@@ -4,9 +4,9 @@ import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_button.dart';
+import 'package:rcc/widgets/custom_date_picker.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
-import 'package:rcc/widgets/custom_radio_group.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
@@ -64,7 +64,7 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
 
                 // margin: const EdgeInsets.all(10.0),
                 child: const GradientText(
-                  "বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নবায়ন",
+                  "দোকান ভাড়া পরিশোধ",
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -85,8 +85,130 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
               const SizedBox(
                 height: 8,
               ),
+              CustomTextField(
+                  label: 'আবেদনকারীর নাম', hint: '', onChange: () {}),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'পিতা/স্বামীর নাম', hint: '', onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'মাতার নাম', hint: '', onChange: () {}),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomDatePicker(
+                      label: "আবেদনকারীর জন্ম তারিখ",
+                      hint: "mm/dd/yyyy",
+                      onChange: (value) {},
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'জাতীয়তা', hint: 'বাংলাদেশী', onChange: () {}),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              CustomTextField(
+                  keyboardType: TextInputType.number,
+                  label: 'টেলিফোন/মোবাইল নাম্বার',
+                  hint: '',
+                  onChange: () {}),
+              const SizedBox(
+                height: 8.0,
+              ),
               const Text(
-                "সাধারণ তথ্য",
+                "ব্যাবসা প্রতিষ্টানের তথ্য",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+                indent: 1.0,
+                color: Colors.grey,
+                endIndent: 12.0,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextField(label: 'দোকানের নাম', hint: '', onChange: () {}),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "মার্কেটের নাম",
+                        items: _items,
+                        hint: "-----",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "দোকানের নাম্বার",
+                        items: _items,
+                        hint: "-----",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "তলা",
+                        items: _items,
+                        hint: "1",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                width: 8.0,
+              ),
+              const Text(
+                "মালিকের ঠিকানা (স্থায়ী)",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -106,7 +228,103 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নাম্বার', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "ওয়ার্ড নং",
+                        items: _items,
+                        hint: "1",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              CustomTextField(
+                  label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: () {}),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "ওয়ার্ড নং",
+                        items: _items,
+                        hint: "",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'উপজেলা/থানা', hint: '', onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "জেলা",
+                        items: _items,
+                        hint: "",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                ],
+              ),
+              const Text(
+                "মালিকের ঠিকানা (বর্তমান)",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+                indent: 1.0,
+                color: Colors.grey,
+                endIndent: 12.0,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
                   ),
                   const SizedBox(
                     width: 8,
@@ -125,16 +343,16 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                 ],
               ),
               const SizedBox(
-                height: 8,
+                width: 8,
               ),
               Row(
                 children: [
                   Expanded(
                     flex: 5,
                     child: CustomDropdown(
-                        label: "থানা",
+                        label: "মহল্লার নাম",
                         items: _items,
-                        hint: "------",
+                        hint: "1",
                         require: true,
                         onChange: (String? value) {
                           debugPrint("$value");
@@ -145,121 +363,8 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomDropdown(
-                        label: "জেলা",
-                        items: _items,
-                        hint: "রাজশাহী",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              const Text(
-                "শিক্ষাপ্রতিষ্ঠানের তথ্য",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
                     child: CustomTextField(
-                        label: 'শিক্ষাপ্রতিষ্ঠানের নাম',
-                        hint: '',
-                        onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'প্রতিষ্ঠান স্থান (এলাকার নাম)',
-                        hint: '',
-                        onChange: () {}),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomTextField(
-                  label: 'শিক্ষাপ্রতিষ্ঠানের ঠিকানা (বিস্তারিত লিখুন)',
-                  hint: '',
-                  onChange: () {}),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomDropdown(
-                  label: "প্রতিষ্ঠানের ধরণ",
-                  items: _items,
-                  hint: "-----",
-                  require: true,
-                  onChange: (String? value) {
-                    debugPrint("$value");
-                  }),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'পূর্বের নিবন্ধন নং', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomFilePicker(
-                      label: 'পূর্বের নিবন্ধন সন',
-                      hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
-                    ),
+                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
                   ),
                 ],
               ),
@@ -270,30 +375,100 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["নিজের", "ভাড়ার"],
-                      label: "প্রতিষ্ঠান স্থান নিজের না ভাড়ার",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
+                    child: CustomDropdown(
+                        label: "উপজেলা/থানা",
+                        items: _items,
+                        hint: "নির্বাচন করুন",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
                   ),
                   const SizedBox(
-                    width: 8.0,
+                    width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "কমপক্ষে তিন সদস্য বিশিষ্ট পরিষদ আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
+                    child: CustomTextField(
+                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
                   ),
                 ],
+              ),
+              const SizedBox(
+                width: 8,
+              ),
+              const Text(
+                "অন্যান্ন তথ্য",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+                indent: 1.0,
+                color: Colors.orange,
+                endIndent: 12.0,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextField(
+                  label: 'জাতীয় পরিচয় পত্র/জন্ম নিবন্ধন সনদ',
+                  hint: '',
+                  onChange: () {}),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomTextField(
+                  label: 'Tax Identification Number (TIN) (প্রযোজ ক্ষেত্রে)',
+                  hint: '',
+                  onChange: () {}),
+              const SizedBox(height: 8.0),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label:
+                            'Business Identification Number (BIN) (প্রযোজ ক্ষেত্রে)',
+                        hint: '',
+                        onChange: () {}),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label:
+                            'Business Identification Number (BIN) (প্রযোজ ক্ষেত্রে)',
+                        hint: '',
+                        onChange: () {}),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomFilePicker(
+                label: "বিগত বৎসরের আয়কর প্রদানের সার্টিফিকেট (যদি থাকে)",
+                hint: "Choose File",
+                onChange: (File file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              CustomFilePicker(
+                label: "নাগরিকত্বের সার্টিফিকেটের কপি",
+                hint: "Choose File",
+                onChange: (File file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
               ),
               const SizedBox(
                 height: 8.0,
@@ -303,8 +478,7 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomFilePicker(
-                      label:
-                          "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
+                      label: "ট্রেড লাইসেন্সের কপি",
                       hint: "Choose File",
                       onChange: (File file) {
                         debugPrint("${file.path}");
@@ -317,143 +491,8 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomFilePicker(
-                      label:
-                          "শিক্ষাপ্রতিষ্ঠাটি নিজের হলে হালনাগাদ ট্যাক্সের রশিদ ভাড়ার হলে চুক্তি পত্র দাখিল করতে হবে",
-                      hint: "Choose File",
-                      onChange: (File file) {
-                        debugPrint("${file.path}");
-                      },
-                      require: true,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "হাল নাগাদ ট্রেড লাইসেন্স নাম্বার",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "ছাত্র-ছাত্রী সংখ্যা",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "স্বাস্থ্য সম্মত পরিচ্ছন্ন পরিবেশ আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "গাড়ি পার্কিং করার ব্যবস্থা আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "ছাত্র ছাত্রীর অভিভাবকের বসার ব্যবস্থা আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "পাঠদানের ভবনটি ঝুঁকিপূর্ণ কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "প্রাথমিক চিকিৎসার ব্যবস্থা আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomRadioGroup(
-                      initialValue: "Pen ding",
-                      items: const ["হ্যাঁ", "না"],
-                      label: "শিক্ষকদের বায়োডাটা রেজিস্টারে লিপিবদ্ধ আছে কিনা",
-                      onChange: (index, value) {
-                        debugPrint("index $index, Value $value");
-                      },
-                    ),
+                    child: CustomTextField(
+                        label: 'দোকান ভাড়া', hint: '', onChange: () {}),
                   ),
                 ],
               ),

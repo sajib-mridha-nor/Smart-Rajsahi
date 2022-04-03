@@ -334,35 +334,25 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
               const SizedBox(
                 height: 8.0,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "হাল নাগাদ ট্রেড লাইসেন্স নাম্বার",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "ছাত্র-ছাত্রী সংখ্যা",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
+              CustomDropdown(
+                  label: "ছাত্র-ছাত্রী সংখ্যা",
+                  items: _items,
+                  hint: "",
+                  require: true,
+                  onChange: (String? value) {
+                    debugPrint("$value");
+                  }),
+              const SizedBox(
+                height: 8.0,
               ),
+              CustomDropdown(
+                  label: "হাল নাগাদ ট্রেড লাইসেন্স নাম্বার",
+                  items: _items,
+                  hint: "",
+                  require: true,
+                  onChange: (String? value) {
+                    debugPrint("$value");
+                  }),
               const SizedBox(
                 height: 8.0,
               ),

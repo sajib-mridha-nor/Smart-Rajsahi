@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/form%20design/bin_form/application_garbage_removal.dart';
+import 'package:rcc/screens/form%20design/bin_form/truck_remove_construction_materials.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
@@ -56,12 +59,22 @@ class _BinPageState extends State<BinPage> {
                   ),
                 ),
               ),
-              const CustomCardText(
-                  title: 'আবর্জনা অপসারণ',
-                  icon: 'assets/images/groupicon2.png'),
-              const CustomCardText(
-                  title: 'নির্মাণ সামগ্রী অপসারণের ট্রাক ভাড়া',
-                  icon: 'assets/images/groupicon2.png'),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const ApplicationGarbageRemoval());
+                },
+                child: const CustomCardText(
+                    title: 'আবর্জনা অপসারণ',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const TruckRemoveConstructionMaterialsForm());
+                },
+                child: const CustomCardText(
+                    title: 'নির্মাণ সামগ্রী অপসারণের ট্রাক ভাড়া',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
             ],
           ),
         ));

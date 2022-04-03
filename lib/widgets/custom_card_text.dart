@@ -14,7 +14,7 @@ class CustomCardText extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      elevation: 10,
+      elevation: 5.0,
       margin: const EdgeInsets.all(10),
       child: SizedBox(
 

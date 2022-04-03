@@ -97,10 +97,10 @@ class _TestPageState extends State<TestPage> {
                 const SizedBox(
                   height: 16,
                 ),
-                const GradientText("প্রশাসনিক বিভাগ", style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold
-                ),),
+                const GradientText(
+                  "প্রশাসনিক বিভাগ",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                ),
                 const SizedBox(
                   height: 16,
                 ),
@@ -108,19 +108,22 @@ class _TestPageState extends State<TestPage> {
                   width: double.infinity,
                   child: CustomButton(
                     onClick: () {
-                      
                       _formKey.currentState!.validate();
                     },
                     title: 'আপডেট করুন',
                     loading: loading,
                   ),
                 ),
-                ElevatedButton(onPressed: (){
-Get.to(SendOtpPage());
-                }, child: Text('Next Page')),
-                ElevatedButton(onPressed: (){
-                  Get.to(LoginPage());
-                }, child: Text('Login Page'))
+                ElevatedButton(
+                    onPressed: () {
+                      Get.to(SendOtpPage());
+                    },
+                    child: Text('Next Page')),
+                ElevatedButton(
+                    onPressed: () {
+                      Get.to(LoginPage());
+                    },
+                    child: Text('Login Page'))
               ],
             ),
           ),

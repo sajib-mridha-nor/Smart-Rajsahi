@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/form%20design/revenue_form/advertisement_new_shop_allotment_form.dart';
+import 'package:rcc/screens/form%20design/health_form/premises_registration/premises_registration.dart';
+import 'package:rcc/screens/form%20design/revenue_form/apply_new_store_allocation_form.dart';
+import 'package:rcc/screens/form%20design/revenue_form/application_for_shop_transfer.dart';
+import 'package:rcc/screens/form%20design/revenue_form/application_rejection_store_form.dart';
 import 'package:rcc/screens/form%20design/revenue_form/apply_advertisement_form.dart';
+import 'package:rcc/screens/form%20design/revenue_form/apply_for_shop_sublet_form.dart';
 import 'package:rcc/screens/form%20design/revenue_form/holding_tax_review_form.dart';
 import 'package:rcc/screens/form%20design/revenue_form/new_holding_application.dart';
 import 'package:rcc/screens/form%20design/revenue_form/nomination_application_form.dart';
+import 'package:rcc/screens/form%20design/revenue_form/pay_shop_rent_form.dart';
 import 'package:rcc/screens/form%20design/revenue_form/registration_private_educational_form.dart';
 import 'package:rcc/screens/form%20design/revenue_form/renewal_advertisement_form.dart';
 import 'package:rcc/screens/form%20design/revenue_form/renewal_private_educational_form.dart';
@@ -99,9 +104,6 @@ class _RevenuePageState extends State<RevenuePage> {
                     title: 'বিজ্ঞাপনের জন্য আবেদন (নবায়ন)',
                     icon: 'assets/images/groupicon2.png'),
               ),
-              const CustomCardText(
-                  title: 'নামজারি আবেদন (হোল্ডিং)',
-                  icon: 'assets/images/groupicon2.png'),
               GestureDetector(
                 onTap: () {
                   Get.to(const NewHoldingApplicationFormPage());
@@ -116,6 +118,14 @@ class _RevenuePageState extends State<RevenuePage> {
                 },
                 child: const CustomCardText(
                     title: 'হোল্ডিং ট্যাক্স রিভিউ',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const ApplyNewStoreAllocation());
+                },
+                child: const CustomCardText(
+                    title: 'নতুন দোকান বরাদ্দের জন্য আবেদন',
                     icon: 'assets/images/groupicon2.png'),
               ),
               GestureDetector(
@@ -145,10 +155,35 @@ class _RevenuePageState extends State<RevenuePage> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.to(const AdvertisementShopAllotmentFormPage());
+                  Get.to(const PayShopRentFormPage());
                 },
                 child: const CustomCardText(
-                    title: ' নতুন দোকান বরাদ্দের জন্য আবেদন',
+                    title: 'দোকান ভাড়া পরিশোধ',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const ApplyShopSubletFormPage());
+                },
+                child: const CustomCardText(
+                    title: 'দোকান সাবলেটের জন্য আবেদন',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Get.to(const ApplicationShopTransferFormPage());
+                },
+                child: const CustomCardText(
+                    title: 'দোকান হস্তান্তরের জন্য আবেদন',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  // Get.to(PremisesRegistrationFormPage());
+                  Get.to(const ApplicationRejectionStoreFormPage());
+                },
+                child: const CustomCardText(
+                    title: 'দোকান নাম খারিজের জন্য আবেদন',
                     icon: 'assets/images/groupicon2.png'),
               ),
             ],
