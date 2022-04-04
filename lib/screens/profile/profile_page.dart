@@ -21,9 +21,9 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
-          titleSpacing: 3.0,
+          titleSpacing: 12.0,
           elevation: 15.0,
-          leading: const BackButton(),
+          // leading: const BackButton(),
           title: const Text('প্রোফাইল'),
           actions: <Widget>[
             Padding(

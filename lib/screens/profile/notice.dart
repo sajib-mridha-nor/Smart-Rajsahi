@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rcc/widgets/custom_button.dart';
-import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/utils/hexcolor.dart';
@@ -19,9 +17,9 @@ class _NoticePageState extends State<NoticePage> {
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
-          titleSpacing: 3.0,
+          titleSpacing: 12.0,
           elevation: 15.0,
-          leading: const BackButton(),
+          // leading: const BackButton(),
           title: const Text('নোটিশ'),
           actions: <Widget>[
             Padding(
@@ -43,46 +41,42 @@ class _NoticePageState extends State<NoticePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              const SizedBox(
-                height: 60.0,
+              const Divider(
+                thickness: 3,
+                color: Colors.orange,
               ),
-              Container(
-                  width: 150.00,
-                  height: 150.00,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: ExactAssetImage('assets/images/tra.png'),
-                      fit: BoxFit.fitHeight,
-                    ),
-                  )),
-              const SizedBox(
-                height: 24.0,
-              ),
-              const Text(
-                'আবেদন ট্র্যাকিং করতে আপনার ফোন ও আবেদন নাম্বার দিন',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  fontWeight: FontWeight.bold,
+              const Card(
+                color: Colors.white70,
+                elevation: 9,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10)),
+                    side: BorderSide(width: 5, color: Colors.white70)),
+                child: ListTile(
+                  title: Text(
+                      'রাজশাহী জেলা প্রশাসকের কার্যালয়ের ভিপি কেস নং-৭২-৬৭ ও মেমো নং-৫৯৭(২) তারিখঃ ৩১.০৩.১৯৮২ মাধ্যমে সাগরপাড়া তফসিল বর্ণিত সম্পত্তি-বাড়ি রাজশাহী সিটি কর্পোরেশনের অনুকূলে লীজ প্রদান প্রসঙ্গে \n২০ এপ্রিল, ২০২২'),
                 ),
               ),
-              const SizedBox(
-                height: 16.0,
+              const Divider(
+                thickness: 3,
+                color: Colors.orange,
               ),
-              CustomTextField(
-                  label: 'আপনার ফোন নাম্বার দিন',
-                  hint: 'ফোন নাম্বার দিন',
-                  onChange: () {}),
-              const SizedBox(
-                height: 16.0,
+              Card(
+                color: Colors.white70,
+                elevation: 9,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    side: const BorderSide(width: 5, color: Colors.white70)),
+                child: const ListTile(
+                  title: Text(
+                      'রাজশাহী জেলা প্রশাসকের কার্যালয়ের ভিপি কেস নং-৭২-৬৭ ও মেমো নং-৫৯৭(২) তারিখঃ ৩১.০৩.১৯৮২ মাধ্যমে সাগরপাড়া তফসিল বর্ণিত সম্পত্তি-বাড়ি রাজশাহী সিটি কর্পোরেশনের অনুকূলে লীজ প্রদান প্রসঙ্গে \n২০ এপ্রিল, ২০২২'),
+                ),
               ),
-              CustomTextField(
-                  label: 'আপনার আবেদন নম্বর দিন',
-                  hint: 'আবেদন নম্বর দিন',
-                  onChange: () {}),
-              const SizedBox(
-                height: 24.0,
+              const Divider(
+                thickness: 3,
+                color: Colors.orange,
               ),
-              CustomButton(onClick: () {}, title: 'ট্রাক করুন')
             ],
           ),
         ),
