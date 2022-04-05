@@ -1,16 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/form%20design/health_form/premises_registration/premises_registration_1st_page.dart';
-import 'package:rcc/screens/form%20design/health_form/premises_registration/premises_registration_2nd_page.dart';
-import 'package:rcc/screens/form%20design/health_form/premises_registration/premises_registration_third_page.dart';
-import 'package:rcc/utils/hexcolor.dart';
-import 'package:rcc/utils/palette.dart';
-import 'package:rcc/widgets/custom_button.dart';
-import 'package:rcc/widgets/custom_dropdown.dart';
-import 'package:rcc/widgets/custom_text_field.dart';
-import 'package:rcc/widgets/gradient_text.dart';
-import 'dart:io';
+import 'package:rcc/screens/home/menu/health_form/premises_registration/premises_registration_1st_page.dart';
+import 'package:rcc/screens/home/menu/health_form/premises_registration/premises_registration_2nd_page.dart';
+import 'package:rcc/screens/home/menu/health_form/premises_registration/premises_registration_third_page.dart';
 
 class PremisesRegistrationFormPage extends StatefulWidget {
   const PremisesRegistrationFormPage({Key? key}) : super(key: key);

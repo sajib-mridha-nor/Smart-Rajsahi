@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:rcc/screens/auth/login/login_page.dart';
-import 'package:rcc/screens/auth/send_otp_page.dart';
+import 'package:rcc/screens/auth/register/send_otp_page.dart';
 import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_date_picker.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';

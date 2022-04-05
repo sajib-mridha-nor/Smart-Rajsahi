@@ -20,7 +20,7 @@ class DioClient {
       ..options.connectTimeout = _defaultConnectTimeout
       ..options.receiveTimeout = _defaultReceiveTimeout
       ..httpClientAdapter
-      ..options.headers["authorization"] = "Bearer ${GetStorage().read("token")}";
+      ..options.headers["authorization"] = "JWT ${GetStorage().read("token")}";
     if (interceptors?.isNotEmpty ?? false) {
       _dio!.interceptors.addAll(interceptors!);
     }
@@ -69,6 +69,33 @@ class DioClient {
       }) async {
     try {
       var response = await _dio!.post(
+        uri,
+        data: data,
+        queryParameters: queryParameters,
+        options: options,
+        cancelToken: cancelToken,
+        onSendProgress: onSendProgress,
+        onReceiveProgress: onReceiveProgress,
+      );
+      return response.data;
+    } on FormatException catch (_) {
+      throw const FormatException("Unable to process the data");
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<dynamic> patch(
+      String uri, {
+        data,
+        Map<String, dynamic>? queryParameters,
+        Options? options,
+        CancelToken? cancelToken,
+        ProgressCallback? onSendProgress,
+        ProgressCallback? onReceiveProgress,
+      }) async {
+    try {
+      var response = await _dio!.patch(
         uri,
         data: data,
         queryParameters: queryParameters,

@@ -36,7 +36,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          widget.label + (widget.require == null || widget.require == true ? " *" : ""),
+          widget.label +
+              (widget.require == null || widget.require == true ? " *" : ""),
           style: widget.labelStyle,
         ),
         const SizedBox(
@@ -58,7 +59,11 @@ class _CustomDropdownState extends State<CustomDropdown> {
                   }
                   return null;
                 },
-                value: _currentSelectedValue ?? widget.initialValue,
+                value: widget.items.any((element) =>
+                        element == _currentSelectedValue.toString().trim() ||
+                        element == widget.initialValue)
+                    ? (_currentSelectedValue ?? widget.initialValue)
+                    : null,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6.0),

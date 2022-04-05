@@ -2,26 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/form%20design/health_form/premises_registration/premises_registration.dart';
-import 'package:rcc/screens/form%20design/revenue_form/apply_new_store_allocation_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/application_for_shop_transfer.dart';
-import 'package:rcc/screens/form%20design/revenue_form/application_rejection_store_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/apply_advertisement_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/apply_for_shop_sublet_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/holding_tax_review_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/new_holding_application.dart';
-import 'package:rcc/screens/form%20design/revenue_form/nomination_application_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/pay_shop_rent_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/registration_private_educational_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/renewal_advertisement_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/renewal_private_educational_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/trade_license_new_form.dart';
-import 'package:rcc/screens/form%20design/revenue_form/trade_license_renewal_form.dart';
+import 'package:rcc/screens/home/menu/revenue_form/holding_tax_review_form.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
+
+import '../home/menu/revenue_form/application_for_shop_transfer.dart';
+import '../home/menu/revenue_form/application_rejection_store_form.dart';
+import '../home/menu/revenue_form/apply_advertisement_form.dart';
+import '../home/menu/revenue_form/apply_for_shop_sublet_form.dart';
+import '../home/menu/revenue_form/apply_new_store_allocation_form.dart';
+import '../home/menu/revenue_form/new_holding_application.dart';
+import '../home/menu/revenue_form/nomination_application_form.dart';
+import '../home/menu/revenue_form/pay_shop_rent_form.dart';
+import '../home/menu/revenue_form/registration_private_educational_form.dart';
+import '../home/menu/revenue_form/renewal_advertisement_form.dart';
+import '../home/menu/revenue_form/renewal_private_educational_form.dart';
+import '../home/menu/revenue_form/trade_license_new_form.dart';
+import '../home/menu/revenue_form/trade_license_renewal_form.dart';
+
 
 class RevenuePage extends StatefulWidget {
   const RevenuePage({Key? key}) : super(key: key);

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rcc/widgets/custom_button.dart';
+import 'package:rcc/widgets/custom_date_picker.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
+import 'package:rcc/widgets/custom_radio_group.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
-
-import '../../../../widgets/custom_button.dart';
-import '../../../../widgets/custom_date_picker.dart';
-import '../../../../widgets/custom_radio_group.dart';
 
 class PremisesThirdPageForm extends StatefulWidget {
   const PremisesThirdPageForm({Key? key}) : super(key: key);

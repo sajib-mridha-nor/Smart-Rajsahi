@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/form%20design/health_form/animal_lisence_form.dart';
-import 'package:rcc/screens/form%20design/health_form/answer_environmental_pollution_form.dart';
-import 'package:rcc/screens/form%20design/health_form/complaints_environmental_pollution_form.dart';
-import 'package:rcc/screens/form%20design/health_form/medical_reg_form.dart';
-import 'package:rcc/screens/form%20design/health_form/premises_registration/premises_registration.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
+
+import '../home/menu/health_form/animal_lisence_form.dart';
+import '../home/menu/health_form/answer_environmental_pollution_form.dart';
+import '../home/menu/health_form/complaints_environmental_pollution_form.dart';
+import '../home/menu/health_form/medical_reg_form.dart';
+import '../home/menu/health_form/premises_registration/premises_registration.dart';
+
 
 class HealthPage extends StatefulWidget {
   const HealthPage({Key? key}) : super(key: key);
@@ -68,7 +70,7 @@ class _HealthPageState extends State<HealthPage> {
                 },
 
                 // Get.to(PremisesRegistrationFormPage());
-                child:  CustomCardText(
+                child:  const CustomCardText(
                     title: 'প্রিমিসেস নিবন্ধন',
                     icon: 'assets/images/groupicon2.png'),
               ),

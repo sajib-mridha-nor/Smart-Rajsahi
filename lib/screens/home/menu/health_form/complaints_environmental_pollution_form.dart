@@ -5,11 +5,11 @@ import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
+import 'package:rcc/widgets/custom_file_picker.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
-import '../../../widgets/custom_file_picker.dart';
 
 class ComplaintsEnvironmentalPollutionForm extends StatefulWidget {
   const ComplaintsEnvironmentalPollutionForm({Key? key}) : super(key: key);

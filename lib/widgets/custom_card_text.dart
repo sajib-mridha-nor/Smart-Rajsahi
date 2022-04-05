@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 class CustomCardText extends StatelessWidget {
   final String title;
   final String icon;
+  final VoidCallback? onTap;
 
-  const CustomCardText({Key? key, required this.title, required this.icon})
+  const CustomCardText({Key? key, required this.title, required this.icon, this.onTap})
       : super(key: key);
 
   @override
@@ -14,12 +15,13 @@ class CustomCardText extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      elevation: 5.0,
-      margin: const EdgeInsets.all(10),
+      elevation: 6,
+      shadowColor: Colors.black38,
+      margin: const EdgeInsets.all(8),
       child: SizedBox(
-
         child: ListTile(
           horizontalTitleGap: -4.0,
+          onTap: onTap,
           leading: ImageIcon(
             AssetImage(icon),
           ),
