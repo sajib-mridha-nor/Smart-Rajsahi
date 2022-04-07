@@ -8,7 +8,6 @@ import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
-
 import '../home/menu/revenue_form/application_for_shop_transfer.dart';
 import '../home/menu/revenue_form/application_rejection_store_form.dart';
 import '../home/menu/revenue_form/apply_advertisement_form.dart';
@@ -22,7 +21,6 @@ import '../home/menu/revenue_form/renewal_advertisement_form.dart';
 import '../home/menu/revenue_form/renewal_private_educational_form.dart';
 import '../home/menu/revenue_form/trade_license_new_form.dart';
 import '../home/menu/revenue_form/trade_license_renewal_form.dart';
-
 
 class RevenuePage extends StatefulWidget {
   const RevenuePage({Key? key}) : super(key: key);
@@ -43,15 +41,16 @@ class _RevenuePageState extends State<RevenuePage> {
             title: const Text('রাজস্ব বিভাগ'),
             actions: <Widget>[
               Padding(
-                  padding: const EdgeInsets.only(right: 14.0),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      MdiIcons.bellRing,
-                      color: Colors.white,
-                      size: 24.0,
-                    ),
-                  )),
+                padding: const EdgeInsets.only(right: 14.0),
+                child: GestureDetector(
+                  onTap: () {},
+                  child: const Icon(
+                    MdiIcons.bellRing,
+                    color: Colors.white,
+                    size: 24.0,
+                  ),
+                ),
+              ),
             ],
             gradient:
                 LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
@@ -73,120 +72,92 @@ class _RevenuePageState extends State<RevenuePage> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const TradeLicenseNewFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'ট্রেড লাইসেন্স নতুন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const TradeLiscenseRenewalFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'ট্রেড লাইসেন্স নবায়ন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const ApplyAdvertisementFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'বিজ্ঞাপনের জন্য আবেদন (নিবন্ধনকরণ)',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const RenewalAdvertisementFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'বিজ্ঞাপনের জন্য আবেদন (নবায়ন)',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const NewHoldingApplicationFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'নতুন হোল্ডিং এর জন্য আবেদন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const HoldingTaxReviewFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'হোল্ডিং ট্যাক্স রিভিউ',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const ApplyNewStoreAllocation());
-                },
-                child: const CustomCardText(
-                    title: 'নতুন দোকান বরাদ্দের জন্য আবেদন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(Get.to(const RegistrationPrivateEducationalForm()));
-                },
-                child: const CustomCardText(
-                    title:
-                        'বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নিবন্ধনকরণ',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const NominationApplicationFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'নামজারি আবেদন (হোল্ডিং)',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const RenewalPrivateEducationalFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নবায়ন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const PayShopRentFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'দোকান ভাড়া পরিশোধ',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const ApplyShopSubletFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'দোকান সাবলেটের জন্য আবেদন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const ApplicationShopTransferFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'দোকান হস্তান্তরের জন্য আবেদন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  // Get.to(PremisesRegistrationFormPage());
-                  Get.to(const ApplicationRejectionStoreFormPage());
-                },
-                child: const CustomCardText(
-                    title: 'দোকান নাম খারিজের জন্য আবেদন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const TradeLicenseNewFormPage());
+                  },
+                  title: 'ট্রেড লাইসেন্স নতুন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const TradeLiscenseRenewalFormPage());
+                  },
+                  title: 'ট্রেড লাইসেন্স নবায়ন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const ApplyAdvertisementFormPage());
+                  },
+                  title: 'বিজ্ঞাপনের জন্য আবেদন (নিবন্ধনকরণ)',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const RenewalAdvertisementFormPage());
+                  },
+                  title: 'বিজ্ঞাপনের জন্য আবেদন (নবায়ন)',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const NewHoldingApplicationFormPage());
+                  },
+                  title: 'নতুন হোল্ডিং এর জন্য আবেদন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const HoldingTaxReviewFormPage());
+                  },
+                  title: 'হোল্ডিং ট্যাক্স রিভিউ',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const ApplyNewStoreAllocation());
+                  },
+                  title: 'নতুন দোকান বরাদ্দের জন্য আবেদন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(Get.to(const RegistrationPrivateEducationalForm()));
+                  },
+                  title:
+                      'বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নিবন্ধনকরণ',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const NominationApplicationFormPage());
+                  },
+                  title: 'নামজারি আবেদন (হোল্ডিং)',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const RenewalPrivateEducationalFormPage());
+                  },
+                  title: 'বেসরকারী শিক্ষাপ্রতিষ্ঠানের/কোচিং সেন্টারের নবায়ন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const PayShopRentFormPage());
+                  },
+                  title: 'দোকান ভাড়া পরিশোধ',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const ApplyShopSubletFormPage());
+                  },
+                  title: 'দোকান সাবলেটের জন্য আবেদন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const ApplicationShopTransferFormPage());
+                  },
+                  title: 'দোকান হস্তান্তরের জন্য আবেদন',
+                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                  onTap: () {
+                    // Get.to(PremisesRegistrationFormPage());
+                    Get.to(const ApplicationRejectionStoreFormPage());
+                  },
+                  title: 'দোকান নাম খারিজের জন্য আবেদন',
+                  icon: 'assets/images/groupicon2.png'),
             ],
           ),
         ));

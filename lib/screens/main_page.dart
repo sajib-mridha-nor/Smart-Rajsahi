@@ -48,6 +48,7 @@ class _MainPageState extends State<MainPage> {
             gradient:
                 LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
         body: _pages[_selectedIndex],
+
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: _selectedIndex,
@@ -74,6 +75,12 @@ class _MainPageState extends State<MainPage> {
               label: 'প্রোফাইল',
             ),
           ],
-        ));
+
+        ),
+
+
+
+    );
+
   }
 }

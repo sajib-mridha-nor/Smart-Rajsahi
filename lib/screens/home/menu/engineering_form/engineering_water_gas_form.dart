@@ -26,6 +26,7 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
     "4",
     "5",
   ];
+  var createEngineeringFormPageDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +92,13 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["holding_no"] = value;
+                        }
+
+                        ),
                   ),
                   const SizedBox(
                     width: 10,
@@ -103,8 +110,8 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                         items: _items,
                         hint: "1",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["ward_no"] = value;
                         }),
                   ),
                 ],
@@ -116,7 +123,9 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                     child: CustomTextField(
                         label: 'মহল্লার নাম',
                         hint: 'আদুবুড়ি',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["village_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 10,
@@ -128,8 +137,8 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                         items: _items,
                         hint: "রাজপাড়া থানা",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["thana_name"] = value;
                         }),
                   ),
                 ],
@@ -141,7 +150,9 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                   maxLines: 6,
                   label: 'সাইটের নিকটস্থ রাস্তার বিবরণ  ',
                   hint: 'এখানে লিখুন',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createEngineeringFormPageDoc["site_about"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -150,7 +161,11 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'রাস্তার নাম', hint: '', onChange: () {}),
+                        label: 'রাস্তার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["road_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 10,
@@ -158,7 +173,11 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'অবস্থান', hint: '', onChange: () {}),
+                        label: 'অবস্থান',
+                        hint: '',
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["place"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -172,7 +191,9 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                     child: CustomTextField(
                         label: 'মূল সড়ক হইতে দুরুত্ব',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["road_distance"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 10,
@@ -180,7 +201,11 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'বিস্তার/প্রশস্ত', hint: '', onChange: () {}),
+                        label: 'বিস্তার/প্রশস্ত',
+                        hint: '',
+                        onChange: (value) {
+                          createEngineeringFormPageDoc["expansion"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -255,7 +280,11 @@ class _EngineeringFormPageState extends State<EngineeringFormPage> {
               const SizedBox(
                 height: 16.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createEngineeringFormPageDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

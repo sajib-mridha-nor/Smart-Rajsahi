@@ -27,6 +27,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
       "4",
       "5",
     ];
+    var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
     return Scaffold(
       // appBar: NewGradientAppBar(
       //     automaticallyImplyLeading: false,
@@ -78,141 +79,6 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               const SizedBox(
                 height: 8.0,
               ),
-
-        const SizedBox(
-          height: 8.0,
-        ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'রাস্তার নাম', hint: '', onChange: () {}),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "-----",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'মহল্লার নাম', hint: '', onChange: () {}),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'ব্লক', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'থানা', hint: '', onChange: () {}),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomDropdown(
-                        label: "পোস্ট কোড",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'জেলা', hint: '', onChange: () {}),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'ফোন/মোবাইল', hint: '', onChange: () {}),
-                  ),
-                ],
-              ),
-          const GradientText(
-            "মালিকের ঠিকানা (বর্তমান)",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-
-        const Divider(
-          thickness: 1,
-          indent: 1.0,
-          color: Colors.grey,
-          endIndent: 12.0,
-        ),
               const SizedBox(
                 height: 8.0,
               ),
@@ -221,23 +87,31 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["holding_no"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'রাস্তার নাম', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'রাস্তার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["road_name"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
               const SizedBox(
                 height: 8,
               ),
-
               Row(
                 children: [
                   Expanded(
@@ -257,7 +131,12 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "village_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -268,18 +147,26 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'ব্লক', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'ব্লক',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["block"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'থানা', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["thana"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -290,17 +177,20 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "post office"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomDropdown(
+                    child: CustomDropdown(
                         label: "পোস্ট কোড",
                         items: _items,
                         hint: "",
@@ -318,29 +208,36 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'জেলা',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["district"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'ফোন/মোবাইল', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'ফোন/মোবাইল',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["mobile"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
               const GradientText(
-                "ব্যবসা প্রতিষ্ঠানের ঠিকানা",
+                "মালিকের ঠিকানা (বর্তমান)",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-
               const Divider(
                 thickness: 1,
                 indent: 1.0,
@@ -355,23 +252,31 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "holding_no1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'রাস্তার নাম', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'রাস্তার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["road_name1"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
               const SizedBox(
                 height: 8,
               ),
-
               Row(
                 children: [
                   Expanded(
@@ -391,7 +296,12 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "village_name1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -402,18 +312,26 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'ব্লক', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'ব্লক',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["block1"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'থানা', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["thana1"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -424,17 +342,20 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "post_office1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomDropdown(
+                    child: CustomDropdown(
                         label: "পোস্ট কোড",
                         items: _items,
                         hint: "",
@@ -452,22 +373,194 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 children: [
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'জেলা',
+                        hint: 'রাজশাহী',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["district1"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'ফোন/মোবাইল', hint: '', onChange: () {}),
+                    child: CustomTextField(
+                        label: 'ফোন/মোবাইল',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["mobile1"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
-
+              const GradientText(
+                "ব্যবসা প্রতিষ্ঠানের ঠিকানা",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Divider(
+                thickness: 1,
+                indent: 1.0,
+                color: Colors.grey,
+                endIndent: 12.0,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "holding_no3"] = value;
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'রাস্তার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["road_name1"] =
+                              value;
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "ওয়ার্ড নং",
+                        items: _items,
+                        hint: "-----",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "village_name2"] = value;
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'ব্লক',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["block2"] =
+                              value;
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["thana2"] =
+                              value;
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc[
+                              "post_office2"] = value;
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "পোস্ট কোড",
+                        items: _items,
+                        hint: "",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'জেলা',
+                        hint: 'রাজশাহী',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["district2"] =
+                              value;
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomTextField(
+                        label: 'ফোন/মোবাইল',
+                        hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc["mobile2"] =
+                              value;
+                        }),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

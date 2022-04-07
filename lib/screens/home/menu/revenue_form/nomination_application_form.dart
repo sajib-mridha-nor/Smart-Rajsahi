@@ -28,6 +28,7 @@ class _NominationApplicationFormPageState
     "4",
     "5",
   ];
+  var createNominationApplicationDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +84,20 @@ class _NominationApplicationFormPageState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:',
+                  hint: '',
+                  onChange: (value) {
+                    createNominationApplicationDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'হোল্ডিং/বাড়ির নং', hint: '', onChange: () {}),
+                  label: 'হোল্ডিং/বাড়ির নং',
+                  hint: '',
+                  onChange: (value) {
+                    createNominationApplicationDoc["holding_no"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -113,7 +122,11 @@ class _NominationApplicationFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং/বাড়ির নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং/বাড়ির নং',
+                        hint: '',
+                        onChange: (value) {
+                          createNominationApplicationDoc["holding_no1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -167,7 +180,11 @@ class _NominationApplicationFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জমির পরিমাণ', hint: '', onChange: () {}),
+                        label: 'জমির পরিমাণ',
+                        hint: '',
+                        onChange: (value) {
+                          createNominationApplicationDoc["land_amount"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -222,30 +239,28 @@ class _NominationApplicationFormPageState
               const SizedBox(
                 height: 8.0,
               ),
-          CustomFilePicker(
-            label: "আদালত কর্তৃক ডিগ্রী বা সাকসেশন সার্টিফিকেট",
-            hint: "Choose File",
-            onChange: (File file) {
-              debugPrint("${file.path}");
-            },
-            require: true,
-          ),
-
-        const SizedBox(
-          height: 8.0,
-        ),
-          CustomFilePicker(
-            label: "হেবা এওয়াজনাম দলিল",
-            hint: "Choose File",
-            onChange: (File file) {
-              debugPrint("${file.path}");
-            },
-            require: true,
-
-        ),
-        const SizedBox(
-          height: 8.0,
-        ),
+              CustomFilePicker(
+                label: "আদালত কর্তৃক ডিগ্রী বা সাকসেশন সার্টিফিকেট",
+                hint: "Choose File",
+                onChange: (File file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              CustomFilePicker(
+                label: "হেবা এওয়াজনাম দলিল",
+                hint: "Choose File",
+                onChange: (File file) {
+                  debugPrint("${file.path}");
+                },
+                require: true,
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
               Row(
                 children: [
                   Expanded(
@@ -433,7 +448,9 @@ class _NominationApplicationFormPageState
                     child: CustomDatePicker(
                       label: 'তারিখ',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                      onChange: (value) {
+                        createNominationApplicationDoc["date"] = value;
+                      },
                     ),
                   ),
                 ],
@@ -466,7 +483,11 @@ class _NominationApplicationFormPageState
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createNominationApplicationDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

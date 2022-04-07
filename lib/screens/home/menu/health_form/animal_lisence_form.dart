@@ -21,6 +21,7 @@ class AnimalLisencePageForm extends StatefulWidget {
 class _AnimalLisencePageFormState extends State<AnimalLisencePageForm> {
   @override
   Widget build(BuildContext context) {
+    var createAnimalLisenceDoc = <String, dynamic>{};
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
@@ -77,7 +78,14 @@ class _AnimalLisencePageFormState extends State<AnimalLisencePageForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'প্রাণীর ধরন', hint: '', onChange: () {}),
+                        label: 'প্রাণীর ধরন', hint: '',
+
+                        onChange: (value) {
+                          createAnimalLisenceDoc["animal_differnent"] =
+                              value;
+                        }
+
+                    ),
                   ),
                   const SizedBox(
                     width: 8,
@@ -85,7 +93,10 @@ class _AnimalLisencePageFormState extends State<AnimalLisencePageForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'প্রাণীর বয়স', hint: '', onChange: () {}),
+                        label: 'প্রাণীর বয়স', hint: '',  onChange: (value) {
+                      createAnimalLisenceDoc["animal_age"] =
+                          value;
+                    }),
                   ),
                 ],
               ),

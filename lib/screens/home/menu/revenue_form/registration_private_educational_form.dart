@@ -28,6 +28,7 @@ class _RegistrationPrivateEducationalFormState
     "4",
     "5",
   ];
+  var createRegistrationPrivateEducationDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +84,12 @@ class _RegistrationPrivateEducationalFormState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:',
+                  hint: '',
+                  onChange: (value) {
+                    createRegistrationPrivateEducationDoc["register_name"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -108,7 +114,12 @@ class _RegistrationPrivateEducationalFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নাম্বার', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নাম্বার',
+                        hint: '',
+                        onChange: (value) {
+                          createRegistrationPrivateEducationDoc[
+                              "holding_number"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -184,7 +195,10 @@ class _RegistrationPrivateEducationalFormState
                     child: CustomTextField(
                         label: 'শিক্ষাপ্রতিষ্ঠানের নাম',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createRegistrationPrivateEducationDoc[
+                              "educational_institute_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -194,7 +208,10 @@ class _RegistrationPrivateEducationalFormState
                     child: CustomTextField(
                         label: 'প্রতিষ্ঠান স্থান (এলাকার নাম)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createRegistrationPrivateEducationDoc[
+                              "institute_place"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -204,7 +221,10 @@ class _RegistrationPrivateEducationalFormState
               CustomTextField(
                   label: 'শিক্ষাপ্রতিষ্ঠানের ঠিকানা (বিস্তারিত লিখুন)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRegistrationPrivateEducationDoc["institute_address"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -213,7 +233,12 @@ class _RegistrationPrivateEducationalFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createRegistrationPrivateEducationDoc["holding_no"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -281,7 +306,9 @@ class _RegistrationPrivateEducationalFormState
                   label:
                       'স্থানটি নিজস্ব হলে কর্পোরেশনের হালনাগাদ ট্যাক্সের রশিদ এবং ভাড়া হলে তার রশিদ',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRegistrationPrivateEducationDoc["tax_rent"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -472,7 +499,11 @@ class _RegistrationPrivateEducationalFormState
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createRegistrationPrivateEducationDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
@@ -25,6 +24,8 @@ class _AcademicPlaceRentFormState extends State<AcademicPlaceRentForm> {
     "40",
     "50",
   ];
+
+  var createAcademicPlaceDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -58,19 +59,11 @@ class _AcademicPlaceRentFormState extends State<AcademicPlaceRentForm> {
               const SizedBox(
                 height: 8.0,
               ),
-              GestureDetector(
-                onTap: () {
-                  // Get.to(const EngineeringFormPage());
-                },
-                child: Container(
-                  // margin: const EdgeInsets.all(10.0),
-                  child: const GradientText(
-                    "সিটি কর্পোরেশনের জায়গা ভাড়া",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+              const GradientText(
+                "সিটি কর্পোরেশনের জায়গা ভাড়া",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const Divider(
@@ -82,20 +75,24 @@ class _AcademicPlaceRentFormState extends State<AcademicPlaceRentForm> {
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createAcademicPlaceDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                label: 'জায়গার নাম ',
-                hint: '',
-                onChange: () {},
-              ),
+                  label: 'জায়গার নাম ',
+                  hint: '',
+                  onChange: (value) {
+                    createAcademicPlaceDoc["place_name"] = value;
+                  }),
               CustomDatePicker(
-                label: 'তারিখ',
-                hint: 'mm/dd/yyyy',
-                onChange: (value) {},
-              ),
+                  label: 'তারিখ',
+                  hint: 'mm/dd/yyyy',
+                  onChange: (value) {
+                    createAcademicPlaceDoc["date_picker"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -103,22 +100,28 @@ class _AcademicPlaceRentFormState extends State<AcademicPlaceRentForm> {
                   maxLines: 6,
                   label: 'জায়গা ভাড়ার  কারণ বিস্তারিত লিখুন  ',
                   hint: 'এখানে লিখুন',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createAcademicPlaceDoc["place_rent_about"] = value;
+                  }),
               const SizedBox(
                 height: 32.0,
               ),
               CustomFilePicker(
-                label: 'সংযুক্ত কাগজ',
-                hint: 'choose File',
-                onChange: (File file) {
-                  debugPrint("${file.path}");
-                },
-                // require: true,
-              ),
+                  label: 'সংযুক্ত কাগজ',
+                  hint: 'choose File',
+                  onChange: (value) {
+                    createAcademicPlaceDoc["attached_paper"] = value;
+                  }
+                  // require: true,
+                  ),
               const SizedBox(
                 height: 32.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createAcademicPlaceDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

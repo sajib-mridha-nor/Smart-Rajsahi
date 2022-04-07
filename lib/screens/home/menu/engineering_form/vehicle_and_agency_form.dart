@@ -26,7 +26,7 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
     "4",
     "5",
   ];
-
+  var createVehicleAgencyFormPageDoc = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +80,12 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createVehicleAgencyFormPageDoc["register_name"] = value;
+                  }
+
+
+              ),
               const SizedBox(
                 height: 8,
               ),
@@ -91,7 +96,9 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                     child: CustomTextField(
                         label: 'ঠিকাদারী প্রতিষ্ঠান/ব্যক্তির নাম',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createVehicleAgencyFormPageDoc["personal_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -99,7 +106,9 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'কাজের বিবরন', hint: '', onChange: () {}),
+                        label: 'কাজের বিবরন', hint: '',  onChange: (value) {
+                      createVehicleAgencyFormPageDoc["work_details"] = value;
+                    }),
                   ),
                 ],
               ),
@@ -108,7 +117,11 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'কাজের স্থান', hint: '', onChange: () {}),
+                        label: 'কাজের স্থান', hint: '',  onChange: (value) {
+                      createVehicleAgencyFormPageDoc["work_place"] = value;
+                    }
+
+                    ),
                   ),
                   const SizedBox(
                     width: 8,
@@ -118,7 +131,9 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                     child: CustomDatePicker(
                       label: 'কার্যাদেশের তারিখ',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                        onChange: (value) {
+                          createVehicleAgencyFormPageDoc["date"] = value;
+                        }
                     ),
                   ),
                 ],
@@ -133,7 +148,9 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                     child: CustomTextField(
                         label: 'কার্যাদেশ ইস্যুকারী প্রতিষ্ঠানের নাম',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createVehicleAgencyFormPageDoc["name_organization_issuing"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -144,7 +161,9 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                     CustomDatePicker(
                       label: 'কাজের তারিখ',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                        onChange: (value) {
+                          createVehicleAgencyFormPageDoc["work_date"] = value;
+                        }
                     ),
                   ),
                 ],
@@ -159,7 +178,9 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                   require: true,
                   onChange: (String? value) {
                     debugPrint("$value");
-                  }),
+                  }
+
+                  ),
               const SizedBox(
                 height: 8.0,
               ),
@@ -200,7 +221,11 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
                   label:
                       'আবেদনকারীর যানবাহন/যন্ত্রপাতি যে ধরনের কাজে ব্যবহার করা হইবে উহার সংক্ষিপ্ত বিবরণ',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createVehicleAgencyFormPageDoc["register_name"] = value;
+                  }
+
+              ),
               const SizedBox(
                 height: 8.0,
               ),
@@ -251,7 +276,10 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
               SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print(createVehicleAgencyFormPageDoc.toString());
+
+              }, title: 'সাবমিট')
             ],
           ),
         ),

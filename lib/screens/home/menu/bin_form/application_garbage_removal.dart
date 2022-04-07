@@ -12,7 +12,8 @@ class ApplicationGarbageRemoval extends StatefulWidget {
   const ApplicationGarbageRemoval({Key? key}) : super(key: key);
 
   @override
-  State<ApplicationGarbageRemoval> createState() => _ApplicationGarbageRemovalState();
+  State<ApplicationGarbageRemoval> createState() =>
+      _ApplicationGarbageRemovalState();
 }
 
 class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
@@ -23,6 +24,7 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
     "4",
     "5",
   ];
+  var createGarbageRemovalDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
                 )),
           ],
           gradient:
-          LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
+              LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -77,7 +79,9 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createGarbageRemovalDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -86,7 +90,11 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'আবেদনকারীর নাম', hint: '', onChange: () {}),
+                        label: 'আবেদনকারীর নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createGarbageRemovalDoc["application_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -96,7 +104,10 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
                     child: CustomTextField(
                         label: 'আবেদনকারীর মোবাইল নাম্বার',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createGarbageRemovalDoc["application_phone_no"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -108,7 +119,11 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নম্বর', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নম্বর',
+                        hint: '',
+                        onChange: (value) {
+                          createGarbageRemovalDoc["holding_number"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -120,8 +135,8 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
+                        onChange: (value) {
+                          createGarbageRemovalDoc["village_name"] = value;
                         }),
                   ),
                 ],
@@ -129,40 +144,56 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
               const SizedBox(
                 height: 8,
               ),
-              CustomTextField(label: 'জায়গার বিবরণ', hint: '', onChange: () {}),
+              CustomTextField(
+                  label: 'জায়গার বিবরণ',
+                  hint: '',
+                  onChange: (value) {
+                    createGarbageRemovalDoc["place_about"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'যে ধরণের মালামাল অপসারণ করা হবে',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createGarbageRemovalDoc["place_about"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'যে স্থান হতে অপসারণ করা হবে',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createGarbageRemovalDoc["remove_place"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'সিটি কর্পোরেশনের নির্ধারিত স্থান',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createGarbageRemovalDoc["city_corporation_place"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'ভাড়া গ্রহণকারীর নিজস্ব স্থান',
                   hint: '',
-                  onChange: () {}),
-
+                  onChange: (value) {
+                    createGarbageRemovalDoc["rent_place"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createGarbageRemovalDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

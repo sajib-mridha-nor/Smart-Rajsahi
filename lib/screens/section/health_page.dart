@@ -7,13 +7,11 @@ import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
-
 import '../home/menu/health_form/animal_lisence_form.dart';
 import '../home/menu/health_form/answer_environmental_pollution_form.dart';
 import '../home/menu/health_form/complaints_environmental_pollution_form.dart';
 import '../home/menu/health_form/medical_reg_form.dart';
 import '../home/menu/health_form/premises_registration/premises_registration.dart';
-
 
 class HealthPage extends StatefulWidget {
   const HealthPage({Key? key}) : super(key: key);
@@ -64,48 +62,42 @@ class _HealthPageState extends State<HealthPage> {
                   ),
                 ),
               ),
-              GestureDetector(
-                onTap: (){
-                  Get.to(const PremisesRegistrationFormPage());
-                },
 
-                // Get.to(PremisesRegistrationFormPage());
-                child:  const CustomCardText(
-                    title: 'প্রিমিসেস নিবন্ধন',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const ComplaintsEnvironmentalPollutionForm());
-                },
-                child: const CustomCardText(
-                    title: 'পরিবেশ দূষণ অভিযোগ',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: () {
-                  Get.to(const AnswerEnvironmentalPollutionForm());
-                },
-                child: const CustomCardText(
-                    title: 'পরিবেশ দূষণ অভিযোগ এর উত্তর',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Get.to(const MedicalRegForm());
-                },
-                child: const CustomCardText(
-                    title: 'মেডিকেল নিবন্ধনকরণ',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
-              GestureDetector(
-                onTap: (){
-                  Get.to(const AnimalLisencePageForm());
-                },
-                child: const CustomCardText(
-                    title: 'পোষা প্রাণীর লাইসেন্স',
-                    icon: 'assets/images/groupicon2.png'),
-              ),
+              // Get.to(PremisesRegistrationFormPage());
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const PremisesRegistrationFormPage());
+                  },
+                  title: 'প্রিমিসেস নিবন্ধন',
+                  icon: 'assets/images/groupicon2.png'),
+
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const ComplaintsEnvironmentalPollutionForm());
+                  },
+                  title: 'পরিবেশ দূষণ অভিযোগ',
+                  icon: 'assets/images/groupicon2.png'),
+
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const AnswerEnvironmentalPollutionForm());
+                  },
+                  title: 'পরিবেশ দূষণ অভিযোগ এর উত্তর',
+                  icon: 'assets/images/groupicon2.png'),
+
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const MedicalRegForm());
+                  },
+                  title: 'মেডিকেল নিবন্ধনকরণ',
+                  icon: 'assets/images/groupicon2.png'),
+
+              CustomCardText(
+                  onTap: () {
+                    Get.to(const AnimalLisencePageForm());
+                  },
+                  title: 'পোষা প্রাণীর লাইসেন্স',
+                  icon: 'assets/images/groupicon2.png'),
             ],
           ),
         ));

@@ -25,6 +25,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
     "5",
   ];
 
+  var createLandUseFormPageDoc = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,17 +79,33 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createLandUseFormPageDoc["resister_name"] = value;
+                  }
+
+
+                  ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'বর্তমান ঠিকানা ', hint: '', onChange: () {}),
+
+                  label: 'বর্তমান ঠিকানা ', hint: '',  onChange: (value) {
+                createLandUseFormPageDoc["present_address"] = value;
+              } ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'স্থায়ী ঠিকানা', hint: '', onChange: () {}),
+                  label: 'স্থায়ী ঠিকানা', hint: '',
+
+                  onChange: (value) {
+                    createLandUseFormPageDoc["prmanent_address"] = value;
+                  }
+
+              )
+
+              ,
               const SizedBox(
                 height: 8,
               ),
@@ -113,15 +130,28 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'রাস্তার নাম/নং', hint: '', onChange: () {}),
+                        label: 'রাস্তার নাম/নং', hint: '',
+
+                        onChange: (value) {
+                          createLandUseFormPageDoc["road_no"] = value;
+                        }
+
+
+                    ),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomTextField(
-                        label: 'মৌজার নাম', hint: '', onChange: () {}),
+                    child:
+                    CustomTextField(
+                        label: 'মৌজার নাম', hint: '',
+                        onChange: (value) {
+                          createLandUseFormPageDoc["mojar_no"] = value;
+                        }
+
+                    ),
                   ),
                 ],
               ),
@@ -137,9 +167,11 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                        onChange: (value) {
+                          createLandUseFormPageDoc["village_name"] = value;
+                        }
+
+                        ),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -151,9 +183,10 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "------",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                        onChange: (value) {
+                          createLandUseFormPageDoc["village_name"] = value;
+                        }
+                        ),
                   ),
                 ],
               ),
@@ -168,7 +201,13 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলার নাম', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলার নাম', hint: 'রাজশাহী',
+
+                        onChange: (value) {
+                          createLandUseFormPageDoc["district_name"] = value;
+                        }
+
+                    ),
                   ),
                   const SizedBox(
                     width: 8,
@@ -176,7 +215,11 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জমির পরিমাণ', hint: '', onChange: () {}),
+                        label: 'জমির পরিমাণ', hint: '',
+                        onChange: (value) {
+                          createLandUseFormPageDoc["land_amount"] = value;
+                        }
+                    ),
                   ),
                 ],
               ),
@@ -192,9 +235,10 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                        onChange: (value) {
+                          createLandUseFormPageDoc["proposed_tala"] = value;
+                        }
+                        ),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -206,9 +250,11 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                        onChange: (value) {
+                          createLandUseFormPageDoc["jl_no"] = value;
+                        }
+
+                        ),
                   ),
                 ],
               ),
@@ -224,9 +270,11 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                        onChange: (value) {
+                          createLandUseFormPageDoc["rs_no"] = value;
+                        }
+
+                        ),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -238,9 +286,10 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                        onChange: (value) {
+                          createLandUseFormPageDoc["rs_plot_no"] = value;
+                        }
+                        ),
                   ),
                 ],
               ),
@@ -256,8 +305,8 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
+                        onChange: (value) {
+                          createLandUseFormPageDoc["draft_no"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -268,7 +317,10 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                     child: CustomDatePicker(
                       label: 'কাজের তারিখ',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                      onChange:
+                          (value) {
+                        createLandUseFormPageDoc["work_date"] = value;
+                      },
                     ),
                   ),
                 ],
@@ -281,7 +333,12 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ব্যাংকের নাম/শাখা', hint: '', onChange: () {}),
+                        label: 'ব্যাংকের নাম/শাখা', hint: '',
+                      onChange:
+                          (value) {
+                        createLandUseFormPageDoc['bank_name'] = value;
+                      },
+                    ),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -293,9 +350,10 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
+                      onChange:
+                          (value) {
+                        createLandUseFormPageDoc['money_amount'] = value;
+                      },),
                   ),
                 ],
               ),
@@ -327,7 +385,9 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print( createLandUseFormPageDoc.toString());
+              }, title: 'সাবমিট')
             ],
           ),
         ),

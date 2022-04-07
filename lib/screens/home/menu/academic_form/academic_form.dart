@@ -24,6 +24,9 @@ class _AcademicFormState extends State<AcademicForm> {
     "50",
   ];
 
+  var createAcademicDoc = <String, dynamic>{};
+
+  // var createAcademicDoc=<String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,14 +63,11 @@ class _AcademicFormState extends State<AcademicForm> {
                 onTap: () {
                   // Get.to(const EngineeringFormPage());
                 },
-                child: Container(
-                  // margin: const EdgeInsets.all(10.0),
-                  child: const GradientText(
-                    "আর্থিক সহায়তা প্রদান",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+                child: const GradientText(
+                  "আর্থিক সহায়তা প্রদান",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
@@ -80,7 +80,9 @@ class _AcademicFormState extends State<AcademicForm> {
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createAcademicDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -89,8 +91,8 @@ class _AcademicFormState extends State<AcademicForm> {
                   items: _items,
                   hint: "00",
                   require: true,
-                  onChange: (String? value) {
-                    debugPrint("$value");
+                  onChange: (value) {
+                    createAcademicDoc["user_amount"] = value;
                   }),
               const SizedBox(
                 height: 8.0,
@@ -100,11 +102,17 @@ class _AcademicFormState extends State<AcademicForm> {
                   label:
                       'যে সম্পর্কে আর্থিক সহায়তা প্রয়োজন সে সম্পর্কে বিস্তারিত লিখুন   ',
                   hint: 'এখানে লিখুন',
-                  onChange: () {}),
+                  onChange: (value3) {
+                    createAcademicDoc["user_about"] = value3;
+                  }),
               const SizedBox(
                 height: 32.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট করুন')
+              CustomButton(
+                  onClick: () {
+                    print(createAcademicDoc.toString());
+                  },
+                  title: 'সাবমিট করুন')
             ],
           ),
         ),

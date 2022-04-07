@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/utils/hexcolor.dart';
@@ -31,6 +30,7 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
       "4",
       "5",
     ];
+    var createMedicalRegFormDoc = <String, dynamic>{};
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
@@ -85,12 +85,18 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createMedicalRegFormDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'ব্যবসা প্রতিষ্ঠান নাম ', hint: '', onChange: () {}),
+                  label: 'ব্যবসা প্রতিষ্ঠান নাম ',
+                  hint: '',
+                  onChange: (value) {
+                    createMedicalRegFormDoc["business_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -131,7 +137,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মালিকের নাম', hint: '', onChange: () {}),
+                        label: 'মালিকের নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["owner_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -155,12 +165,18 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
               CustomTextField(
                   label: 'মালিকের পিতা/স্বামী/অভিবাবক এর নাম',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createMedicalRegFormDoc["owner_father_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'মালিকের মাতার নাম', hint: '', onChange: () {}),
+                  label: 'মালিকের মাতার নাম',
+                  hint: '',
+                  onChange: (value) {
+                    createMedicalRegFormDoc["owner_mother_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -188,7 +204,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["holding_no"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -196,7 +216,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'রাস্তার নাম', hint: '', onChange: () {}),
+                        label: 'রাস্তার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["road_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -222,7 +246,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["village_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -234,7 +262,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ব্লক', hint: '', onChange: () {}),
+                        label: 'ব্লক',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["block"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -242,7 +274,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'থানা', hint: '', onChange: () {}),
+                        label: 'থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["thana_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -254,7 +290,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["post_office"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -280,7 +320,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: '', onChange: () {}),
+                        label: 'জেলা',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["district_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -288,7 +332,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ফোন/মোবাইল', hint: '', onChange: () {}),
+                        label: 'ফোন/মোবাইল',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["phone"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -313,7 +361,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["holding_no1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -321,7 +373,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'রাস্তার নাম', hint: '', onChange: () {}),
+                        label: 'রাস্তার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["road_name1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -347,7 +403,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["village_name1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -359,7 +419,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ব্লক', hint: '', onChange: () {}),
+                        label: 'ব্লক',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["block1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -367,7 +431,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'থানা', hint: '', onChange: () {}),
+                        label: 'থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["thana1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -379,7 +447,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["posto_office1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -405,7 +477,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলা',
+                        hint: 'রাজশাহী',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["District1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -413,7 +489,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ফোন/মোবাইল', hint: '', onChange: () {}),
+                        label: 'ফোন/মোবাইল',
+                        hint: '',
+                        onChange: (value) {
+                          createMedicalRegFormDoc["mobile1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -436,7 +516,9 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
               CustomDatePicker(
                 label: "ব্যবসা আরম্ভ করার তারিখ",
                 hint: "",
-                onChange: (value) {},
+                onChange: (value) {
+                  createMedicalRegFormDoc["business_date"] = value;
+                },
               ),
               const SizedBox(
                 height: 8,
@@ -444,7 +526,9 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
               CustomTextField(
                   label: 'প্রিমিসেস নিবন্ধিকরন ব্যবহারের উদ্দেশ্য',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createMedicalRegFormDoc["premises_application"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -521,7 +605,9 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
               CustomTextField(
                   label: 'নিষ্কাশন/আবর্জনা নিয়ন্ত্রণ ব্যবস্থার সার্বিক অবস্থা',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createMedicalRegFormDoc["drainage_waste_control"] = value;
+                  }),
               CustomTextField(
                   maxLines: 6, label: 'মন্তব্য', hint: '', onChange: () {}),
               const SizedBox(
@@ -657,7 +743,11 @@ class _MedicalRegFormState extends State<MedicalRegForm> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createMedicalRegFormDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

@@ -27,6 +27,7 @@ class _ApplicationShopTransferFormPageState
     "4",
     "5",
   ];
+  var createApplicationShopDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -77,14 +78,20 @@ class _ApplicationShopTransferFormPageState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:',
+                  hint: '',
+                  onChange: (value) {
+                    createApplicationShopDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'আবেদনকারীর/ আবেদনকারীগণের নাম',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createApplicationShopDoc["application_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -93,7 +100,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পিত/স্বামীর নাম', hint: '', onChange: () {}),
+                        label: 'পিতা/স্বামীর নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["father_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 10,
@@ -101,7 +112,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মাতার নাম', hint: '', onChange: () {}),
+                        label: 'মাতার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["mother_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -109,7 +124,11 @@ class _ApplicationShopTransferFormPageState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'দোকানের অবস্থান', hint: '', onChange: () {}),
+                  label: 'দোকানের অবস্থান',
+                  hint: '',
+                  onChange: (value) {
+                    createApplicationShopDoc["shop_place"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -164,7 +183,12 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ব্যাবসার ধরেন', hint: '', onChange: () {}),
+                        label: 'ব্যাবসার ধরেন',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["business_different"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -172,7 +196,11 @@ class _ApplicationShopTransferFormPageState
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'দোকানের ব্যাবহার', hint: '', onChange: () {}),
+                  label: 'দোকানের ব্যাবহার',
+                  hint: '',
+                  onChange: (value) {
+                    createApplicationShopDoc["shop_use"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -180,7 +208,9 @@ class _ApplicationShopTransferFormPageState
                   keyboardType: TextInputType.number,
                   label: 'মোবাইল/টেলিফোন নাম্বার (যদি থাকে)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createApplicationShopDoc["if_mobile_number"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -205,7 +235,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'গ্রাম/মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["village_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -213,7 +247,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["post_office"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -221,7 +259,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'উপজেলা/থানা', hint: '', onChange: () {}),
+                        label: 'উপজেলা/থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["thana_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -233,7 +275,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["holding_no"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -255,15 +301,23 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: '', onChange: () {}),
+                        label: 'জেলা',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["district_name"] = value;
+                        }),
                   ),
                 ],
               ),
               const SizedBox(
                 height: 8,
               ),
-
-              CustomTextField(label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+              CustomTextField(
+                  label: 'জেলা',
+                  hint: 'রাজশাহী',
+                  onChange: (value) {
+                    createApplicationShopDoc["district_name1"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -288,7 +342,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'গ্রাম/মহল্লার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["village_name1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -296,7 +354,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["post_office1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -304,7 +366,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'উপজেলা/থানা', hint: '', onChange: () {}),
+                        label: 'উপজেলা/থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["tana_name1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -316,7 +382,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createApplicationShopDoc["holding_no1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -338,7 +408,11 @@ class _ApplicationShopTransferFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলা',
+                        hint: 'রাজশাহী',
+                        onChange: (value) {
+                          createApplicationShopDoc["district1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -346,7 +420,11 @@ class _ApplicationShopTransferFormPageState
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'যাহার নাম হস্তান্তর হবে', hint: '', onChange: () {}),
+                  label: 'যাহার নাম হস্তান্তর হবে',
+                  hint: '',
+                  onChange: (value) {
+                    createApplicationShopDoc["father_name"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -383,7 +461,11 @@ class _ApplicationShopTransferFormPageState
               const SizedBox(
                 height: 16.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createApplicationShopDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

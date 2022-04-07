@@ -27,6 +27,7 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
     "4",
     "5",
   ];
+  var createNewHoldingPageDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +83,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:',
+                  hint: '',
+                  onChange: (value) {
+                    createNewHoldingPageDoc["application_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -135,7 +140,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                 height: 8,
               ),
               CustomTextField(
-                  label: 'প্লট নাম্বার (যদি থাকে)', hint: '', onChange: () {}),
+                  label: 'প্লট নাম্বার (যদি থাকে)',
+                  hint: '',
+                  onChange: (value) {
+                    createNewHoldingPageDoc["if_plot_number"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -146,7 +155,9 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                     child: CustomTextField(
                         label: 'প্লট নাম্বার (যদি থাকে)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createNewHoldingPageDoc["plot_number"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -186,7 +197,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলা',
+                        hint: 'রাজশাহী',
+                        onChange: (value) {
+                          createNewHoldingPageDoc["district_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -585,7 +600,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ঋণের পরিমান', hint: '', onChange: () {}),
+                        label: 'ঋণের পরিমান',
+                        hint: '',
+                        onChange: (value) {
+                          createNewHoldingPageDoc["loan_amount"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -593,7 +612,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পরিশোধের মেয়াদ', hint: '3', onChange: () {}),
+                        label: 'পরিশোধের মেয়াদ',
+                        hint: '3',
+                        onChange: (value) {
+                          createNewHoldingPageDoc["payment_term"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -601,7 +624,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
                 width: 8.0,
               ),
               CustomTextField(
-                  label: 'পরিশোধের মেয়াদ', hint: '3', onChange: () {}),
+                  label: 'পরিশোধের মেয়াদ',
+                  hint: '3',
+                  onChange: (value) {
+                    createNewHoldingPageDoc["payment_term"] = value;
+                  }),
               const SizedBox(
                 width: 8.0,
               ),
@@ -759,7 +786,11 @@ class _NewHoldingApplicationState extends State<NewHoldingApplicationFormPage> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createNewHoldingPageDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

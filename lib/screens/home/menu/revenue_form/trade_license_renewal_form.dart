@@ -29,6 +29,7 @@ class _TradeLiscenseRenewalFormPageState
     "4",
     "5",
   ];
+  var createTradeLicenseRenewalDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +87,9 @@ class _TradeLiscenseRenewalFormPageState
               CustomTextField(
                   label: 'নবায়ন কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTradeLicenseRenewalDoc["name_renewer"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -95,7 +98,11 @@ class _TradeLiscenseRenewalFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মালিকের নাম', hint: '', onChange: () {}),
+                        label: 'মালিকের নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createTradeLicenseRenewalDoc["ownwer_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -105,7 +112,10 @@ class _TradeLiscenseRenewalFormPageState
                     child: CustomTextField(
                         label: 'স্থায়ী ঠিকানা (বিস্তারিত লিখুন)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseRenewalDoc[
+                              "permanent_address_about"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -119,7 +129,10 @@ class _TradeLiscenseRenewalFormPageState
                     child: CustomTextField(
                         label: 'ব্যবসা প্রতিষ্ঠানের নাম',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseRenewalDoc[
+                              "business_institute_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -129,7 +142,10 @@ class _TradeLiscenseRenewalFormPageState
                     child: CustomTextField(
                         label: 'ব্যবসার স্থান (বিস্তারিত লিখুন)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseRenewalDoc["business_place"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -143,7 +159,10 @@ class _TradeLiscenseRenewalFormPageState
                     child: CustomTextField(
                         label: 'পূর্বের লাইসেন্স নং',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseRenewalDoc["previous_license_no"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -153,7 +172,10 @@ class _TradeLiscenseRenewalFormPageState
                     child: CustomDatePicker(
                       label: 'পূর্বের লাইসেন্স এর মেয়াদ',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                      onChange: (value) {
+                        createTradeLicenseRenewalDoc["license_expired_date"] =
+                            value;
+                      },
                     ),
                   ),
                 ],
@@ -261,7 +283,9 @@ class _TradeLiscenseRenewalFormPageState
                   label:
                       'ব্যবসায়ের ধরন (উপরের তালিকাতে না থাকিলে এখানে লিখুন))',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTradeLicenseRenewalDoc["business_different"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -315,14 +339,18 @@ class _TradeLiscenseRenewalFormPageState
               CustomTextField(
                   label: 'হোল্ডিং/দোকান নং (ব্যবসার প্রতিষ্ঠানের)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTradeLicenseRenewalDoc["holding_no"] = value;
+                  }),
               const SizedBox(
                 width: 8.0,
               ),
               CustomDatePicker(
                 label: 'ব্যবসা আরম্ভ করার তারিখ',
                 hint: 'mm/dd/yyyy',
-                onChange: (value) {},
+                onChange: (value) {
+                  createTradeLicenseRenewalDoc["business_start_date"] = value;
+                },
               ),
               const SizedBox(
                 height: 8.0,
@@ -364,7 +392,9 @@ class _TradeLiscenseRenewalFormPageState
                   label:
                       'ব্যবসার ধরণ / মালিকানার কোন রকম পরিবর্তন বা পরিবর্ধন করার প্রয়োজন হলে তার বিস্তারিত তথ্য',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTradeLicenseRenewalDoc["business_different"] = value;
+                  }),
               const SizedBox(
                 width: 8.0,
               ),
@@ -485,7 +515,11 @@ class _TradeLiscenseRenewalFormPageState
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createTradeLicenseRenewalDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

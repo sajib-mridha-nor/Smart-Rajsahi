@@ -25,7 +25,7 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
     "4",
     "5",
   ];
-
+  var createApplyShopSubletDoc = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +79,14 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'আবেদনকারীর নাম', hint: '', onChange: () {}),
+                        label: 'আবেদনকারীর নাম', hint: '',
+
+                        onChange: (value) {
+                          createApplyShopSubletDoc["register_name"] =
+                              value;
+                        }
+
+                    ),
                   ),
                   const SizedBox(
                     width: 10,
@@ -90,7 +97,10 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
                         keyboardType: TextInputType.number,
                         label: 'মোবাইল/টেলিফোন নাম্বার',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createApplyShopSubletDoc["mobile_number"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -148,7 +158,10 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মালিকের নাম', hint: '', onChange: () {}),
+                        label: 'মালিকের নাম', hint: '',   onChange: (value) {
+                      createApplyShopSubletDoc["owner_name"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 10,
@@ -156,7 +169,10 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'সাল', hint: '2022', onChange: () {}),
+                        label: 'সাল', hint: '2022',   onChange: (value) {
+                      createApplyShopSubletDoc["year"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -164,7 +180,10 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'অসুবিধার কারণ  ', hint: '', onChange: () {}),
+                  label: 'অসুবিধার কারণ  ', hint: '',   onChange: (value) {
+                createApplyShopSubletDoc["cause_inconvenience"] =
+                    value;
+              }),
               const SizedBox(
                 height: 8,
               ),
@@ -189,7 +208,9 @@ class _ApplyShopSubletFormPageState extends State<ApplyShopSubletFormPage> {
               const SizedBox(
                 height: 16.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print(createApplyShopSubletDoc.toString());
+              }, title: 'সাবমিট')
             ],
           ),
         ),

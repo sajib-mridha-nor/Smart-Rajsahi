@@ -21,6 +21,7 @@ class _AnswerEnvironmentalPollutionFormState
     extends State<AnswerEnvironmentalPollutionForm> {
   @override
   Widget build(BuildContext context) {
+    var createanswerEnvironmentDoc = <String, dynamic>{};
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
@@ -73,9 +74,15 @@ class _AnswerEnvironmentalPollutionFormState
                 height: 8.0,
               ),
               CustomTextField(
+
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createanswerEnvironmentDoc["register_name"] =
+                        value;
+                  }
+
+                  ),
               const SizedBox(
                 height: 8,
               ),
@@ -84,7 +91,13 @@ class _AnswerEnvironmentalPollutionFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'অভিযোগকারীর নাম', hint: '', onChange: () {}),
+                        label: 'অভিযোগকারীর নাম', hint: '',
+                        onChange: (value) {
+                          createanswerEnvironmentDoc["complain_name"] =
+                              value;
+                        }
+
+                    ),
                   ),
                   const SizedBox(
                     width: 8,
@@ -92,7 +105,13 @@ class _AnswerEnvironmentalPollutionFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'অভিযোগকারীর মোবাইল', hint: '', onChange: () {}),
+                        label: 'অভিযোগকারীর মোবাইল', hint: '',
+                        onChange: (value) {
+                          createanswerEnvironmentDoc["complain_number"] =
+                              value;
+                        }
+
+                    ),
                   ),
                 ],
               ),
@@ -106,7 +125,11 @@ class _AnswerEnvironmentalPollutionFormState
                     child: CustomTextField(
                         label: 'সুস্পষ্ট আইডি থাকলে',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createanswerEnvironmentDoc["complain_id"] =
+                              value;
+                        }
+                        ),
                   ),
                   const SizedBox(
                     width: 8,
@@ -116,7 +139,12 @@ class _AnswerEnvironmentalPollutionFormState
                     child: CustomTextField(
                         label: 'অভিযুক্তের মোবাইল নং',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createanswerEnvironmentDoc["complain_number"] =
+                              value;
+                        }
+
+                    ),
                   ),
                 ],
               ),
@@ -127,7 +155,12 @@ class _AnswerEnvironmentalPollutionFormState
                   maxLines: 8,
                   label: 'অভিযোগ বিস্তারিত',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createanswerEnvironmentDoc["complain_about"] =
+                        value;
+                  }
+
+              ),
               const SizedBox(
                 height: 8,
               ),
@@ -142,7 +175,9 @@ class _AnswerEnvironmentalPollutionFormState
               const SizedBox(
                 height: 8,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print(createanswerEnvironmentDoc.toString());
+              }, title: 'সাবমিট')
             ],
           ),
         ),

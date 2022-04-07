@@ -26,6 +26,7 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
     "4",
     "5",
   ];
+  var createPayShopRentFormDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -81,12 +82,20 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:',
+                  hint: '',
+                  onChange: (value) {
+                    createPayShopRentFormDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'আবেদনকারীর নাম', hint: '', onChange: () {}),
+                  label: 'আবেদনকারীর নাম',
+                  hint: '',
+                  onChange: (value) {
+                    createPayShopRentFormDoc["application_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -95,7 +104,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পিতা/স্বামীর নাম', hint: '', onChange: () {}),
+                        label: 'পিতা/স্বামীর নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["father_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -103,7 +116,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মাতার নাম', hint: '', onChange: () {}),
+                        label: 'মাতার নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["mother_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -117,7 +134,9 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                     child: CustomDatePicker(
                       label: "আবেদনকারীর জন্ম তারিখ",
                       hint: "mm/dd/yyyy",
-                      onChange: (value) {},
+                      onChange: (value) {
+                        createPayShopRentFormDoc["date"] = value;
+                      },
                     ),
                   ),
                   const SizedBox(
@@ -137,7 +156,9 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   keyboardType: TextInputType.number,
                   label: 'টেলিফোন/মোবাইল নাম্বার',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createPayShopRentFormDoc["mobile_number"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -157,7 +178,12 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
               const SizedBox(
                 height: 8,
               ),
-              CustomTextField(label: 'দোকানের নাম', hint: '', onChange: () {}),
+              CustomTextField(
+                  label: 'দোকানের নাম',
+                  hint: '',
+                  onChange: (value) {
+                    createPayShopRentFormDoc["shop_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -228,7 +254,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["holding_no"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -250,7 +280,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: () {}),
+                  label: 'গ্রাম/মহল্লার নাম',
+                  hint: '',
+                  onChange: (value) {
+                    createPayShopRentFormDoc["village_name"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -259,7 +293,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["post_office"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -285,7 +323,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'উপজেলা/থানা', hint: '', onChange: () {}),
+                        label: 'উপজেলা/থানা',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["tana_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -324,7 +366,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["holding_name1"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -364,7 +410,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["post_office1"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -390,7 +440,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলা',
+                        hint: 'রাজশাহী',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["district_name"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -416,14 +470,18 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
               CustomTextField(
                   label: 'জাতীয় পরিচয় পত্র/জন্ম নিবন্ধন সনদ',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createPayShopRentFormDoc["national_id"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'Tax Identification Number (TIN) (প্রযোজ ক্ষেত্রে)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createPayShopRentFormDoc["tax_identification"] = value;
+                  }),
               const SizedBox(height: 8.0),
               Row(
                 children: [
@@ -433,7 +491,10 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                         label:
                             'Business Identification Number (BIN) (প্রযোজ ক্ষেত্রে)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createPayShopRentFormDoc["business_identification"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -444,7 +505,10 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                         label:
                             'Business Identification Number (BIN) (প্রযোজ ক্ষেত্রে)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createPayShopRentFormDoc["business_identification"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -492,7 +556,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'দোকান ভাড়া', hint: '', onChange: () {}),
+                        label: 'দোকান ভাড়া',
+                        hint: '',
+                        onChange: (value) {
+                          createPayShopRentFormDoc["shop_rent"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -524,7 +592,11 @@ class _PayShopRentFormPageState extends State<PayShopRentFormPage> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createPayShopRentFormDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

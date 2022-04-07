@@ -26,7 +26,7 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
     "4",
     "5",
   ];
-
+  var createRenewalPrivateEducationDoc = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +81,12 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '',
+                  onChange: (value) {
+                    createRenewalPrivateEducationDoc ["register_name"] =
+                        value;
+                  }
+              ),
               const SizedBox(
                 height: 8,
               ),
@@ -106,7 +111,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নাম্বার', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নাম্বার', hint: '', onChange: (value) {
+                      createRenewalPrivateEducationDoc ["holding_number"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -182,7 +190,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                     child: CustomTextField(
                         label: 'শিক্ষাপ্রতিষ্ঠানের নাম',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createRenewalPrivateEducationDoc ["educational_institute_name"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -192,7 +203,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                     child: CustomTextField(
                         label: 'প্রতিষ্ঠান স্থান (এলাকার নাম)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createRenewalPrivateEducationDoc ["institute_place"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -202,7 +216,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
               CustomTextField(
                   label: 'শিক্ষাপ্রতিষ্ঠানের ঠিকানা (বিস্তারিত লিখুন)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRenewalPrivateEducationDoc ["institute_address"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -211,7 +228,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং', hint: '',  onChange: (value) {
+                      createRenewalPrivateEducationDoc ["holding_no_1"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -250,7 +270,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                     child: CustomTextField(
                         label: 'পূর্বের নিবন্ধন নং',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createRenewalPrivateEducationDoc ["previous_register_no"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -260,7 +283,10 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
                     child: CustomFilePicker(
                       label: 'পূর্বের নিবন্ধন সন',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                      onChange: (value) {
+                        createRenewalPrivateEducationDoc ["previous_register_year"] =
+                            value;
+                      },
                     ),
                   ),
                 ],
@@ -477,7 +503,9 @@ class _RenewalPrivateEducationalFormPageState extends State<RenewalPrivateEducat
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print( createRenewalPrivateEducationDoc .toString());
+              }, title: 'সাবমিট')
             ],
           ),
         ),

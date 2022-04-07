@@ -25,6 +25,7 @@ class _TruckRemoveConstructionMaterialsState
     "4",
     "5",
   ];
+  var createTruckRemoveConstructionDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -79,7 +80,9 @@ class _TruckRemoveConstructionMaterialsState
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTruckRemoveConstructionDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -88,7 +91,12 @@ class _TruckRemoveConstructionMaterialsState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'আবেদনকারীর নাম', hint: '', onChange: () {}),
+                        label: 'আবেদনকারীর নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createTruckRemoveConstructionDoc["application_name"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -98,7 +106,10 @@ class _TruckRemoveConstructionMaterialsState
                     child: CustomTextField(
                         label: 'আবেদনকারীর মোবাইল নাম্বার',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTruckRemoveConstructionDoc[
+                              "application_number"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -110,7 +121,12 @@ class _TruckRemoveConstructionMaterialsState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নম্বর', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নম্বর',
+                        hint: '',
+                        onChange: (value) {
+                          createTruckRemoveConstructionDoc["holding_number"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -122,8 +138,9 @@ class _TruckRemoveConstructionMaterialsState
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
+                        onChange: (value) {
+                          createTruckRemoveConstructionDoc["village_name"] =
+                              value;
                         }),
                   ),
                 ],
@@ -131,41 +148,57 @@ class _TruckRemoveConstructionMaterialsState
               const SizedBox(
                 height: 8,
               ),
-              CustomTextField(label: 'জায়গার বিবরণ', hint: '', onChange: () {}),
+              CustomTextField(
+                  label: 'জায়গার বিবরণ',
+                  hint: '',
+                  onChange: (value) {
+                    createTruckRemoveConstructionDoc["place_about"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'যে ধরণের মালামাল অপসারণ করা হবে',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTruckRemoveConstructionDoc["removal_place"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'যে স্থান হতে অপসারণ করা হবে',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTruckRemoveConstructionDoc["place_remove"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'সিটি কর্পোরেশনের নির্ধারিত স্থান',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTruckRemoveConstructionDoc[
+                        "designated_city_corporation"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'ভাড়া গ্রহণকারীর নিজস্ব স্থান',
                   hint: '',
-                  onChange: () {}),
-
+                  onChange: (value) {
+                    createTruckRemoveConstructionDoc["rental_space"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
-
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createTruckRemoveConstructionDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

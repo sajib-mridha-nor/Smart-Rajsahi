@@ -14,7 +14,8 @@ class TradeLicenseNewFormPage extends StatefulWidget {
   const TradeLicenseNewFormPage({Key? key}) : super(key: key);
 
   @override
-  State<TradeLicenseNewFormPage> createState() => _TradeLicenseNewFormPageState();
+  State<TradeLicenseNewFormPage> createState() =>
+      _TradeLicenseNewFormPageState();
 }
 
 class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
@@ -25,6 +26,7 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
     "4",
     "5",
   ];
+  var createTradeLicenseNewDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +86,11 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মালিকের নাম', hint: '', onChange: () {}),
+                        label: 'মালিকের নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createTradeLicenseNewDoc["owner_name"] = value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -94,7 +100,10 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
                     child: CustomTextField(
                         label: 'স্থায়ী ঠিকানা (বিস্তারিত লিখুন)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseNewDoc["permanent_address_about"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -108,7 +117,10 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
                     child: CustomTextField(
                         label: 'ব্যবসা প্রতিষ্ঠানের নাম',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseNewDoc["business_institute_name"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -118,7 +130,9 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
                     child: CustomTextField(
                         label: 'ব্যবসার স্থান (বিস্তারিত লিখুন)',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createTradeLicenseNewDoc["business_place"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -225,7 +239,9 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
                   label:
                       'ব্যবসায়ের ধরন (উপরের তালিকাতে না থাকিলে এখানে লিখুন)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTradeLicenseNewDoc["business_different"] = value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -304,14 +320,18 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
               CustomTextField(
                   label: 'ব্যবসা প্রতিষ্ঠানের হোল্ডিং/দোকান নং',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createTradeLicenseNewDoc["business_holding_no"] = value;
+                  }),
               const SizedBox(
                 width: 8.0,
               ),
               CustomDatePicker(
                 label: 'ব্যবসা আরম্ভ করার তারিখ',
                 hint: 'mm/dd/yyyy',
-                onChange: (value) {},
+                onChange: (value) {
+                  createTradeLicenseNewDoc["business_start_date"] = value;
+                },
               ),
               const SizedBox(
                 height: 8.0,
@@ -422,7 +442,11 @@ class _TradeLicenseNewFormPageState extends State<TradeLicenseNewFormPage> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createTradeLicenseNewDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

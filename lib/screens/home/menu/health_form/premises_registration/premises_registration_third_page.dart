@@ -24,6 +24,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
       "4",
       "5",
     ];
+    var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -58,7 +59,9 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
               CustomDatePicker(
                 label: "ব্যবসা আরম্ভ করার তারিখ",
                 hint: "",
-                onChange: (value) {},
+                onChange: (value) {
+                  createPremisesRegistrationFirstPageDoc["date_picker"] = value;
+                },
               ),
               const SizedBox(
                 height: 8,
@@ -66,7 +69,10 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
               CustomTextField(
                   label: 'প্রিমিসেস নিবন্ধিকরন ব্যবহারের উদ্দেশ্য',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createPremisesRegistrationFirstPageDoc["prmises_use"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -143,7 +149,10 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
               CustomTextField(
                   label: 'নিষ্কাশন/আবর্জনা নিয়ন্ত্রণ ব্যবস্থার সার্বিক অবস্থা',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createPremisesRegistrationFirstPageDoc[
+                        'drainage_waste_control'] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -277,7 +286,11 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createPremisesRegistrationFirstPageDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

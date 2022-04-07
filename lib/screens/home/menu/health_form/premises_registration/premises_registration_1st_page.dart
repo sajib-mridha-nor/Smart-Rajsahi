@@ -28,6 +28,7 @@ class _PremisesRegistrationFirstPageState
       "4",
       "5",
     ];
+    var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
@@ -87,12 +88,22 @@ class _PremisesRegistrationFirstPageState
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createPremisesRegistrationFirstPageDoc ["register_name"] = value;
+                  }
+
+              ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'ব্যবসা প্রতিষ্ঠান নাম ', hint: '', onChange: () {}),
+                  label: 'ব্যবসা প্রতিষ্ঠান নাম ', hint: '',
+
+                  onChange: (value) {
+                    createPremisesRegistrationFirstPageDoc ["business_name"] = value;
+                  }
+
+              ),
               const SizedBox(
                 height: 8,
               ),
@@ -133,7 +144,11 @@ class _PremisesRegistrationFirstPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মালিকের নাম', hint: '', onChange: () {}),
+                        label: 'মালিকের নাম', hint: '',
+                        onChange: (value) {
+                          createPremisesRegistrationFirstPageDoc ["owner_name"] = value;
+                        }
+                    ),
                   ),
                   const SizedBox(
                     width: 8,
@@ -162,7 +177,13 @@ class _PremisesRegistrationFirstPageState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'মালিকের মাতার নাম', hint: '', onChange: () {}),
+                  label: 'মালিকের মাতার নাম', hint: '',
+
+                  onChange: (value) {
+                    createPremisesRegistrationFirstPageDoc ["owner_name"] = value;
+                  }
+
+              ),
             ],
           ),
         ),

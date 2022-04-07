@@ -24,7 +24,7 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
     "4",
     "5",
   ];
-
+  var createApplicationRejectionDoc = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,14 +74,22 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম:', hint: '',
+                  onChange: (value) {
+                createApplicationRejectionDoc["register_name"] =
+                    value;
+              }
+              ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
                   label: 'আবেদনকারীর/ আবেদনকারীগণের নাম',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createApplicationRejectionDoc["application_name"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -90,7 +98,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পিত/স্বামীর নাম', hint: '', onChange: () {}),
+                        label: 'পিতা/স্বামীর নাম', hint: '',   onChange: (value) {
+                      createApplicationRejectionDoc["father_name"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 10,
@@ -98,7 +109,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'মাতার নাম', hint: '', onChange: () {}),
+                        label: 'মাতার নাম', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["mother_name"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -106,7 +120,12 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                 height: 8,
               ),
               CustomTextField(
-                  label: 'দোকানের অবস্থান', hint: '', onChange: () {}),
+                  label: 'দোকানের অবস্থান', hint: '',
+                  onChange: (value) {
+                    createApplicationRejectionDoc["shop_place"] =
+                        value;
+                  }
+              ),
               const SizedBox(
                 height: 8,
               ),
@@ -161,7 +180,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ব্যাবসার ধরেন', hint: '', onChange: () {}),
+                        label: 'ব্যাবসার ধরেন', hint: '',onChange: (value) {
+                      createApplicationRejectionDoc["business_different"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -169,7 +191,11 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'দোকানের ব্যাবহার', hint: '', onChange: () {}),
+                  label: 'দোকানের ব্যাবহার', hint: '',
+                  onChange: (value) {
+                createApplicationRejectionDoc["shop_use"] =
+                    value;
+              }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -177,7 +203,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   keyboardType: TextInputType.number,
                   label: 'মোবাইল/টেলিফোন নাম্বার (যদি থাকে)',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createApplicationRejectionDoc["mobile_no"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -202,7 +231,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["village_name"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -210,7 +242,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["post_office"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -218,7 +253,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'উপজেলা/থানা', hint: '', onChange: () {}),
+                        label: 'উপজেলা/থানা', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["district_name"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -230,7 +268,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["holding_no"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -252,7 +293,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলা', hint: 'রাজশাহী', onChange: (value) {
+                      createApplicationRejectionDoc["district_name"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -280,7 +324,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'গ্রাম/মহল্লার নাম', hint: '', onChange: () {}),
+                        label: 'গ্রাম/মহল্লার নাম', hint: '',onChange: (value) {
+                      createApplicationRejectionDoc["village_name"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -288,7 +335,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                        label: 'পোস্ট অফিস', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["post_office"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -296,7 +346,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'উপজেলা/থানা', hint: '', onChange: () {}),
+                        label: 'উপজেলা/থানা', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["tana_name"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -308,7 +361,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'হোল্ডিং নং', hint: '', onChange: () {}),
+                        label: 'হোল্ডিং নং', hint: '', onChange: (value) {
+                      createApplicationRejectionDoc["holding_no1"] =
+                          value;
+                    }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -330,7 +386,10 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                        label: 'জেলা', hint: 'রাজশাহী', onChange: (value) {
+                      createApplicationRejectionDoc["distric_name"] =
+                          value;
+                    }),
                   ),
                 ],
               ),
@@ -379,7 +438,9 @@ class _ApplicationRejectionStoreFormPageState extends State<ApplicationRejection
               const SizedBox(
                 height: 16.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print(createApplicationRejectionDoc.toString());
+              }, title: 'সাবমিট')
             ],
           ),
         ),

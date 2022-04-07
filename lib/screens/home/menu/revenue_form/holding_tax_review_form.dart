@@ -18,6 +18,7 @@ class HoldingTaxReviewFormPage extends StatefulWidget {
 class _HoldingTaxReviewFormPageState extends State<HoldingTaxReviewFormPage> {
   @override
   Widget build(BuildContext context) {
+    var createHoldingTaxPageDoc = <String, dynamic>{};
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,
@@ -73,14 +74,19 @@ class _HoldingTaxReviewFormPageState extends State<HoldingTaxReviewFormPage> {
                   label: '',
                   hint:
                       'অ্যাপ্লিকেশন আইডি অথবা হোল্ডিং নম্বর দিয়ে অনুসন্ধান করুন',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createHoldingTaxPageDoc["application_id"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সার্চ করুন')
+              CustomButton(onClick: () {
+                print(createHoldingTaxPageDoc .toString());
+              }, title: 'সার্চ করুন')
             ],
           ),
         ),

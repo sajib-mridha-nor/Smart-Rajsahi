@@ -27,6 +27,7 @@ class _RenewalAdvertisementFormPageState
     "4",
     "5",
   ];
+  var createRenewalAdvertisementDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -80,13 +81,22 @@ class _RenewalAdvertisementFormPageState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম', hint: '', onChange: () {}),
+                  label: 'রেজিস্ট্রেশান কারির নাম',
+                  hint: '',
+                  onChange: (value) {
+                    createRenewalAdvertisementDoc["register_name"] = value;
+                  }),
               Row(
                 children: [
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'আবেদনকারীর নাম', hint: '', onChange: () {}),
+                        label: 'আবেদনকারীর নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createRenewalAdvertisementDoc["Application_name"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -94,7 +104,12 @@ class _RenewalAdvertisementFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'প্রতিষ্ঠানের নাম', hint: '', onChange: () {}),
+                        label: 'প্রতিষ্ঠানের নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createRenewalAdvertisementDoc["institute_name"] =
+                              value;
+                        }),
                   ),
                 ],
               ),
@@ -102,7 +117,11 @@ class _RenewalAdvertisementFormPageState
                 height: 8,
               ),
               CustomTextField(
-                  label: 'ঠিকানা (বিস্তারিত লিখুন)', hint: '', onChange: () {}),
+                  label: 'ঠিকানা (বিস্তারিত লিখুন)',
+                  hint: '',
+                  onChange: (value) {
+                    createRenewalAdvertisementDoc["address_about"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -113,7 +132,10 @@ class _RenewalAdvertisementFormPageState
                     child: CustomTextField(
                         label: 'পূর্বের লাইসেন্স নং',
                         hint: '',
-                        onChange: () {}),
+                        onChange: (value) {
+                          createRenewalAdvertisementDoc["previous_license_no"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -123,7 +145,10 @@ class _RenewalAdvertisementFormPageState
                     child: CustomDatePicker(
                       label: 'পূর্বের লাইসেন্স এর মেয়াদ',
                       hint: 'mm/dd/yyyy',
-                      onChange: (value) {},
+                      onChange: (value) {
+                        createRenewalAdvertisementDoc["previous_license_date"] =
+                            value;
+                      },
                     ),
                   ),
                 ],
@@ -132,9 +157,12 @@ class _RenewalAdvertisementFormPageState
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'ব্যবসা প্রতিষ্ঠানের হোল্ডিং/দোকান নং',
-                  hint: '',
-                  onChange: () {}),
+                label: 'ব্যবসা প্রতিষ্ঠানের হোল্ডিং/দোকান নং',
+                hint: '',
+                onChange: (value) {
+                  createRenewalAdvertisementDoc["business_holding_no"] = value;
+                },
+              ),
               const SizedBox(
                 height: 8,
               ),
@@ -168,7 +196,12 @@ class _RenewalAdvertisementFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'পোস্ট অফিস', hint: '', onChange: () {}),
+                      label: 'পোস্ট অফিস',
+                      hint: '',
+                      onChange: (value) {
+                        createRenewalAdvertisementDoc["post_office"] = value;
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -194,7 +227,12 @@ class _RenewalAdvertisementFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলা', hint: 'রাজশাহী', onChange: () {}),
+                      label: 'জেলা',
+                      hint: 'রাজশাহী',
+                      onChange: (value) {
+                        createRenewalAdvertisementDoc["district_name"] = value;
+                      },
+                    ),
                   ),
                 ],
               ),
@@ -206,9 +244,12 @@ class _RenewalAdvertisementFormPageState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ফোন/মোবাইল নাম্বার',
-                        hint: '+0150000000',
-                        onChange: () {}),
+                      label: 'ফোন/মোবাইল নাম্বার',
+                      hint: '+0150000000',
+                      onChange: (value) {
+                        createRenewalAdvertisementDoc["mobile_number"] = value;
+                      },
+                    ),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -241,17 +282,66 @@ class _RenewalAdvertisementFormPageState
                 height: 8.0,
               ),
               CustomTextField(
-                  label: 'বিজ্ঞাপনের ধরন',
-                  hint: 'নির্বাচন করুন',
-                  onChange: () {}),
+                label: 'বিজ্ঞাপনের ধরন',
+                hint: 'নির্বাচন করুন',
+                onChange: (value) {
+                  createRenewalAdvertisementDoc["advertisement_different"] =
+                      value;
+                },
+              ),
               const SizedBox(
                 height: 8.0,
               ),
               CustomTextField(
-                  label:
-                      'বিজ্ঞাপনের ধরন (উপরের তালিকাতে না থাকিলে এখানে লিখুন)',
-                  hint: '',
-                  onChange: () {}),
+                label: 'বিজ্ঞাপনের ধরন (উপরের তালিকাতে না থাকিলে এখানে লিখুন)',
+                hint: '',
+                onChange: (value) {
+                  createRenewalAdvertisementDoc[
+                      "advertisement_different_list"] = value;
+                },
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "বিজ্ঞাপনের পরিমাপ (বর্গফুট)",
+                        items: _items,
+                        hint: "",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                  const SizedBox(
+                    width: 8.0,
+                  ),
+                  Expanded(
+                    flex: 5,
+                    child: CustomDropdown(
+                        label: "বিজ্ঞাপনের সংখ্যা",
+                        items: _items,
+                        hint: "",
+                        require: true,
+                        onChange: (String? value) {
+                          debugPrint("$value");
+                        }),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              CustomTextField(
+                label: 'বিজ্ঞাপন প্রদর্শনের স্থান',
+                hint: '',
+                onChange: (value) {
+                  createRenewalAdvertisementDoc["advertisement_place"] = value;
+                },
+              ),
               const SizedBox(
                 height: 8.0,
               ),
@@ -290,7 +380,10 @@ class _RenewalAdvertisementFormPageState
               CustomTextField(
                   label: 'বিজ্ঞাপন প্রদর্শনের স্থান',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRenewalAdvertisementDoc["advertisement_place1"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -329,7 +422,10 @@ class _RenewalAdvertisementFormPageState
               CustomTextField(
                   label: 'বিজ্ঞাপন প্রদর্শনের স্থান',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRenewalAdvertisementDoc["advertisement_place2"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -368,7 +464,10 @@ class _RenewalAdvertisementFormPageState
               CustomTextField(
                   label: 'বিজ্ঞাপন প্রদর্শনের স্থান',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRenewalAdvertisementDoc["advertisement_place3"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -407,46 +506,10 @@ class _RenewalAdvertisementFormPageState
               CustomTextField(
                   label: 'বিজ্ঞাপন প্রদর্শনের স্থান',
                   hint: '',
-                  onChange: () {}),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "বিজ্ঞাপনের পরিমাপ (বর্গফুট)",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                  const SizedBox(
-                    width: 8.0,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
-                        label: "বিজ্ঞাপনের সংখ্যা",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                        onChange: (String? value) {
-                          debugPrint("$value");
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomTextField(
-                  label: 'বিজ্ঞাপন প্রদর্শনের স্থান',
-                  hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createRenewalAdvertisementDoc["advertisement_place4"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8.0,
               ),
@@ -507,7 +570,11 @@ class _RenewalAdvertisementFormPageState
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(
+                  onClick: () {
+                    print(createRenewalAdvertisementDoc.toString());
+                  },
+                  title: 'সাবমিট')
             ],
           ),
         ),

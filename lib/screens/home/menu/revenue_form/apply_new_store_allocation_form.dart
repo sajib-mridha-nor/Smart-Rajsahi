@@ -16,6 +16,7 @@ class ApplyNewStoreAllocation extends StatefulWidget {
 class _ApplyNewStoreAllocationState extends State<ApplyNewStoreAllocation> {
   @override
   Widget build(BuildContext context) {
+    var createApplyNewStoreDoc = <String, dynamic>{};
     return Scaffold(
       appBar: NewGradientAppBar(
           automaticallyImplyLeading: false,

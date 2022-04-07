@@ -10,7 +10,6 @@ import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
-
 class ComplaintsEnvironmentalPollutionForm extends StatefulWidget {
   const ComplaintsEnvironmentalPollutionForm({Key? key}) : super(key: key);
 
@@ -28,6 +27,7 @@ class _ComplaintsEnvironmentalPollutionFormState
     "4",
     "5",
   ];
+  var createComplaintsEnvironMentalDoc = <String, dynamic>{};
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,9 @@ class _ComplaintsEnvironmentalPollutionFormState
               CustomTextField(
                   label: 'রেজিস্ট্রেশান কারির নাম ',
                   hint: 'Jannatul Ferdous',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createComplaintsEnvironMentalDoc["register_name"] = value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -96,7 +98,12 @@ class _ComplaintsEnvironmentalPollutionFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'অভিযোগকারীর নাম', hint: '', onChange: () {}),
+                        label: 'অভিযোগকারীর নাম',
+                        hint: '',
+                        onChange: (value) {
+                          createComplaintsEnvironMentalDoc["complaints_name"] =
+                              value;
+                        }),
                   ),
                   const SizedBox(
                     width: 8,
@@ -104,7 +111,12 @@ class _ComplaintsEnvironmentalPollutionFormState
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'অভিযোগকারীর মোবাইল', hint: '', onChange: () {}),
+                        label: 'অভিযোগকারীর মোবাইল',
+                        hint: '',
+                        onChange: (value) {
+                          createComplaintsEnvironMentalDoc[
+                              "complaintys_mobile"] = value;
+                        }),
                   ),
                 ],
               ),
@@ -126,14 +138,20 @@ class _ComplaintsEnvironmentalPollutionFormState
                   maxLines: 8,
                   label: 'অভিযোগ বিস্তারিত',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createComplaintsEnvironMentalDoc["complaints_about"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 16,
               ),
               CustomTextField(
                   label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের নাম',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createComplaintsEnvironMentalDoc["complain_person_name"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
@@ -158,11 +176,17 @@ class _ComplaintsEnvironmentalPollutionFormState
               CustomTextField(
                   label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের মহল্লা',
                   hint: '',
-                  onChange: () {}),
+                  onChange: (value) {
+                    createComplaintsEnvironMentalDoc["complain_village_name"] =
+                        value;
+                  }),
               const SizedBox(
                 height: 8,
               ),
-              CustomButton(onClick: () {}, title: 'সাবমিট')
+              CustomButton(onClick: () {
+                print( createComplaintsEnvironMentalDoc.toString());
+
+              }, title: 'সাবমিট')
             ],
           ),
         ),
