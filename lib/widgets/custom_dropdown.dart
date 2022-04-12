@@ -36,7 +36,8 @@ class _CustomDropdownState extends State<CustomDropdown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          widget.label + (widget.require == null || widget.require == true ? " *" : ""),
+          widget.label +
+              (widget.require == null || widget.require == true ? " *" : ""),
           style: widget.labelStyle,
         ),
         const SizedBox(
@@ -46,6 +47,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           builder: (FormFieldState<String> state) {
             return DropdownButtonHideUnderline(
               child: DropdownButtonFormField<String>(
+                isExpanded: true,
                 validator: (value) {
                   if (widget.require == false) {
                     return null;
@@ -58,7 +60,11 @@ class _CustomDropdownState extends State<CustomDropdown> {
                   }
                   return null;
                 },
-                value: _currentSelectedValue ?? widget.initialValue,
+                value: widget.items.any((element) =>
+                        element == _currentSelectedValue.toString().trim() ||
+                        element == widget.initialValue)
+                    ? (_currentSelectedValue ?? widget.initialValue)
+                    : null,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(6.0),
@@ -86,7 +92,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
                 items: widget.items.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value,),
                   );
                 }).toList(),
               ),

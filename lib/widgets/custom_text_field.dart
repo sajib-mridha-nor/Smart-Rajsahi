@@ -13,6 +13,11 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final int maxLines;
   final bool isPasswordField;
+  final int? maxLength;
+  final TextStyle? textStyle;
+  final TextInputAction? textInputAction;
+  final int? minLength;
+  final bool readOnly;
 
   const CustomTextField(
       {Key? key,
@@ -25,7 +30,12 @@ class CustomTextField extends StatefulWidget {
       this.initialValue,
       this.keyboardType,
       this.maxLines = 1,
-      this.isPasswordField = false})
+      this.isPasswordField = false,
+      this.maxLength,
+      this.textStyle,
+      this.textInputAction,
+      this.minLength,
+      this.readOnly = false})
       : super(key: key);
 
   @override
@@ -33,18 +43,27 @@ class CustomTextField extends StatefulWidget {
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
-
   bool _passwordInVisible = true;
 
+  @override
+  void initState() {
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          widget.label +
-              (widget.require == null || widget.require == true ? " *" : ""),
-          style: widget.labelStyle,
+        RichText(
+          text: TextSpan(
+            text: widget.label,
+            style: widget.labelStyle ?? DefaultTextStyle.of(context).style,
+            children: <TextSpan>[
+              widget.require == null || widget.require == true ? const TextSpan(
+                  text: ' *',
+                  style: TextStyle(color: Colors.red)) : const TextSpan(),
+            ],
+          ),
         ),
         const SizedBox(
           height: 4,
@@ -52,20 +71,35 @@ class _CustomTextFieldState extends State<CustomTextField> {
         TextFormField(
           keyboardType: widget.keyboardType,
           maxLines: widget.maxLines,
-          obscureText: widget.isPasswordField == true ? _passwordInVisible : false,
+          maxLength: widget.maxLength,
+          style: widget.textStyle,
+          readOnly: widget.readOnly,
+          initialValue: widget.initialValue,
+          textInputAction: widget.textInputAction ?? TextInputAction.next,
+          obscureText:
+              widget.isPasswordField == true ? _passwordInVisible : false,
           decoration: InputDecoration(
-              suffixIcon: widget.isPasswordField ? IconButton(
-                icon: Icon(
-                  _passwordInVisible ? Icons.visibility_off : Icons.visibility,
-                    color: HexColor("#C4C4C4")
-                ),
-                onPressed: () {
-                  setState(() {
-                    _passwordInVisible = !_passwordInVisible; //change boolean value
-                  });
-                },
-              ) : null,
+              suffixIcon: widget.isPasswordField
+                  ? IconButton(
+                      icon: Icon(
+                          _passwordInVisible
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: HexColor("#C4C4C4")),
+                      onPressed: () {
+                        setState(() {
+                          _passwordInVisible =
+                              !_passwordInVisible; //change boolean value
+                        });
+                      },
+                    )
+                  : null,
               hintText: widget.hint,
+              counterText: "",
+              hintStyle: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  letterSpacing: 0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(6.0),
               ),
@@ -89,6 +123,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 return widget.hint;
               }
               return widget.error;
+            }
+            if(widget.minLength != null){
+              if(value.length < widget.minLength!){
+                if (widget.error == null) {
+                  return widget.hint;
+                }
+                return widget.error;
+              }
             }
             return null;
           },

@@ -60,7 +60,7 @@ class _CustomRadioGroupState extends State<CustomRadioGroup> {
           height: 4,
         ),
         RadioGroup<String>.builder(
-          direction: widget.direction,
+          //direction: widget.direction,
           groupValue: _value!,
           horizontalAlignment: widget.mainAxisAlignment,
           onChanged: (value) => setState(() {

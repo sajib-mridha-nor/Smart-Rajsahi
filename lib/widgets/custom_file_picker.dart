@@ -15,7 +15,7 @@ class CustomFilePicker extends StatefulWidget {
   final Function(File file) onChange;
   final Icon? endIcon;
   final List<String>? allowedExtensions;
-  final int? maxFileSize;
+  final double? maxFileSize;
 
   const CustomFilePicker(
       {Key? key,
@@ -71,10 +71,16 @@ class _CustomFilePickerState extends State<CustomFilePicker> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          widget.label +
-              (widget.require == null || widget.require == true ? " *" : ""),
-          style: widget.labelStyle,
+        RichText(
+          text: TextSpan(
+            text: widget.label,
+            style: widget.labelStyle ?? DefaultTextStyle.of(context).style,
+            children: <TextSpan>[
+              widget.require == null || widget.require == true ? const TextSpan(
+                  text: ' *',
+                  style: TextStyle(color: Colors.red)) : const TextSpan(),
+            ],
+          ),
         ),
         const SizedBox(
           height: 4,
