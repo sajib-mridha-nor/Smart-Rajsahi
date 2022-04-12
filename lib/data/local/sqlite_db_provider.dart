@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
-import 'package:rcc/models/moholla.dart';
+import 'package:rcc/models/mohalla.dart';
 import 'package:rcc/models/thana.dart';
 import 'package:rcc/models/ward.dart';
 import 'package:sqflite/sqflite.dart';
@@ -32,23 +32,24 @@ class SQLiteDbProvider {
           await db.execute(
               "CREATE TABLE thanas ("
                   "id INTEGER PRIMARY KEY,"
-                  "name TEXT"")"
+                  "thana_bangla TEXT,"
+                  "thana TEXT"")"
           );
           //create ward list
           await db.execute(
               "CREATE TABLE wards ("
                   "id INTEGER PRIMARY KEY,"
                   "ward_no INTEGER,"
-                  "ward_councillor TEXT,"
-                  "ward_secretary TEXT"")"
+                  "ward_no_bangla TEXT,"
+                  "post_office INTEGER"")"
           );
           //create moholla list
           await db.execute(
               "CREATE TABLE mohollas ("
                   "id INTEGER PRIMARY KEY,"
-                  "name TEXT,"
-                  "ward_no INTEGER,"
-                  "thana TEXT"")"
+                  "mohalla TEXT,"
+                  "ward INTEGER,"
+                  "mohalla_bangla TEXT"")"
           );
         }
     );
@@ -80,14 +81,14 @@ class SQLiteDbProvider {
     return wards;
   }
 
-  Future<List<Moholla?>> getAllMohollas() async {
+  Future<List<Mohalla?>> getAllMohollas() async {
     final db = await database;
     List<Map>? results = await db?.query(
-        "mohollas", columns: Moholla.columns, orderBy: "id ASC"
+        "mohollas", columns: Mohalla.columns, orderBy: "id ASC"
     );
-    List<Moholla?>? mohollas = [];
+    List<Mohalla?>? mohollas = [];
     results?.forEach((result) {
-      Moholla moholla = Moholla.fromJson(result);
+      Mohalla moholla = Mohalla.fromJson(result);
       mohollas.add(moholla);
     });
     return mohollas;

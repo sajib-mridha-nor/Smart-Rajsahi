@@ -23,24 +23,7 @@ class _BinPageState extends State<BinPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: NewGradientAppBar(
-            automaticallyImplyLeading: false,
-            titleSpacing: 3.0,
-            elevation: 15.0,
-            leading: const BackButton(),
             title: const Text('বর্জ্য ব্যবস্থাপনা বিভাগ'),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(right: 14.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    MdiIcons.bellRing,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                ),
-              ),
-            ],
             gradient:
                 LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
         body: SingleChildScrollView(
@@ -61,19 +44,25 @@ class _BinPageState extends State<BinPage> {
                   ),
                 ),
               ),
-              CustomCardText(
-                title: 'আবর্জনা অপসারণ',
-                icon: 'assets/images/groupicon2.png',
-                onTap: () {
-                  Get.to(const ApplicationGarbageRemoval());
-                },
-              ),
-              CustomCardText(
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: CustomCardText(
+                  title: 'আবর্জনা অপসারণ',
+                  icon: 'assets/images/groupicon2.png',
                   onTap: () {
-                    Get.to(const TruckRemoveConstructionMaterialsForm());
+                    Get.to(const ApplicationGarbageRemoval());
                   },
-                  title: 'নির্মাণ সামগ্রী অপসারণের ট্রাক ভাড়া',
-                  icon: 'assets/images/groupicon2.png'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: CustomCardText(
+                    onTap: () {
+                      Get.to(const TruckRemoveConstructionMaterialsForm());
+                    },
+                    title: 'নির্মাণ সামগ্রী অপসারণের ট্রাক ভাড়া',
+                    icon: 'assets/images/groupicon2.png'),
+              ),
             ],
           ),
         ));

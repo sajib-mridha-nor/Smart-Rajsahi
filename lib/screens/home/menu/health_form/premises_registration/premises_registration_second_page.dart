@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/home/menu/health_form/premises_registration/controller/premises_controller.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
@@ -9,15 +11,15 @@ import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
-class PremisessecoundPageForm extends StatefulWidget {
-  const PremisessecoundPageForm({Key? key}) : super(key: key);
+class PremisesSecondPageForm extends StatefulWidget {
+  const PremisesSecondPageForm({Key? key}) : super(key: key);
 
   @override
-  State<PremisessecoundPageForm> createState() =>
-      _PremisessecoundPageFormState();
+  State<PremisesSecondPageForm> createState() =>
+      _PremisesSecondPageFormState();
 }
 
-class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
+class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
   @override
   Widget build(BuildContext context) {
     final _items = [
@@ -27,28 +29,10 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
       "4",
       "5",
     ];
+    final _controller = Get.put(PremisesController());
+
     var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
     return Scaffold(
-      // appBar: NewGradientAppBar(
-      //     automaticallyImplyLeading: false,
-      //     titleSpacing: 3.0,
-      //     elevation: 15.0,
-      //     leading: const BackButton(),
-      //     title: const Text('স্বাস্থ্য বিভাগ'),
-      //     actions: <Widget>[
-      //       Padding(
-      //           padding: const EdgeInsets.only(right: 14.0),
-      //           child: GestureDetector(
-      //             onTap: () {},
-      //             child: const Icon(
-      //               MdiIcons.bellRing,
-      //               color: Colors.white,
-      //               size: 24.0,
-      //             ),
-      //           )),
-      //     ],
-      //     gradient:
-      //     LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -56,55 +40,40 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
-                height: 16.0,
+                height: 8.0,
               ),
-              GestureDetector(
-                onTap: () {},
-
-                // margin: const EdgeInsets.all(10.0),
-                child: const GradientText(
-                  "মালিকের ঠিকানা (স্থায়ী)",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+              const GradientText(
+                "মালিকের ঠিকানা (স্থায়ী)",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
+                color: Colors.black26,
               ),
               const SizedBox(
-                height: 8.0,
-              ),
-              const SizedBox(
-                height: 8.0,
+                height: 16.0,
               ),
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'হোল্ডিং নং',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["holding_no"] =
-                              value;
+                          _controller.addValueToDoc("owner_holding_no", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'রাস্তার নাম',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["road_name"] =
-                              value;
+                          _controller.addValueToDoc("owner_road_name", value);
                         }),
                   ),
                 ],
@@ -115,27 +84,33 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "-----",
+                        items: _controller.wards.map((e) => e!.wardNoBangla.toString()).toList(),
+                        hint: "নির্বাচন করুন",
                         require: true,
+                        initialValue: _controller.wards
+                            .firstWhereOrNull((element) =>
+                        element?.wardNo ==
+                            _controller
+                                .premisesRegistrationDoc["owner_ward_no"])
+                            ?.wardNoBangla,
                         onChange: (String? value) {
-                          debugPrint("$value");
+                          final item = _controller.wards.firstWhere((element) =>
+                          element?.wardNoBangla.toString().trim() ==
+                              value.toString().trim());
+                          _controller.addValueToDoc("owner_ward_no", item?.wardNo);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'মহল্লার নাম',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "village_name"] = value;
+                          _controller.addValueToDoc("owner_area_name", value);
                         }),
                   ),
                 ],
@@ -146,26 +121,22 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'ব্লক',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["block"] =
-                              value;
+                          _controller.addValueToDoc("owner_block", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'থানা',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["thana"] =
-                              value;
+                          _controller.addValueToDoc("owner_thana", value);
                         }),
                   ),
                 ],
@@ -176,27 +147,24 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'পোস্ট অফিস',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "post office"] = value;
+                          _controller.addValueToDoc("owner_post_office", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
+                    child: CustomTextField(
                         label: "পোস্ট কোড",
-                        items: _items,
                         hint: "",
                         require: true,
+                        keyboardType: TextInputType.number,
                         onChange: (String? value) {
-                          debugPrint("$value");
+                          _controller.addValueToDoc("owner_post_code", value);
                         }),
                   ),
                 ],
@@ -207,29 +175,30 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'জেলা',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["district"] =
-                              value;
+                          _controller.addValueToDoc("permanent_zilla", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'ফোন/মোবাইল',
                         hint: '',
+                        minLength: 11,
+                        keyboardType: TextInputType.number,
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["mobile"] =
-                              value;
+                          _controller.addValueToDoc("owner_phone_no", value);
                         }),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 16,
               ),
               const GradientText(
                 "মালিকের ঠিকানা (বর্তমান)",
@@ -239,10 +208,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 ),
               ),
               const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
+                color: Colors.black26,
               ),
               const SizedBox(
                 height: 8.0,
@@ -250,26 +216,22 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'হোল্ডিং নং',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "holding_no1"] = value;
+                          _controller.addValueToDoc("owner_holding_no_pr", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'রাস্তার নাম',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["road_name1"] =
-                              value;
+                          _controller.addValueToDoc("owner_road_name_pr", value);
                         }),
                   ),
                 ],
@@ -283,11 +245,20 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                     flex: 5,
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "-----",
+                        items: _controller.wards.map((e) => e!.wardNoBangla.toString()).toList(),
+                        hint: "নির্বাচন করুন",
                         require: true,
+                        initialValue: _controller.wards
+                            .firstWhereOrNull((element) =>
+                        element?.wardNo ==
+                            _controller
+                                .premisesRegistrationDoc["owner_ward_no_pr"])
+                            ?.wardNoBangla,
                         onChange: (String? value) {
-                          debugPrint("$value");
+                          final item = _controller.wards.firstWhere((element) =>
+                          element?.wardNoBangla.toString().trim() ==
+                              value.toString().trim());
+                          _controller.addValueToDoc("owner_ward_no_pr", item?.wardNo);
                         }),
                   ),
                   const SizedBox(
@@ -299,8 +270,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                         label: 'মহল্লার নাম',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "village_name1"] = value;
+                          _controller.addValueToDoc("owner_area_name_pr", value);
                         }),
                   ),
                 ],
@@ -311,26 +281,22 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'ব্লক',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["block1"] =
-                              value;
+                          _controller.addValueToDoc("owner_block_pr", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'থানা',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["thana1"] =
-                              value;
+                          _controller.addValueToDoc("owner_thana_pr", value);
                         }),
                   ),
                 ],
@@ -341,27 +307,24 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'পোস্ট অফিস',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "post_office1"] = value;
+                          _controller.addValueToDoc("owner_post_office_pr", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
-                    child: CustomDropdown(
+                    child: CustomTextField(
                         label: "পোস্ট কোড",
-                        items: _items,
                         hint: "",
                         require: true,
+                        keyboardType: TextInputType.number,
                         onChange: (String? value) {
-                          debugPrint("$value");
+                          _controller.addValueToDoc("owner_post_code_pr", value);
                         }),
                   ),
                 ],
@@ -372,29 +335,30 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'জেলা',
-                        hint: 'রাজশাহী',
+                        hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["district1"] =
-                              value;
+                          _controller.addValueToDoc("present_zilla", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'ফোন/মোবাইল',
                         hint: '',
+                        minLength: 11,
+                        keyboardType: TextInputType.number,
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["mobile1"] =
-                              value;
+                          _controller.addValueToDoc("owner_phone_no_pr", value);
                         }),
                   ),
                 ],
+              ),
+              const SizedBox(
+                height: 18,
               ),
               const GradientText(
                 "ব্যবসা প্রতিষ্ঠানের ঠিকানা",
@@ -404,10 +368,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                 ),
               ),
               const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
+                color: Colors.black26,
               ),
               const SizedBox(
                 height: 8.0,
@@ -415,26 +376,22 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
               Row(
                 children: [
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'হোল্ডিং নং',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "holding_no3"] = value;
+                          _controller.addValueToDoc("organization_holding_no", value);
                         }),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                    flex: 5,
                     child: CustomTextField(
                         label: 'রাস্তার নাম',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["road_name1"] =
-                              value;
+                          _controller.addValueToDoc("organization_road_name", value);
                         }),
                   ),
                 ],
@@ -448,11 +405,20 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                     flex: 5,
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _items,
-                        hint: "-----",
+                        items: _controller.wards.map((e) => e!.wardNoBangla.toString()).toList(),
+                        hint: "নির্বাচন করুন",
                         require: true,
+                        initialValue: _controller.wards
+                            .firstWhereOrNull((element) =>
+                        element?.wardNo ==
+                            _controller
+                                .premisesRegistrationDoc["organization_ward_no"])
+                            ?.wardNoBangla,
                         onChange: (String? value) {
-                          debugPrint("$value");
+                          final item = _controller.wards.firstWhere((element) =>
+                          element?.wardNoBangla.toString().trim() ==
+                              value.toString().trim());
+                          _controller.addValueToDoc("organization_ward_no", item?.wardNo);
                         }),
                   ),
                   const SizedBox(
@@ -464,8 +430,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                         label: 'মহল্লার নাম',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "village_name2"] = value;
+                          _controller.addValueToDoc("organization_area_name", value);
                         }),
                   ),
                 ],
@@ -481,8 +446,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                         label: 'ব্লক',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["block2"] =
-                              value;
+                          _controller.addValueToDoc("organization_block", value);
                         }),
                   ),
                   const SizedBox(
@@ -494,8 +458,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                         label: 'থানা',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["thana2"] =
-                              value;
+                          _controller.addValueToDoc("organization_thana", value);
                         }),
                   ),
                 ],
@@ -511,8 +474,7 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                         label: 'পোস্ট অফিস',
                         hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc[
-                              "post_office2"] = value;
+                          _controller.addValueToDoc("organization_post_office", value);
                         }),
                   ),
                   const SizedBox(
@@ -520,13 +482,13 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomDropdown(
+                    child: CustomTextField(
                         label: "পোস্ট কোড",
-                        items: _items,
                         hint: "",
                         require: true,
+                        keyboardType: TextInputType.number,
                         onChange: (String? value) {
-                          debugPrint("$value");
+                          _controller.addValueToDoc("organization_post_code", value);
                         }),
                   ),
                 ],
@@ -540,10 +502,9 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                     flex: 5,
                     child: CustomTextField(
                         label: 'জেলা',
-                        hint: 'রাজশাহী',
+                        hint: '',
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["district2"] =
-                              value;
+                          _controller.addValueToDoc("zilla", value);
                         }),
                   ),
                   const SizedBox(
@@ -554,9 +515,10 @@ class _PremisessecoundPageFormState extends State<PremisessecoundPageForm> {
                     child: CustomTextField(
                         label: 'ফোন/মোবাইল',
                         hint: '',
+                        minLength: 11,
+                        keyboardType: TextInputType.number,
                         onChange: (value) {
-                          createPremisesRegistrationFirstPageDoc["mobile2"] =
-                              value;
+                          _controller.addValueToDoc("organization_phone_no", value);
                         }),
                   ),
                 ],

@@ -54,6 +54,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
             key: _formKey,
             child: PageView(
               children: _screens,
+              physics: const NeverScrollableScrollPhysics(),
               scrollDirection: Axis.horizontal,
               controller: _pageController,
               onPageChanged: (page) {
@@ -99,7 +100,7 @@ class _ProfileCreatePageState extends State<ProfileCreatePage> {
                           }
                         }
                       },
-                      title: "পরবর্তী",
+                      title: _currentPage == _screens.length - 1 ? "সাবমিট": "পরবর্তী",
                       loading: _controller.createProfileLoading.value,
                     ))
                   ],

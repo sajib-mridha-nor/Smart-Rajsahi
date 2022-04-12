@@ -1,8 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/profile/tracking.dart';
+import 'package:rcc/models/profile.dart';
+import 'package:rcc/screens/profile/profile_info_change_list_page.dart';
+import 'package:rcc/screens/profile/profile_info_change_page.dart';
+import 'package:rcc/screens/tracking/tracking_page.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
@@ -16,29 +21,26 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _box = GetStorage();
+  Profile? _profile;
+
+  @override
+  void initState() {
+    _getProfile();
+    super.initState();
+  }
+
+  void _getProfile() async {
+    final res = _box.read("profile");
+    final profile = Profile.fromJson(res);
+    setState(() {
+      _profile = profile;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NewGradientAppBar(
-          automaticallyImplyLeading: false,
-          titleSpacing: 12.0,
-          elevation: 15.0,
-          // leading: const BackButton(),
-          title: const Text('প্রোফাইল'),
-          actions: <Widget>[
-            Padding(
-                padding: const EdgeInsets.only(right: 14.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    MdiIcons.bellRing,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                )),
-          ],
-          gradient:
-              LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(10),
@@ -48,41 +50,101 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(
                 height: 8.0,
               ),
-              ListTile(
-                leading: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minWidth: 44,
-                    minHeight: 44,
-                    maxWidth: 64,
-                    maxHeight: 64,
-                  ),
-                  child: ClipRRect(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: Image.network(
-                      'https://imageio.forbes.com/specials-images/imageserve/5ec595d45f39760007b05c07/0x0.jpg?format=jpg&crop=1491,1490,x989,y74,safe&fit=crop',
-                      height: 150.0,
-                      width: 100.0,
+                    child: CachedNetworkImage(
+                      width: 70,
+                      height: 70,
+                      fit: BoxFit.cover,
+                      imageUrl: "${_profile?.profilePicture}",
+                      placeholder: (context, url) => Image.asset(
+                        "assets/images/placeholder.jpg",
+                        fit: BoxFit.cover,
+                      ),
+                      errorWidget: (context, url, error) => Image.asset(
+                        "assets/images/placeholder.jpg",
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
-                ),
-                title: const GradientText('মুশফিক জামিল '),
-                subtitle: const Text(
-                    '০১৭৭২ ০০ ০০ ০০\nওয়ার্ড: ০৯, উপশহর হাউজিং এস্টেট, থানা: বোয়ালিয়া'),
-                trailing: const Icon(MdiIcons.pencil),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                      child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      GradientText(
+                        "${_profile?.name}",
+                        style: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        "${_profile?.username}",
+                        style: const TextStyle(
+                            fontSize: 12, fontWeight: FontWeight.bold),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        'ওয়ার্ড: ${_profile?.citizenWard}, ${_profile?.moholla}, থানা: ${_profile?.thana}',
+                        style: const TextStyle(fontSize: 12),
+                      )
+                    ],
+                  )),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      MdiIcons.pencil,
+                      size: 20,
+                    ),
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 16,
               ),
               const Divider(
                 thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
+                color: Colors.black12,
               ),
               const SizedBox(
-                height: 8,
+                height: 16,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const <Widget>[
+                  Icon(Icons.info_outline_rounded),
+                  SizedBox(
+                    width: 16,
+                  ),
+                  Expanded(
+                      child: Text(
+                          "আপনার প্রোফাইলটি এখনো ভেরিফাইড হয়নি. অ্যাডমিন থেকে আপনার প্রোফাইল ভেরিফাইড করা হবে."))
+                ],
+              ),
+              const SizedBox(
+                height: 16,
               ),
               const GradientText('অ্যাকাউন্ট'),
-              const CustomCardText(
-                  title: 'এনআইডি নম্বর পরিবর্তন',
-                  icon: ('assets/images/groupicon2.png')),
+              CustomCardText(
+                title: 'এনআইডি নম্বর পরিবর্তন',
+                icon: ('assets/images/groupicon2.png'),
+                onTap: () {
+                  Get.to(() => const ProfileInfoChangePage());
+                },
+              ),
+              CustomCardText(
+                title: 'তথ্য পরিবর্তন তালিকা',
+                icon: ('assets/images/groupicon2.png'),
+                onTap: () {
+                  Get.to(() => const ProfileInfoChangeListPage());
+                },
+              ),
               const CustomCardText(
                   title: 'পাসওয়ার্ড পরিবর্তন করুন  ',
                   icon: ('assets/images/groupicon2.png')),
@@ -92,9 +154,6 @@ class _ProfilePageState extends State<ProfilePage> {
               const GradientText('সেটিং'),
               const CustomCardText(
                   title: 'ভাষা পরিবর্তন',
-                  icon: ('assets/images/groupicon2.png')),
-              const CustomCardText(
-                  title: 'পাসওয়ার্ড পরিবর্তন করুন  ',
                   icon: ('assets/images/groupicon2.png')),
               const SizedBox(
                 height: 8.0,

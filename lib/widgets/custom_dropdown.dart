@@ -47,6 +47,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
           builder: (FormFieldState<String> state) {
             return DropdownButtonHideUnderline(
               child: DropdownButtonFormField<String>(
+                isExpanded: true,
                 validator: (value) {
                   if (widget.require == false) {
                     return null;
@@ -91,7 +92,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
                 items: widget.items.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value),
+                    child: Text(value,),
                   );
                 }).toList(),
               ),

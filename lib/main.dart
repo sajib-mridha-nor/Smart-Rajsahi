@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rcc/screens/main_page.dart';
+import 'package:rcc/screens/splash/splash_page.dart';
 import 'package:rcc/utils/palette.dart';
 
 void main() async {
@@ -28,14 +29,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Palette.mcgrcc,
         textTheme: GoogleFonts.hindSiliguriTextTheme(),
-        appBarTheme: const AppBarTheme(
+        appBarTheme: AppBarTheme(
           elevation: 8,
           shadowColor: Colors.black26,
           centerTitle: false,
+          titleTextStyle: GoogleFonts.hindSiliguri()
         ),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const MainPage(),
+      home: const SplashPage(),
     );
   }
 }

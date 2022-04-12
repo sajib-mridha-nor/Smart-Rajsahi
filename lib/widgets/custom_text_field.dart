@@ -75,7 +75,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: widget.textStyle,
           readOnly: widget.readOnly,
           initialValue: widget.initialValue,
-          textInputAction: widget.textInputAction,
+          textInputAction: widget.textInputAction ?? TextInputAction.next,
           obscureText:
               widget.isPasswordField == true ? _passwordInVisible : false,
           decoration: InputDecoration(

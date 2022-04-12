@@ -17,7 +17,7 @@ class CustomCardText extends StatelessWidget {
       ),
       elevation: 6,
       shadowColor: Colors.black38,
-      margin: const EdgeInsets.all(8),
+      margin: const EdgeInsets.symmetric(vertical: 8),
       child: SizedBox(
         child: ListTile(
           horizontalTitleGap: -4.0,

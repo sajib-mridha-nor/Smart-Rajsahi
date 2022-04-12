@@ -3,10 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rcc/models/login_response.dart';
-import 'package:rcc/models/profile_response.dart';
+import 'package:rcc/models/profile.dart';
 import 'package:rcc/screens/auth/login/login_page.dart';
 import 'package:rcc/screens/auth/register/verify_otp_page.dart';
 import 'package:rcc/screens/auth/reset_password/reset_password_page.dart';
+import 'package:rcc/screens/main_page.dart';
 import 'package:rcc/screens/profile/create/profile_create_page.dart';
 import 'package:rcc/utils/constants.dart';
 import 'package:rcc/utils/extensitons.dart';
@@ -89,11 +90,16 @@ class AuthController extends GetxController {
       _box.write("expires", loginResponse.expires);
 
       //check if profile complete
-      final profileRes = await _dioClient?.get("/api/v1/auth/user/");
-      final profileResponse = ProfileResponse.fromJson(profileRes);
+      final profileRes = await _dioClient?.get("/api/v1/auth/user/", options: dio.Options(
+        headers: {
+          "authorization" : "JWT ${_box.read("token")}"
+        }
+      ));
+      final profileResponse = Profile.fromJson(profileRes);
       _box.write("profile", profileRes);
       if(profileResponse.isCompletedProfile == true){
         //go to home page
+        Get.offAll(()=> const MainPage());
       }else{
         //go to create profile page
         Get.offAll(()=> const ProfileCreatePage());

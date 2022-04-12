@@ -1,5 +1,5 @@
-class ProfileResponse {
-  ProfileResponse({
+class Profile {
+  Profile({
       String? username, 
       String? name, 
       String? nameEnglish, 
@@ -40,7 +40,7 @@ class ProfileResponse {
     _citizenWard = citizenWard;
 }
 
-  ProfileResponse.fromJson(dynamic json) {
+  Profile.fromJson(dynamic json) {
     _username = json['username'];
     _name = json['name'];
     _nameEnglish = json['name_english'];

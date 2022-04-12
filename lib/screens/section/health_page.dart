@@ -25,23 +25,7 @@ class _HealthPageState extends State<HealthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: NewGradientAppBar(
-            automaticallyImplyLeading: false,
-            titleSpacing: 3.0,
-            elevation: 15.0,
-            leading: const BackButton(),
             title: const Text('স্বাস্থ্য বিভাগ'),
-            actions: <Widget>[
-              Padding(
-                  padding: const EdgeInsets.only(right: 14.0),
-                  child: GestureDetector(
-                    onTap: () {},
-                    child: const Icon(
-                      MdiIcons.bellRing,
-                      color: Colors.white,
-                      size: 24.0,
-                    ),
-                  )),
-            ],
             gradient:
                 LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
         body: SingleChildScrollView(

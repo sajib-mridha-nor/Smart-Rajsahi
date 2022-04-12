@@ -15,10 +15,11 @@ class ProfileCreateStepThreePage extends StatefulWidget {
 class _ProfileCreateStepThreePageState
     extends State<ProfileCreateStepThreePage> {
   String? selectedMoholla;
+  final _controller = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(ProfileController());
+
 
     return Obx(() => SingleChildScrollView(
           child: Container(
@@ -34,7 +35,7 @@ class _ProfileCreateStepThreePageState
                     maxLines: 2,
                     textInputAction: TextInputAction.next,
                     onChange: (value) {
-                      _controller.addField("address", value);
+                      _controller.addCreateField("address", value);
                     }),
                 const SizedBox(
                   height: 10,
@@ -42,14 +43,16 @@ class _ProfileCreateStepThreePageState
                 CustomDropdown(
                   label: "ওয়ার্ড",
                   items: _controller.wards
-                      .map((e) => e!.wardNo.toString())
+                      .map((e) => e!.wardNoBangla.toString())
                       .toList(),
                   hint: "নির্বাচন করুন",
                   onChange: (value) {
+
                     final item = _controller.wards.firstWhere((element) =>
-                        element?.wardNo.toString().trim() ==
+                        element?.wardNoBangla.toString().trim() ==
                         value.toString().trim());
-                    _controller.addField("citizen_ward", item?.id.toString());
+                    _controller.filterMohollas(item?.id);
+                    _controller.addCreateField("citizen_ward", item?.id.toString());
                   },
                   initialValue: _controller.createProfileDoc["citizen_ward"],
                 ),
@@ -59,15 +62,14 @@ class _ProfileCreateStepThreePageState
                 CustomDropdown(
                   label: "থানা",
                   items: _controller.thanas
-                      .map((e) => e!.name.toString())
+                      .map((e) => e!.thanaBangla.toString())
                       .toList(),
                   hint: "নির্বাচন করুন",
                   onChange: (value) {
-                    _controller.filterMohollas(value);
                     final item = _controller.thanas.firstWhere((element) =>
-                        element?.name.toString().trim() ==
+                        element?.thanaBangla.toString().trim() ==
                         value.toString().trim());
-                    _controller.addField("thana", item?.id.toString());
+                    _controller.addCreateField("thana", item?.id.toString());
                   },
                   initialValue: _controller.createProfileDoc["thana"],
                 ),
@@ -80,9 +82,9 @@ class _ProfileCreateStepThreePageState
                     hint: "নির্বাচন করুন",
                     onChange: (value) {
                       final item = _controller.mohollas.firstWhere((element) =>
-                          element?.name.toString().trim() ==
+                          element?.mohallaBangla.toString().trim() ==
                           value.toString().trim());
-                      _controller.addField("moholla", item?.id.toString());
+                      _controller.addCreateField("moholla", item?.id.toString());
                     },
                     initialValue: _controller.createProfileDoc["moholla"]),
               ],

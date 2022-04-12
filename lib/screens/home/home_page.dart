@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:rcc/models/development_photos_response.dart';
+import 'package:rcc/screens/player/youtube_player_page.dart';
 import 'package:rcc/screens/section/academic_page.dart';
 import 'package:rcc/screens/section/bin_page.dart';
 import 'package:rcc/screens/section/engineering_page.dart';
 import 'package:rcc/screens/section/health_page.dart';
 import 'package:rcc/screens/section/revenue_page.dart';
+import 'package:rcc/screens/viewer/multiple_image_viewer_page.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,12 +22,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final YoutubePlayerController _controller = YoutubePlayerController(
+    initialVideoId: 'B0FgrYBE4uY',
+    flags: const YoutubePlayerFlags(
+      autoPlay: false,
+      mute: false,
+    ),
+  );
+
+  final _box = GetStorage();
+  List<Photo>? developmentPhotos;
+
+  @override
+  void initState() {
+    setState(() {
+      developmentPhotos =
+          DevelopmentPhotosResponse.fromJson(_box.read("dev_photos")).results;
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(children: <Widget>[
-          const CustomBanner(),
+          const CustomBanner(url: "https://rcc.tiger-park.com/media/main-banners/brand_image.jpeg",),
           const SizedBox(
             height: 16,
           ),
@@ -233,124 +258,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(
-            height: 8.0,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10),
-            child: Row(
-              children: const [
-                Text(
-                  'ভিডিও',
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Spacer(),
-                GradientText(
-                  'আরও দেখুন',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(
-                  width: 4.0,
-                ),
-                ImageIcon(
-                  AssetImage(
-                    'assets/images/more.png',
-                  ),
-                  size: 14,
-                  color: Colors.orange,
-                ),
-              ],
-            ),
-          ),
-          Column(
-            children: [
-              SafeArea(
-                  child: SizedBox(
-                width: 422,
-                height: 280,
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    width: 322,
-                    height: 117,
-                    // color: Colors.amber,
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://rcc.tiger-park.com/media/devphotos/D-01.jpg",
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: Colors.white70,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    width: 322,
-                    height: 117,
-                    // color: Colors.amber,
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://rcc.tiger-park.com/media/devphotos/D-01.jpg",
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: Colors.white70,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    width: 322,
-                    height: 117,
-                    // color: Colors.amber,
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://rcc.tiger-park.com/media/devphotos/D-01.jpg",
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: Colors.white70,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                  ),
-                ]),
-              )),
-            ],
+            height: 8,
           ),
           const SizedBox(
             height: 8.0,
@@ -359,116 +267,102 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(10),
             child: Row(
               children: const [
-                Text(
+                GradientText(
+                  'ভিডিও',
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8),
+            child: Card(
+              elevation: 6,
+              shadowColor: Colors.black54,
+              child: InkWell(
+                onTap: () {
+                  Get.to(() => const YoutubePlayerPage());
+                },
+                child: IgnorePointer(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: YoutubePlayer(
+                      controller: _controller,
+                      showVideoProgressIndicator: true,
+                      progressColors: const ProgressBarColors(
+                        playedColor: Colors.amber,
+                        handleColor: Colors.amberAccent,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 8.0,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(
+              children: const [
+                GradientText(
                   'উন্নয়নের চিত্র',
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Spacer(),
-                GradientText(
-                  'আরও দেখুন',
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(
-                  width: 4.0,
-                ),
-                ImageIcon(
-                  AssetImage(
-                    'assets/images/more.png',
-                  ),
-                  size: 14,
-                  color: Colors.orange,
-                ),
               ],
             ),
           ),
-          Column(
-            children: [
-              SafeArea(
-                  child: SizedBox(
-                width: 422,
-                height: 330,
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    width: 322,
-                    height: 117,
-                    // color: Colors.amber,
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://smartrajshahi.gov.bd/media/cache/f8/0e/f80eb70b5bf0a2454d7163009e5d2b72.jpg",
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: Colors.white70,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
+          SizedBox(
+            width: 422,
+            height: 230,
+            child: ListView(
+                scrollDirection: Axis.horizontal,
+                children:
+                    List.generate(developmentPhotos?.length ?? 0, (index) {
+                  final item = developmentPhotos![index];
+                  return GestureDetector(
+                    onTap: () {
+                      Get.to(() => MultipleImageViewerPage(
+                            galleryItems: developmentPhotos!
+                                .map((e) => e.image.toString())
+                                .toList(),
+                            initialIndex: index,
+                          ));
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.all(12),
+                      child: CachedNetworkImage(
+                        width: 322,
+                        imageUrl: "${item.image}",
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white70,
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(12),
-                    width: 322,
-                    height: 117,
-                    // color: Colors.amber,
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://smartrajshahi.gov.bd/media/cache/b4/37/b437257c02b080d6dbd08387335f3946.jpg",
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          color: Colors.white70,
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
+                        placeholder: (context, url) => Image.asset(
+                          "assets/images/placeholder.jpg",
+                          fit: BoxFit.cover,
+                        ),
+                        errorWidget: (context, url, error) => Image.asset(
+                          "assets/images/placeholder.jpg",
+                          fit: BoxFit.cover,
                         ),
                       ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(15),
-                    width: 322,
-                    height: 117,
-                    alignment: Alignment.center,
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://smartrajshahi.gov.bd/media/cache/1f/17/1f174174d8fb0652be84f935f53968a1.jpg",
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                          image: DecorationImage(
-                            image: imageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
-                  ),
-                ]),
-              )),
-            ],
+                  );
+                })),
           ),
         ]),
       ),

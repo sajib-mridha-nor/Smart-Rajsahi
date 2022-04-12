@@ -15,9 +15,11 @@ class ProfileCreateStepTwoPage extends StatefulWidget {
 }
 
 class _ProfileCreateStepTwoPageState extends State<ProfileCreateStepTwoPage> {
+
+  final _controller = Get.put(ProfileController());
+
   @override
   Widget build(BuildContext context) {
-    final _controller = Get.put(ProfileController());
 
     return SingleChildScrollView(
       child: Container(
@@ -33,7 +35,7 @@ class _ProfileCreateStepTwoPageState extends State<ProfileCreateStepTwoPage> {
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 onChange: (value) {
-                  _controller.addField("nid_no", value);
+                  _controller.addCreateField("nid_no", value);
                 }),
             const SizedBox(
               height: 10,
@@ -42,12 +44,10 @@ class _ProfileCreateStepTwoPageState extends State<ProfileCreateStepTwoPage> {
               label: "জাতীয় পরিচয়পত্রের সম্মুখভাগ",
               hint: "নির্বাচন করুন",
               onChange: (file) async {
-                _controller.addField(
-                    "nid",
-                    await dio.MultipartFile.fromFile(file.path,
-                        filename: basename(file.path)));
+                _controller.addCreateField(
+                    "nid", file.path);
               },
-              maxFileSize: 1,
+              maxFileSize: 1.5,
               allowedExtensions: const ["png", "jpg", "jpeg"],
             ),
             const SizedBox(
@@ -57,12 +57,10 @@ class _ProfileCreateStepTwoPageState extends State<ProfileCreateStepTwoPage> {
               label: "জাতীয় পরিচয়পত্রের পেছনের অংশ",
               hint: "নির্বাচন করুন",
               onChange: (file) async {
-                _controller.addField(
-                    "nid_back",
-                    await dio.MultipartFile.fromFile(file.path,
-                        filename: basename(file.path)));
+                _controller.addCreateField(
+                    "nid_back",file.path);
               },
-              maxFileSize: 2,
+              maxFileSize: 1.5,
               allowedExtensions: const ["png", "jpg", "jpeg"],
             ),
             const SizedBox(
@@ -72,12 +70,10 @@ class _ProfileCreateStepTwoPageState extends State<ProfileCreateStepTwoPage> {
               label: "ব্যক্তির ছবি",
               hint: "নির্বাচন করুন",
               onChange: (file) async {
-                _controller.addField(
-                    "profile_picture",
-                    await dio.MultipartFile.fromFile(file.path,
-                        filename: basename(file.path)));
+                _controller.addCreateField(
+                    "profile_picture",file.path);
               },
-              maxFileSize: 2,
+              maxFileSize: 1,
               allowedExtensions: const ["png", "jpg", "jpeg"],
             ),
             const SizedBox(

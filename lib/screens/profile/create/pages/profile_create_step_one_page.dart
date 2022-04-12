@@ -30,7 +30,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "পুরো নাম",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("name", value);
+                  _controller.addCreateField("name", value);
                 }),
             const SizedBox(
               height: 10,
@@ -40,7 +40,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "পুরো নাম",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("name_english", value);
+                  _controller.addCreateField("name_english", value);
                 }),
             const SizedBox(
               height: 10,
@@ -50,7 +50,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "পুরো নাম",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("mothers_name", value);
+                  _controller.addCreateField("mothers_name", value);
                 }),
             const SizedBox(
               height: 10,
@@ -60,7 +60,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "পুরো নাম",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("mothers_name_english", value);
+                  _controller.addCreateField("mothers_name_english", value);
                 }),
             const SizedBox(
               height: 10,
@@ -70,7 +70,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "পুরো নাম",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("fathers_name", value);
+                  _controller.addCreateField("fathers_name", value);
                 }),
             const SizedBox(
               height: 10,
@@ -80,7 +80,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "পুরো নাম",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("fathers_name_english", value);
+                  _controller.addCreateField("fathers_name_english", value);
                 }),
             const SizedBox(
               height: 10,
@@ -90,7 +90,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 hint: "ইমেইল লিখুন",
                 textInputAction: TextInputAction.next,
                 onChange: (value) {
-                  _controller.addField("email", value);
+                  _controller.addCreateField("email", value);
                 }),
             const SizedBox(
               height: 10,
@@ -102,7 +102,7 @@ class _ProfileCreateStepOnePageState extends State<ProfileCreateStepOnePage> {
                 var parts = value!.split('-');
                 //01-01-1991 Dummy
                 final date = parts[2].trim()+"-"+parts[1].trim()+"-"+parts[0].trim();
-                _controller.addField("date_of_birth", date);
+                _controller.addCreateField("date_of_birth", date);
               },
               dateMask: "dd-MM-yyyy",
             ),

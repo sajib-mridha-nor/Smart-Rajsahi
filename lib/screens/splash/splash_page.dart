@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:rcc/screens/splash/splash_controller.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
+import 'package:rcc/widgets/custom_error.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
@@ -106,7 +107,9 @@ class _SplashPageState extends State<SplashPage> with TickerProviderStateMixin {
               ],
             ),
           ),
-          onError: (e) => const Text("Error")),
+          onError: (message) => CustomError(onRetry: (){
+            _controller.getRequireData();
+          }, mesaage: message,)),
     );
   }
 }

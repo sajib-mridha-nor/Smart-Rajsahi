@@ -15,7 +15,7 @@ class CustomFilePicker extends StatefulWidget {
   final Function(File file) onChange;
   final Icon? endIcon;
   final List<String>? allowedExtensions;
-  final int? maxFileSize;
+  final double? maxFileSize;
 
   const CustomFilePicker(
       {Key? key,
