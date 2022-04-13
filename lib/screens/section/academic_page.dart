@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/home/menu/academic_form/academic_form.dart';
+import 'package:rcc/screens/home/menu/academic_form/fund_help_form_page.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 
-import '../home/menu/academic_form/academic_place_rent_form.dart';
+import '../home/menu/academic_form/corporation_place_rent_form.dart';
 
 class AcademicPage extends StatefulWidget {
   const AcademicPage({Key? key}) : super(key: key);
@@ -54,14 +54,14 @@ class _AcademicPageState extends State<AcademicPage> {
                 title: 'সিটি কর্পোরেশনের জায়গা ভাড়া',
                 icon: 'assets/images/groupicon.png',
                 onTap: () {
-                  Get.to(const AcademicPlaceRentForm());
+                  Get.to(const CorporationPlaceRentForm());
                 },
               ),
               CustomCardText(
                   title: 'আর্থিক সহায়তা প্রদান',
                   icon: 'assets/images/groupicon.png',
                   onTap: () {
-                    Get.to(const AcademicForm());
+                    Get.to(const FundHelpFormPage());
                   }),
               const CustomCardText(
                   title: 'নাগরিকত্বের সনদপত্র',

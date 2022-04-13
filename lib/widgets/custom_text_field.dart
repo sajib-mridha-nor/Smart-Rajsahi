@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/hexcolor.dart';
 
@@ -18,6 +19,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final int? minLength;
   final bool readOnly;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextField(
       {Key? key,
@@ -35,7 +37,7 @@ class CustomTextField extends StatefulWidget {
       this.textStyle,
       this.textInputAction,
       this.minLength,
-      this.readOnly = false})
+      this.readOnly = false, this.inputFormatters})
       : super(key: key);
 
   @override
@@ -75,6 +77,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: widget.textStyle,
           readOnly: widget.readOnly,
           initialValue: widget.initialValue,
+          inputFormatters: widget.inputFormatters,
           textInputAction: widget.textInputAction ?? TextInputAction.next,
           obscureText:
               widget.isPasswordField == true ? _passwordInVisible : false,

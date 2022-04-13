@@ -92,7 +92,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
                 items: widget.items.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value,),
+                    child: Text(value,overflow: TextOverflow.ellipsis),
                   );
                 }).toList(),
               ),
