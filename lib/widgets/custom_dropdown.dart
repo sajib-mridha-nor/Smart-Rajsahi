@@ -35,10 +35,17 @@ class _CustomDropdownState extends State<CustomDropdown> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          widget.label +
-              (widget.require == null || widget.require == true ? " *" : ""),
-          style: widget.labelStyle,
+        RichText(
+          text: TextSpan(
+            text: widget.label,
+            style: widget.labelStyle ?? DefaultTextStyle.of(context).style,
+            children: <TextSpan>[
+              widget.require == null || widget.require == true
+                  ? const TextSpan(
+                  text: ' *', style: TextStyle(color: Colors.red))
+                  : const TextSpan(),
+            ],
+          ),
         ),
         const SizedBox(
           height: 4,
@@ -92,7 +99,7 @@ class _CustomDropdownState extends State<CustomDropdown> {
                 items: widget.items.map((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
-                    child: Text(value,),
+                    child: Text(value,overflow: TextOverflow.ellipsis),
                   );
                 }).toList(),
               ),

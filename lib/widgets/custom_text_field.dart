@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../utils/hexcolor.dart';
 
@@ -18,6 +19,7 @@ class CustomTextField extends StatefulWidget {
   final TextInputAction? textInputAction;
   final int? minLength;
   final bool readOnly;
+  final List<TextInputFormatter>? inputFormatters;
 
   const CustomTextField(
       {Key? key,
@@ -35,7 +37,8 @@ class CustomTextField extends StatefulWidget {
       this.textStyle,
       this.textInputAction,
       this.minLength,
-      this.readOnly = false})
+      this.readOnly = false,
+      this.inputFormatters})
       : super(key: key);
 
   @override
@@ -49,6 +52,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,9 +63,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
             text: widget.label,
             style: widget.labelStyle ?? DefaultTextStyle.of(context).style,
             children: <TextSpan>[
-              widget.require == null || widget.require == true ? const TextSpan(
-                  text: ' *',
-                  style: TextStyle(color: Colors.red)) : const TextSpan(),
+              widget.require == null || widget.require == true
+                  ? const TextSpan(
+                      text: ' *', style: TextStyle(color: Colors.red))
+                  : const TextSpan(),
             ],
           ),
         ),
@@ -75,6 +80,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
           style: widget.textStyle,
           readOnly: widget.readOnly,
           initialValue: widget.initialValue,
+          inputFormatters: widget.keyboardType == TextInputType.number
+              ? <TextInputFormatter>[
+                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                ]
+              : null,
           textInputAction: widget.textInputAction ?? TextInputAction.next,
           obscureText:
               widget.isPasswordField == true ? _passwordInVisible : false,
@@ -124,8 +134,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
               }
               return widget.error;
             }
-            if(widget.minLength != null){
-              if(value.length < widget.minLength!){
+            if (widget.minLength != null) {
+              if (value.length < widget.minLength!) {
                 if (widget.error == null) {
                   return widget.hint;
                 }

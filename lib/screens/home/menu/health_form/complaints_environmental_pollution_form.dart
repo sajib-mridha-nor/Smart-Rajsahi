@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:get/get.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/home/menu/health_form/controller/health_controller.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_button.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
-import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
 
 class ComplaintsEnvironmentalPollutionForm extends StatefulWidget {
@@ -20,176 +20,164 @@ class ComplaintsEnvironmentalPollutionForm extends StatefulWidget {
 
 class _ComplaintsEnvironmentalPollutionFormState
     extends State<ComplaintsEnvironmentalPollutionForm> {
-  final _items = [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-  ];
-  var createComplaintsEnvironMentalDoc = <String, dynamic>{};
-
+  final controller = Get.put(HealthController());
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NewGradientAppBar(
-          automaticallyImplyLeading: false,
-          titleSpacing: 3.0,
-          elevation: 15.0,
-          leading: const BackButton(),
-          title: const Text('স্বাস্থ্য বিভাগ'),
-          actions: <Widget>[
-            Padding(
-                padding: const EdgeInsets.only(right: 14.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    MdiIcons.bellRing,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                )),
-          ],
+          title: const Text("পরিবেশ দূষণ অভিযোগ"),
           gradient:
               LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              const SizedBox(
-                height: 8.0,
-              ),
-              GestureDetector(
-                onTap: () {},
-
-                // margin: const EdgeInsets.all(10.0),
-                child: const GradientText(
-                  "পরিবেশ দূষণ অভিযোগ",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+        child: Obx(() => Container(
+              margin: const EdgeInsets.all(10),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    const Center(
+                        child: Text(
+                            '২০০৯ সালের ৯২ নং আইনের ধারা নং ১০,১৪ ও ২৬ বলে')),
+                    const Divider(
+                      color: Colors.black26,
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    const Text("রেজিস্ট্রেশান কারির নাম"),
+                    Text(
+                      '${controller.profile?.name}',
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 18,
+                          letterSpacing: 1.2),
+                    ),
+                    const SizedBox(
+                      height: 8.0,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 5,
+                          child: CustomTextField(
+                              label: 'অভিযোগকারীর নাম',
+                              hint: 'লিখুন',
+                              maxLines: 1,
+                              initialValue: '${controller.profile?.name}',
+                              onChange: (value) {
+                                controller.createEnvironmentComplaint[
+                                    "name_complainer"] = value;
+                              }),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        Expanded(
+                          flex: 5,
+                          child: CustomTextField(
+                              label: 'অভিযোগকারীর মোবাইল',
+                              hint: 'লিখুন',
+                              maxLines: 1,
+                              keyboardType: TextInputType.number,
+                              onChange: (value) {
+                                controller.createEnvironmentComplaint[
+                                    "complainer_phone"] = value;
+                              }),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CustomFilePicker(
+                      label: "অভিযোগ বিষয়ক ছবি",
+                      hint: "Choose File",
+                      maxFileSize: 1.5,
+                      allowedExtensions: const ["png", "jpg", "jpeg"],
+                      onChange: (File file) {
+                        controller.complaintPic(file);
+                      },
+                      require: true,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                        maxLines: 5,
+                        label: 'অভিযোগ বিস্তারিত',
+                        hint: 'লিখুন',
+                        onChange: (value) {
+                          controller.createEnvironmentComplaint[
+                              "complain_details"] = value;
+                        }),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomTextField(
+                        label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের নাম',
+                        hint: 'লিখুন',
+                        maxLines: 1,
+                        onChange: (value) {
+                          controller.createEnvironmentComplaint[
+                              "complained_org_name"] = value;
+                        }),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CustomTextField(
+                        label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের হোল্ডিং',
+                        hint: 'লিখুন',
+                        maxLines: 1,
+                        onChange: (value) {
+                          controller.createEnvironmentComplaint[
+                              "complained_org_holding"] = value;
+                        }),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CustomTextField(
+                        label: "অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের মোবাইল",
+                        hint: 'লিখুন',
+                        maxLines: 1,
+                        keyboardType: TextInputType.number,
+                        onChange: (value) {
+                          controller.createEnvironmentComplaint[
+                              "complained_org_phone"] = value;
+                        }),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    CustomDropdown(
+                        label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের মহল্লা',
+                        hint: 'নির্বাচন করুন',
+                        items: controller.mohollas.value
+                            .map((e) => e!.mohallaBangla.toString())
+                            .toList(),
+                        onChange: (value) {
+                          controller.createEnvironmentComplaint[
+                              "complained_org_moholla"] = value;
+                        }),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    CustomButton(
+                      onClick: () {
+                        if(_formKey.currentState!.validate()){
+                          controller.submitEnvironmentComplain();
+                        }
+                      },
+                      title: 'সাবমিট',
+                      loading: controller.environmentComplainLoading.value,
+                    )
+                  ],
                 ),
               ),
-              const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              const Center(
-                  child: Text('২০০৯ সালের ৯২ নং আইনের ধারা নং ১০,১৪ ও ২৬ বলে')),
-              CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম ',
-                  hint: 'Jannatul Ferdous',
-                  onChange: (value) {
-                    createComplaintsEnvironMentalDoc["register_name"] = value;
-                  }),
-              const SizedBox(
-                height: 8,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'অভিযোগকারীর নাম',
-                        hint: '',
-                        onChange: (value) {
-                          createComplaintsEnvironMentalDoc["complaints_name"] =
-                              value;
-                        }),
-                  ),
-                  const SizedBox(
-                    width: 8,
-                  ),
-                  Expanded(
-                    flex: 5,
-                    child: CustomTextField(
-                        label: 'অভিযোগকারীর মোবাইল',
-                        hint: '',
-                        onChange: (value) {
-                          createComplaintsEnvironMentalDoc[
-                              "complaintys_mobile"] = value;
-                        }),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomFilePicker(
-                label: "অভিযোগ বিষয়ক ছবি",
-                hint: "Choose File",
-                onChange: (File file) {
-                  debugPrint("${file.path}");
-                },
-                require: true,
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              CustomTextField(
-                  maxLines: 8,
-                  label: 'অভিযোগ বিস্তারিত',
-                  hint: '',
-                  onChange: (value) {
-                    createComplaintsEnvironMentalDoc["complaints_about"] =
-                        value;
-                  }),
-              const SizedBox(
-                height: 16,
-              ),
-              CustomTextField(
-                  label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের নাম',
-                  hint: '',
-                  onChange: (value) {
-                    createComplaintsEnvironMentalDoc["complain_person_name"] =
-                        value;
-                  }),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextField(
-                  label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের হোল্ডিং',
-                  hint: '',
-                  onChange: () {}),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomDropdown(
-                  label: "অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের মোবাইল",
-                  items: _items,
-                  hint: "",
-                  require: true,
-                  onChange: (String? value) {
-                    debugPrint("$value");
-                  }),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomTextField(
-                  label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের মহল্লা',
-                  hint: '',
-                  onChange: (value) {
-                    createComplaintsEnvironMentalDoc["complain_village_name"] =
-                        value;
-                  }),
-              const SizedBox(
-                height: 8,
-              ),
-              CustomButton(onClick: () {
-                print( createComplaintsEnvironMentalDoc.toString());
-
-              }, title: 'সাবমিট')
-            ],
-          ),
-        ),
+            )),
       ),
     );
   }

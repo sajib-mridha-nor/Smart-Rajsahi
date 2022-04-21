@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rcc/data/local/sqlite_db_provider.dart';
 import 'package:rcc/models/mohalla.dart';
-import 'package:rcc/models/profile.dart';
 import 'package:rcc/models/thana.dart';
 import 'package:rcc/models/ward.dart';
 import 'package:rcc/screens/main_page.dart';

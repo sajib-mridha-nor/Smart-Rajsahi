@@ -17,17 +17,12 @@ class PremisesRegistrationFirstPage extends StatefulWidget {
 
 class _PremisesRegistrationFirstPageState
     extends State<PremisesRegistrationFirstPage> {
+
+  final _controller = Get.put(PremisesController());
+
   @override
   Widget build(BuildContext context) {
-    final _items = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
-    var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
-    final _controller = Get.put(PremisesController());
+
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -68,7 +63,7 @@ class _PremisesRegistrationFirstPageState
                 height: 8,
               ),
               CustomDropdown(
-                  label: "ব্যবসার প্রকৃতি",
+                  label: "ব্যবসার ধরন",
                   items: _controller.temperaments
                       .map((element) => element.temperament.toString())
                       .toList(),
@@ -91,7 +86,7 @@ class _PremisesRegistrationFirstPageState
                 height: 8,
               ),
               CustomDropdown(
-                  label: "ব্যবসার ধরন",
+                  label: "ব্যবসার প্রকৃতি",
                   items: _controller.temperamentTypes
                       .map((element) => element.type.toString())
                       .toList(),
