@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/models/profile.dart';
 import 'package:rcc/screens/profile/profile_info_change_list_page.dart';
 import 'package:rcc/screens/profile/profile_info_change_page.dart';
 import 'package:rcc/screens/tracking/tracking_page.dart';
-import 'package:rcc/utils/hexcolor.dart';
-import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 

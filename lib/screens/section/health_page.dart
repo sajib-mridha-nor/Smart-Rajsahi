@@ -7,7 +7,7 @@ import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
 import 'package:rcc/widgets/custom_card_text.dart';
 import 'package:rcc/widgets/gradient_text.dart';
-import '../home/menu/health_form/animal_lisence_form.dart';
+import '../home/menu/health_form/animal_licence_form.dart';
 import '../home/menu/health_form/answer_environmental_pollution_form.dart';
 import '../home/menu/health_form/complaints_environmental_pollution_form.dart';
 import '../home/menu/health_form/medical_reg_form.dart';
@@ -78,7 +78,7 @@ class _HealthPageState extends State<HealthPage> {
 
               CustomCardText(
                   onTap: () {
-                    Get.to(const AnimalLisencePageForm());
+                    Get.to(const AnimalLicencePageForm());
                   },
                   title: 'পোষা প্রাণীর লাইসেন্স',
                   icon: 'assets/images/groupicon2.png'),

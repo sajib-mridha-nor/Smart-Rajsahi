@@ -17,10 +17,12 @@ class PremisesRegistrationFirstPage extends StatefulWidget {
 
 class _PremisesRegistrationFirstPageState
     extends State<PremisesRegistrationFirstPage> {
+
+  final _controller = Get.put(PremisesController());
+
   @override
   Widget build(BuildContext context) {
 
-    final _controller = Get.put(PremisesController());
 
     return Scaffold(
       body: SingleChildScrollView(
