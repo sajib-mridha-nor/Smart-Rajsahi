@@ -7,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:rcc/data/local/sqlite_db_provider.dart';
 import 'package:rcc/models/mohalla.dart';
 import 'package:rcc/models/profile.dart';
+import 'package:rcc/models/service_moholla.dart';
 import 'package:rcc/screens/dialog/success_dialog_page.dart';
 import 'package:rcc/utils/constants.dart';
 import 'package:rcc/utils/extensitons.dart';
@@ -16,7 +17,7 @@ import 'package:dio/dio.dart' as dio;
 import 'package:path/path.dart';
 
 class HealthController extends GetxController {
-  var mohollas = Rx<List<Mohalla?>>([]);
+  var mohollas = Rx<List<ServiceMoholla?>>([]);
   final DioClient? _dioClient = DioClient(BASE_URL, Dio());
   final _box = GetStorage();
 
@@ -50,7 +51,7 @@ class HealthController extends GetxController {
 
   void getWardThanaMohollas() async {
     final _db = SQLiteDbProvider.db;
-    mohollas(await _db.getAllMohollas());
+    mohollas(await _db.getAllServiceMohollas());
   }
 
   void getProfile() {
@@ -126,7 +127,7 @@ class HealthController extends GetxController {
       final map = createEnvironmentComplaint;
       final mohollaId = mohollas.value
           .firstWhere((element) =>
-              element?.mohallaBangla.toString().trim() ==
+              element?.name.toString().trim() ==
               map["complained_org_moholla"].toString().trim())
           ?.id;
       map["complained_org_moholla"] = mohollaId;

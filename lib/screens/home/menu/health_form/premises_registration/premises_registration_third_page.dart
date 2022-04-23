@@ -17,18 +17,12 @@ class PremisesThirdPageForm extends StatefulWidget {
 }
 
 class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
+  final _bools = ["True", "False"];
+  final _controller = Get.put(PremisesController());
+
   @override
   Widget build(BuildContext context) {
-    final _items = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
-    final _bools = ["True", "False"];
-    final _controller = Get.put(PremisesController());
-    var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -60,7 +54,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                   var parts = value!.split('-');
                   //01-01-1991 Dummy
                   final date = parts[2].trim()+"-"+parts[1].trim()+"-"+parts[0].trim();
-                  _controller.addValueToDoc("business_start_date", date);
+                  _controller.premisesRegistrationDoc["business_start_date"] = date;
                 },
               ),
               const SizedBox(
@@ -70,7 +64,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                   label: 'প্রিমিসেস নিবন্ধিকরন ব্যবহারের উদ্দেশ্য',
                   hint: '',
                   onChange: (value) {
-                    _controller.addValueToDoc("business_reg_goal", value);
+                    _controller.premisesRegistrationDoc["business_reg_goal"] = value;
                   }),
               const SizedBox(
                 height: 8,
@@ -84,7 +78,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                       items: const ["পাকা/ফ্লাট", "আধাপাকা", "কাঁচা/ফাঁকা"],
                       label: "প্রতিষ্ঠান কাঠামো",
                       onChange: (index, value) {
-                        _controller.addValueToDoc("organization_structure", value);
+                        _controller.premisesRegistrationDoc["organization_structure"] = value;
                       },
                     ),
                   ),
@@ -98,7 +92,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                       items: const ["ওয়াসা", "টিউবয়েল", "সাবমার্সিবল"],
                       label: "রপানি সরবরাহের প্রকৃতি",
                       onChange: (index, value) {
-                        _controller.addValueToDoc("water_supply", value);
+                        _controller.premisesRegistrationDoc["water_supply"] = value;
                       },
                     ),
                   ),
@@ -119,7 +113,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                       ],
                       label: "পর্যাপ্ত আলো-বাতাস চলাচল",
                       onChange: (index, value) {
-                        _controller.addValueToDoc("light_air_circulation", _bools[index]);
+                        _controller.premisesRegistrationDoc["light_air_circulation"] = _bools[index];
                       },
                     ),
                   ),
@@ -136,7 +130,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                       ],
                       label: "দুর্গন্ধ বের হওয়ার ব্যবস্থা আছে",
                       onChange: (index, value) {
-                        _controller.addValueToDoc("smell_circulation", _bools[index]);
+                        _controller.premisesRegistrationDoc["smell_circulation"] = _bools[index];
                       },
                     ),
                   ),
@@ -149,7 +143,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                   label: 'নিষ্কাশন/আবর্জনা নিয়ন্ত্রণ ব্যবস্থার সার্বিক অবস্থা',
                   hint: '',
                   onChange: (value) {
-                    _controller.addValueToDoc("waste_disposal_system", value);
+                    _controller.premisesRegistrationDoc["waste_disposal_system"] = value;
                   }),
               const SizedBox(
                 height: 8,
@@ -159,7 +153,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                   hint: '',
                   maxLines: 5,
                   onChange: (value) {
-                    _controller.addValueToDoc("comment", value);
+                    _controller.premisesRegistrationDoc["comment"] = value;
                   }),
               const SizedBox(
                 height: 16,
@@ -183,7 +177,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("rent_lease_owner_receipt",file.path);
+                  _controller.rentLeaseOwnerReceipt(file);
                 },
                 require: true,
               ),
@@ -196,7 +190,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("registration_renewal",file.path);
+                  _controller.registrationRenewal(file);
                 },
                 require: true,
               ),
@@ -209,7 +203,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("owner_birth_certificate",file.path);
+                  _controller.ownerBirthCertificate(file);
                 },
                 require: true,
               ),
@@ -222,7 +216,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("bsti_agreement_letter",file.path);
+                  _controller.bstiAgreementLetter(file);
                 },
                 require: true,
               ),
@@ -235,7 +229,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("citizenship_certificate",file.path);
+                  _controller.citizenshipCertificate(file);
                 },
                 require: true,
               ),
@@ -248,7 +242,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("water_connection",file.path);
+                  _controller.waterConnection(file);
                 },
                 require: true,
               ),
@@ -262,7 +256,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("environment_approval",file.path);
+                  _controller.environmentApproval(file);
                 },
                 require: true,
               ),
@@ -276,7 +270,7 @@ class _PremisesThirdPageFormState extends State<PremisesThirdPageForm> {
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.addValueToDoc("health_related_issue",file.path);
+                  _controller.healthRelatedIssue(file);
                 },
                 require: true,
               ),

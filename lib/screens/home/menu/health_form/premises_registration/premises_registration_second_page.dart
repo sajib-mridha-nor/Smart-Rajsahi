@@ -1,37 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/screens/home/menu/health_form/premises_registration/controller/premises_controller.dart';
-import 'package:rcc/utils/hexcolor.dart';
-import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
-import 'package:rcc/widgets/custom_file_picker.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 import 'dart:io';
+class PremisesSecondPageForm extends StatelessWidget {
 
-class PremisesSecondPageForm extends StatefulWidget {
-  const PremisesSecondPageForm({Key? key}) : super(key: key);
+  PremisesSecondPageForm({Key? key}) : super(key: key);
 
-  @override
-  State<PremisesSecondPageForm> createState() =>
-      _PremisesSecondPageFormState();
-}
+  final _controller = Get.put(PremisesController());
 
-class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
   @override
   Widget build(BuildContext context) {
-    final _items = [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-    ];
-    final _controller = Get.put(PremisesController());
-
-    var createPremisesRegistrationFirstPageDoc = <String, dynamic>{};
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -62,7 +43,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'হোল্ডিং নং',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_holding_no", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_holding_no"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -73,7 +55,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'রাস্তার নাম',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_road_name", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_road_name"] = value;
                         }),
                   ),
                 ],
@@ -86,20 +69,25 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                   Expanded(
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _controller.wards.map((e) => e!.wardNoBangla.toString()).toList(),
+                        items: _controller.wards
+                            .map((e) => e!.wardNo.toString())
+                            .toList(),
                         hint: "নির্বাচন করুন",
                         require: true,
                         initialValue: _controller.wards
                             .firstWhereOrNull((element) =>
                         element?.wardNo ==
-                            _controller
-                                .premisesRegistrationDoc["owner_ward_no"])
-                            ?.wardNoBangla,
+                            _controller.premisesRegistrationDoc[
+                            "owner_ward_no"])
+                            ?.wardNo
+                            .toString(),
                         onChange: (String? value) {
-                          final item = _controller.wards.firstWhere((element) =>
-                          element?.wardNoBangla.toString().trim() ==
-                              value.toString().trim());
-                          _controller.addValueToDoc("owner_ward_no", item?.wardNo);
+                          final item = _controller.wards.firstWhere(
+                                  (element) =>
+                              element?.wardNo.toString().trim() ==
+                                  value.toString().trim());
+                          _controller.premisesRegistrationDoc[
+                          "owner_ward_no"] = item?.id;
                         }),
                   ),
                   const SizedBox(
@@ -110,7 +98,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'মহল্লার নাম',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_area_name", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_area_name"] = value;
                         }),
                   ),
                 ],
@@ -125,7 +114,9 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'ব্লক',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_block", value);
+                          _controller
+                              .premisesRegistrationDoc["owner_block"] =
+                              value;
                         }),
                   ),
                   const SizedBox(
@@ -136,7 +127,9 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'থানা',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_thana", value);
+                          _controller
+                              .premisesRegistrationDoc["owner_thana"] =
+                              value;
                         }),
                   ),
                 ],
@@ -151,7 +144,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'পোস্ট অফিস',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_post_office", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_post_office"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -164,7 +158,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         require: true,
                         keyboardType: TextInputType.number,
                         onChange: (String? value) {
-                          _controller.addValueToDoc("owner_post_code", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_post_code"] = value;
                         }),
                   ),
                 ],
@@ -179,7 +174,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'জেলা',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("permanent_zilla", value);
+                          _controller.premisesRegistrationDoc[
+                          "permanent_zilla"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -192,7 +188,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         minLength: 11,
                         keyboardType: TextInputType.number,
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_phone_no", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_phone_no"] = value;
                         }),
                   ),
                 ],
@@ -220,7 +217,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'হোল্ডিং নং',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_holding_no_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_holding_no_pr"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -231,7 +229,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'রাস্তার নাম',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_road_name_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_road_name_pr"] = value;
                         }),
                   ),
                 ],
@@ -245,20 +244,25 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                     flex: 5,
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _controller.wards.map((e) => e!.wardNoBangla.toString()).toList(),
+                        items: _controller.wards
+                            .map((e) => e!.wardNo.toString())
+                            .toList(),
                         hint: "নির্বাচন করুন",
                         require: true,
                         initialValue: _controller.wards
                             .firstWhereOrNull((element) =>
                         element?.wardNo ==
-                            _controller
-                                .premisesRegistrationDoc["owner_ward_no_pr"])
-                            ?.wardNoBangla,
+                            _controller.premisesRegistrationDoc[
+                            "owner_ward_no_pr"])
+                            ?.wardNo
+                            .toString(),
                         onChange: (String? value) {
-                          final item = _controller.wards.firstWhere((element) =>
-                          element?.wardNoBangla.toString().trim() ==
-                              value.toString().trim());
-                          _controller.addValueToDoc("owner_ward_no_pr", item?.wardNo);
+                          final item = _controller.wards.firstWhere(
+                                  (element) =>
+                              element?.wardNo.toString().trim() ==
+                                  value.toString().trim());
+                          _controller.premisesRegistrationDoc[
+                          "owner_ward_no_pr"] = item?.id;
                         }),
                   ),
                   const SizedBox(
@@ -270,7 +274,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'মহল্লার নাম',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_area_name_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_area_name_pr"] = value;
                         }),
                   ),
                 ],
@@ -285,7 +290,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'ব্লক',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_block_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_block_pr"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -296,7 +302,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'থানা',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_thana_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_thana_pr"] = value;
                         }),
                   ),
                 ],
@@ -311,7 +318,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'পোস্ট অফিস',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_post_office_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_post_office_pr"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -324,7 +332,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         require: true,
                         keyboardType: TextInputType.number,
                         onChange: (String? value) {
-                          _controller.addValueToDoc("owner_post_code_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_post_code_pr"] = value;
                         }),
                   ),
                 ],
@@ -339,7 +348,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'জেলা',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("present_zilla", value);
+                          _controller.premisesRegistrationDoc[
+                          "present_zilla"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -352,7 +362,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         minLength: 11,
                         keyboardType: TextInputType.number,
                         onChange: (value) {
-                          _controller.addValueToDoc("owner_phone_no_pr", value);
+                          _controller.premisesRegistrationDoc[
+                          "owner_phone_no_pr"] = value;
                         }),
                   ),
                 ],
@@ -380,7 +391,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'হোল্ডিং নং',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("organization_holding_no", value);
+                          _controller.premisesRegistrationDoc[
+                          "organization_holding_no"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -391,7 +403,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'রাস্তার নাম',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("organization_road_name", value);
+                          _controller.premisesRegistrationDoc[
+                          "organization_road_name"] = value;
                         }),
                   ),
                 ],
@@ -405,20 +418,25 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                     flex: 5,
                     child: CustomDropdown(
                         label: "ওয়ার্ড নং",
-                        items: _controller.wards.map((e) => e!.wardNoBangla.toString()).toList(),
+                        items: _controller.wards
+                            .map((e) => e!.wardNo.toString())
+                            .toList(),
                         hint: "নির্বাচন করুন",
                         require: true,
                         initialValue: _controller.wards
                             .firstWhereOrNull((element) =>
                         element?.wardNo ==
-                            _controller
-                                .premisesRegistrationDoc["organization_ward_no"])
-                            ?.wardNoBangla,
+                            _controller.premisesRegistrationDoc[
+                            "organization_ward_no"])
+                            ?.wardNo
+                            .toString(),
                         onChange: (String? value) {
-                          final item = _controller.wards.firstWhere((element) =>
-                          element?.wardNoBangla.toString().trim() ==
-                              value.toString().trim());
-                          _controller.addValueToDoc("organization_ward_no", item?.wardNo);
+                          final item = _controller.wards.firstWhere(
+                                  (element) =>
+                              element?.wardNo.toString().trim() ==
+                                  value.toString().trim());
+                          _controller.premisesRegistrationDoc[
+                          "organization_ward_no"] = item?.wardNo;
                         }),
                   ),
                   const SizedBox(
@@ -426,11 +444,26 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomTextField(
+                    child: CustomDropdown(
                         label: 'মহল্লার নাম',
-                        hint: '',
-                        onChange: (value) {
-                          _controller.addValueToDoc("organization_area_name", value);
+                        items: _controller.mohollas
+                            .map((e) => e!.name.toString())
+                            .toList(),
+                        hint: "নির্বাচন করুন",
+                        require: true,
+                        initialValue: _controller.mohollas
+                            .firstWhereOrNull((element) =>
+                        element?.id ==
+                            _controller.premisesRegistrationDoc[
+                            "organization_area_name"])
+                            ?.name,
+                        onChange: (String? value) {
+                          final item = _controller.mohollas
+                              .firstWhere((element) =>
+                          element?.name.toString().trim() ==
+                              value.toString().trim());
+                          _controller.premisesRegistrationDoc[
+                          "organization_area_name"] = item?.id;
                         }),
                   ),
                 ],
@@ -446,7 +479,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'ব্লক',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("organization_block", value);
+                          _controller.premisesRegistrationDoc[
+                          "organization_block"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -454,11 +488,26 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                   ),
                   Expanded(
                     flex: 5,
-                    child: CustomTextField(
+                    child: CustomDropdown(
                         label: 'থানা',
-                        hint: '',
-                        onChange: (value) {
-                          _controller.addValueToDoc("organization_thana", value);
+                        items: _controller.thanas
+                            .map((e) => e!.name.toString())
+                            .toList(),
+                        hint: "নির্বাচন করুন",
+                        require: true,
+                        initialValue: _controller.thanas
+                            .firstWhereOrNull((element) =>
+                        element?.id ==
+                            _controller.premisesRegistrationDoc[
+                            "organization_thana"])
+                            ?.name,
+                        onChange: (String? value) {
+                          final item = _controller.thanas
+                              .firstWhere((element) =>
+                          element?.name.toString().trim() ==
+                              value.toString().trim());
+                          _controller.premisesRegistrationDoc[
+                          "organization_thana"] = item?.id;
                         }),
                   ),
                 ],
@@ -474,7 +523,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'পোস্ট অফিস',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("organization_post_office", value);
+                          _controller.premisesRegistrationDoc[
+                          "organization_post_office"] = value;
                         }),
                   ),
                   const SizedBox(
@@ -488,7 +538,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         require: true,
                         keyboardType: TextInputType.number,
                         onChange: (String? value) {
-                          _controller.addValueToDoc("organization_post_code", value);
+                          _controller.premisesRegistrationDoc[
+                          "organization_post_code"] = value;
                         }),
                   ),
                 ],
@@ -504,7 +555,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         label: 'জেলা',
                         hint: '',
                         onChange: (value) {
-                          _controller.addValueToDoc("zilla", value);
+                          _controller.premisesRegistrationDoc["zilla"] =
+                              value;
                         }),
                   ),
                   const SizedBox(
@@ -518,7 +570,8 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
                         minLength: 11,
                         keyboardType: TextInputType.number,
                         onChange: (value) {
-                          _controller.addValueToDoc("organization_phone_no", value);
+                          _controller.premisesRegistrationDoc[
+                          "organization_phone_no"] = value;
                         }),
                   ),
                 ],
@@ -530,3 +583,4 @@ class _PremisesSecondPageFormState extends State<PremisesSecondPageForm> {
     );
   }
 }
+

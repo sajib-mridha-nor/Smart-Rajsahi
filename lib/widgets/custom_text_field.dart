@@ -50,6 +50,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   void initState() {
+    if(widget.initialValue != null){
+      widget.onChange(widget.initialValue!);
+    }
     super.initState();
   }
 

@@ -5,6 +5,9 @@ import 'package:get_storage/get_storage.dart';
 import 'package:rcc/data/local/sqlite_db_provider.dart';
 import 'package:rcc/models/mohalla.dart';
 import 'package:rcc/models/profile.dart';
+import 'package:rcc/models/service_moholla.dart';
+import 'package:rcc/models/service_thana.dart';
+import 'package:rcc/models/service_ward.dart';
 import 'package:rcc/models/thana.dart';
 import 'package:rcc/models/ward.dart';
 import 'package:rcc/screens/auth/login/login_page.dart';
@@ -56,6 +59,9 @@ class SplashController extends GetxController with StateMixin<bool> {
       final thanaResponse = await _dioClient?.get("/api/v1/address/thana/");
       final wardResponse = await _dioClient?.get("/api/v1/address/ward/");
       final mohollaResponse = await _dioClient?.get("/api/v1/address/mohalla/");
+      final serviceMohollaResponse = await _dioClient?.get("/api/v1/moholla/");
+      final serviceThanasResponse = await _dioClient?.get("/api/v1/thana/");
+      final serviceWardsResponse = await _dioClient?.get("/api/v1/ward/");
 
       final developmentPhotosResponse = await _dioClient?.get("/api/v1/development-photos/");
       final featureVideosResponse = await _dioClient?.get("/api/v1/feature-video/");
@@ -64,6 +70,9 @@ class SplashController extends GetxController with StateMixin<bool> {
       final List<Thana> thanaList = List<Thana>.from(thanaResponse.map((i) => Thana.fromJson(i)).toList());
       final List<Ward> wardList = List<Ward>.from(wardResponse.map((i) => Ward.fromJson(i)).toList());
       final List<Mohalla> mohollaList = List<Mohalla>.from(mohollaResponse.map((i) => Mohalla.fromJson(i)).toList());
+      final List<ServiceMoholla> serviceMohollaList = List<ServiceMoholla>.from(serviceMohollaResponse.map((i) => ServiceMoholla.fromJson(i)).toList());
+      final List<ServiceThana> serviceThanaList = List<ServiceThana>.from(serviceThanasResponse.map((i) => ServiceThana.fromJson(i)).toList());
+      final List<ServiceWard> serviceWardList = List<ServiceWard>.from(serviceWardsResponse.map((i) => ServiceWard.fromJson(i)).toList());
 
       //insert cached data
       _box.write("dev_photos", developmentPhotosResponse);
@@ -77,6 +86,9 @@ class SplashController extends GetxController with StateMixin<bool> {
       batch?.delete("thanas");
       batch?.delete("wards");
       batch?.delete("mohollas");
+      batch?.delete("service_mohollas");
+      batch?.delete("service_thanas");
+      batch?.delete("service_wards");
 
       //insert thanas
       for (var element in thanaList) {
@@ -86,9 +98,24 @@ class SplashController extends GetxController with StateMixin<bool> {
       for (var element in wardList) {
         batch?.insert('wards', element.toJson());
       }
-      //moholla ward
+      //insert moholla
       for (var element in mohollaList) {
         batch?.insert('mohollas', element.toJson());
+      }
+
+      //insert service moholla
+      for (var element in serviceMohollaList) {
+        batch?.insert('service_mohollas', element.toJson());
+      }
+
+      //insert service thana
+      for (var element in serviceThanaList) {
+        batch?.insert('service_thanas', element.toJson());
+      }
+
+      //insert service ward
+      for (var element in serviceWardList) {
+        batch?.insert('service_wards', element.toJson());
       }
 
       await batch?.commit(noResult: true);
