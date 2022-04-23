@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 import 'package:rcc/models/mohalla.dart';
+import 'package:rcc/models/service_moholla.dart';
+import 'package:rcc/models/service_thana.dart';
+import 'package:rcc/models/service_ward.dart';
 import 'package:rcc/models/thana.dart';
 import 'package:rcc/models/ward.dart';
 import 'package:sqflite/sqflite.dart';
@@ -51,6 +54,28 @@ class SQLiteDbProvider {
                   "ward INTEGER,"
                   "mohalla_bangla TEXT"")"
           );
+          //create service moholla list
+          await db.execute(
+              "CREATE TABLE service_mohollas ("
+                  "id INTEGER PRIMARY KEY,"
+                  "name TEXT,"
+                  "ward_no INTEGER,"
+                  "thana TEXT"")"
+          );
+          //create service thana list
+          await db.execute(
+              "CREATE TABLE service_thanas ("
+                  "id INTEGER PRIMARY KEY,"
+                  "name TEXT"")"
+          );
+          //create service ward list
+          await db.execute(
+              "CREATE TABLE service_wards ("
+                  "id INTEGER PRIMARY KEY,"
+                  "ward_no INTEGER,"
+                  "ward_councillor TEXT,"
+                  "ward_secretary TEXT"")"
+          );
         }
     );
   }
@@ -92,6 +117,45 @@ class SQLiteDbProvider {
       mohollas.add(moholla);
     });
     return mohollas;
+  }
+
+  Future<List<ServiceMoholla?>> getAllServiceMohollas() async {
+    final db = await database;
+    List<Map>? results = await db?.query(
+        "service_mohollas", columns: ServiceMoholla.columns, orderBy: "id ASC"
+    );
+    List<ServiceMoholla?>? mohollas = [];
+    results?.forEach((result) {
+      ServiceMoholla moholla = ServiceMoholla.fromJson(result);
+      mohollas.add(moholla);
+    });
+    return mohollas;
+  }
+
+  Future<List<ServiceThana?>> getAllServiceThanas() async {
+    final db = await database;
+    List<Map>? results = await db?.query(
+        "service_thanas", columns: ServiceThana.columns, orderBy: "id ASC"
+    );
+    List<ServiceThana?>? thanas = [];
+    results?.forEach((result) {
+      ServiceThana thana = ServiceThana.fromJson(result);
+      thanas.add(thana);
+    });
+    return thanas;
+  }
+
+  Future<List<ServiceWard?>> getAllServiceWards() async {
+    final db = await database;
+    List<Map>? results = await db?.query(
+        "service_wards", columns: ServiceWard.columns, orderBy: "id ASC"
+    );
+    List<ServiceWard?>? wards = [];
+    results?.forEach((result) {
+      ServiceWard ward = ServiceWard.fromJson(result);
+      wards.add(ward);
+    });
+    return wards;
   }
 
 }

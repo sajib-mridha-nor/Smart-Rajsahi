@@ -26,7 +26,7 @@ class _PremisesRegistrationFormPageState
   final _formKey = GlobalKey<FormState>();
   final _list = <Widget>[
     const PremisesRegistrationFirstPage(),
-    const PremisesSecondPageForm(),
+    PremisesSecondPageForm(),
     const PremisesThirdPageForm()
   ];
 

@@ -156,7 +156,7 @@ class _ComplaintsEnvironmentalPollutionFormState
                         label: 'অভিযুক্ত ব্যাক্তি/প্রতিষ্ঠানের মহল্লা',
                         hint: 'নির্বাচন করুন',
                         items: controller.mohollas.value
-                            .map((e) => e!.mohallaBangla.toString())
+                            .map((e) => e!.name.toString())
                             .toList(),
                         onChange: (value) {
                           controller.createEnvironmentComplaint[
