@@ -185,6 +185,7 @@ class _AnimalLicencePageFormState extends State<AnimalLicencePageForm> {
                           controller.submitPetLicence();
                         }
                       },
+
                       title: 'সাবমিট',
                       loading: controller.petLicenceLoading.value,
                     )

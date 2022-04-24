@@ -71,7 +71,7 @@ class _HealthPageState extends State<HealthPage> {
 
               CustomCardText(
                   onTap: () {
-                    Get.to(const MedicalRegForm());
+                   // Get.to(const MedicalRegForm());
                   },
                   title: 'মেডিকেল নিবন্ধনকরণ',
                   icon: 'assets/images/groupicon2.png'),

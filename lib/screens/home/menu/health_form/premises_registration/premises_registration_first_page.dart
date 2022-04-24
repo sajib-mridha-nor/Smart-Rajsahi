@@ -170,7 +170,8 @@ class _PremisesRegistrationFirstPageState
                       }),
                 ],
               ),
-            )),
+            )
+        ),
       ),
     );
   }
