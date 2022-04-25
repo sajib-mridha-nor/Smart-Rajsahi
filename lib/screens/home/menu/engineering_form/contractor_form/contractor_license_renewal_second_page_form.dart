@@ -154,70 +154,7 @@ class _ContractorSecondPageState extends State<ContractorSecondPage> {
                     debugPrint("index $index, Value $value");
                   },
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      flex: 5,
-                      child: CustomRadioGroup(
-                        initialValue: "পুরুষ",
-                        items: const [
-                          "পুরুষ",
-                          "মহিলা",
-                        ],
-                        label: "প্রাণীর লিঙ্গ",
-                        onChange: (index, value) {
-                          controller
-                              .createAnimalLicenceDoc["animal_gender"] =
-                              value;
-                        },
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    Expanded(
-                      flex: 5,
-                      child: CustomRadioGroup(
-                        initialValue: "নতুন",
-                        items: const [
-                          "নতুন",
-                          "নবায়ন",
-                        ],
-                        label: "লাইসেন্সের ধরন",
-                        onChange: (index, value) {
-                          controller
-                              .createAnimalLicenceDoc["licence_type"] =
-                              value;
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                const Center(
-                  child: Text(
-                    'হলফনামা',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 8.0,
-                ),
-                const Text(
-                  'বর্ণিত তথ্যাদি সঠিক। কোন রকম সত্য গোপন করা হয় নাই বা কোন মিথ্যা তথ্য প্রদান করা হয় নাই। পরবর্তীতে কোন বিষয় বা তথ্য স্বপক্ষে মিথ্যা প্রমাণিত হইলে আমার বিরুদ্ধে প্রচলিত আইনে ব্যবস্থা গ্রহণ করা যাইবে।',
-                  style: TextStyle(
-                    fontSize: 14.0,
-                  ),
-                ),
-                const SizedBox(
-                  height: 16.0,
-                ),
-                const SizedBox(
+                SizedBox(
                   height: 8.0,
                 ),
                 CustomButton(
