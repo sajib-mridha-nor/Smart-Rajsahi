@@ -276,10 +276,13 @@ class _VehicleAgencyFormPageState extends State<VehicleAgencyFormPage> {
               SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {
+              CustomButton(
+                  onClick: () {
                 print(createVehicleAgencyFormPageDoc.toString());
 
-              }, title: 'সাবমিট')
+              }, title: 'সাবমিট'
+
+              )
             ],
           ),
         ),

@@ -70,7 +70,8 @@ class _AnimalLicencePageFormState extends State<AnimalLicencePageForm> {
                         ),
                         Expanded(
                           flex: 5,
-                          child: CustomTextField(
+                          child:
+                          CustomTextField(
                               label: 'প্রাণীর বয়স',
                               hint: '',
                               maxLines: 1,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/screens/home/menu/engineering_form/controller/land_controller.dart';
@@ -12,18 +11,18 @@ import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 
-
-class LnadUseFormPage extends StatefulWidget {
-  const LnadUseFormPage({Key? key}) : super(key: key);
+class LandUseFormPage extends StatefulWidget {
+  const LandUseFormPage({Key? key}) : super(key: key);
 
   @override
-  State<LnadUseFormPage> createState() => _LnadUseFormPageState();
+  State<LandUseFormPage> createState() => _LandUseFormPageState();
 }
 
-class _LnadUseFormPageState extends State<LnadUseFormPage> {
-final  _formKey=GlobalKey<FormState>();
-final _controller = Get.put(LandUserControl());
-@override
+class _LandUseFormPageState extends State<LandUseFormPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _controller = Get.put(LandUserControl());
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NewGradientAppBar(
@@ -47,10 +46,11 @@ final _controller = Get.put(LandUserControl());
           gradient:
               LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
-        child: Obx(()=> Container(
+        child: Obx(
+          () => Container(
             margin: const EdgeInsets.all(10),
             child: Form(
-              key:  _formKey,
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -87,26 +87,21 @@ final _controller = Get.put(LandUserControl());
                     height: 8,
                   ),
                   CustomTextField(
-
-                      label: 'বর্তমান ঠিকানা ', hint: '',
+                      label: 'বর্তমান ঠিকানা ',
+                      hint: '',
                       onChange: (value) {
-                        _controller.addLandUserField("applicant_address_present", value);
-                      }
-
-                  ),
+                        _controller.addLandUserField("present_address", value);
+                      }),
                   const SizedBox(
                     height: 8,
                   ),
                   CustomTextField(
-                      label: 'স্থায়ী ঠিকানা', hint: '',
-
+                      label: 'স্থায়ী ঠিকানা',
+                      hint: '',
                       onChange: (value) {
-                       _controller.addLandUserField("applicant_address_permanent", value);
-                      }
-
-                  ),
-
-
+                        _controller.addLandUserField(
+                            "parmanent_address", value);
+                      }),
                   const SizedBox(
                     height: 8,
                   ),
@@ -131,28 +126,25 @@ final _controller = Get.put(LandUserControl());
                       Expanded(
                         flex: 5,
                         child: CustomTextField(
-                            label: 'রাস্তার নাম/নং', hint: '',
-
+                            label: 'রাস্তার নাম/নং',
+                            hint: '',
                             onChange: (value) {
-                              _controller.addLandUserField("road_no", value);
-                            }
-
-
-                        ),
+                              _controller.addLandUserField(
+                                  "road_name_no", value);
+                            }),
                       ),
                       const SizedBox(
                         width: 8,
                       ),
                       Expanded(
                         flex: 5,
-                        child:
-                        CustomTextField(
-                            label: 'মৌজার নাম', hint: '',
+                        child: CustomTextField(
+                            label: 'মৌজার নাম',
+                            hint: '',
                             onChange: (value) {
-                              _controller.addLandUserField("village_no", value);
-                            }
-
-                        ),
+                              _controller.addLandUserField(
+                                  "mowzar_name", value);
+                            }),
                       ),
                     ],
                   ),
@@ -163,20 +155,17 @@ final _controller = Get.put(LandUserControl());
                     children: [
                       Expanded(
                         flex: 5,
-                        child:
-                        CustomDropdown(
+                        child: CustomDropdown(
                           label: "এলাকা/মহল্লার নাম",
-                          items: _controller.mohollas.value
+                          items: _controller.mohollas
                               .map((e) => e!.mohallaBangla.toString())
                               .toList(),
                           hint: "নির্বাচন করুন",
                           onChange: (value) {
-                            final item = _controller.mohollas.value
-                                .firstWhere((element) =>
-                            element?.mohallaBangla
-                                .toString()
-                                .trim() ==
-                                value.toString().trim());
+                            final item = _controller.mohollas.firstWhere(
+                                (element) =>
+                                    element?.mohallaBangla.toString().trim() ==
+                                    value.toString().trim());
                             _controller.addLandUserField(
                                 "area_name", item?.id.toString());
                           },
@@ -187,25 +176,21 @@ final _controller = Get.put(LandUserControl());
                       ),
                       Expanded(
                         flex: 5,
-                        child:
-                        CustomDropdown(
+                        child: CustomDropdown(
                           label: "থানা",
-                          items: _controller.thanas.value
+                          items: _controller.thanas
                               .map((e) => e!.thanaBangla.toString())
                               .toList(),
                           hint: "নির্বাচন করুন",
                           onChange: (value) {
-                            final item = _controller.thanas.value
-                                .firstWhere((element) =>
-                            element?.thanaBangla
-                                .toString()
-                                .trim() ==
-                                value.toString().trim());
+                            final item = _controller.thanas.firstWhere(
+                                (element) =>
+                                    element?.thanaBangla.toString().trim() ==
+                                    value.toString().trim());
                             _controller.addLandUserField(
-                                "area_name", item?.id.toString());
+                                "thana_no", item?.id.toString());
                           },
                         ),
-
                       ),
                     ],
                   ),
@@ -220,13 +205,11 @@ final _controller = Get.put(LandUserControl());
                       Expanded(
                         flex: 5,
                         child: CustomTextField(
-                            label: 'জেলার নাম', hint: 'রাজশাহী',
-
+                            label: 'জেলার নাম',
+                            hint: 'রাজশাহী',
                             onChange: (value) {
-                              _controller.addLandUserField("district_no", value);
-                            }
-
-                        ),
+                              _controller.addLandUserField("zilla_name", value);
+                            }),
                       ),
                       const SizedBox(
                         width: 8,
@@ -234,153 +217,156 @@ final _controller = Get.put(LandUserControl());
                       Expanded(
                         flex: 5,
                         child: CustomTextField(
-                            label: 'জমির পরিমাণ', hint: '',
+                            label: 'জমির পরিমাণ',
+                            hint: '',
                             onChange: (value) {
-                              _controller.addLandUserField("land_unit", value);
-
-                            }
-                        ),
+                              _controller.addLandUserField("land", value);
+                            }),
                       ),
                     ],
                   ),
                   const SizedBox(
                     height: 8.0,
                   ),
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child:
-                  //       CustomDropdown(
-                  //           label: "প্রস্তাবিত ভবনের তালার সংখ্যা",
-                  //           items: _items,
-                  //           hint: "",
-                  //           require: true,
-                  //           onChange: (value) {
-                  //             createLandUseFormPageDoc["proposed_tala"] = value;
-                  //           }
-                  //           ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 8.0,
-                  //     ),
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomDropdown(
-                  //           label: "জে, এল, নং",
-                  //           items: _items,
-                  //           hint: "",
-                  //           require: true,
-                  //           onChange: (value) {
-                  //             createLandUseFormPageDoc["jl_no"] = value;
-                  //           }
-                  //
-                  //           ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(
-                  //   height: 8.0,
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomDropdown(
-                  //           label: "আর এস দাগ নং/প্লট নং",
-                  //           items: _items,
-                  //           hint: "",
-                  //           require: true,
-                  //           onChange: (value) {
-                  //             createLandUseFormPageDoc["rs_no"] = value;
-                  //           }
-                  //
-                  //           ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 8.0,
-                  //     ),
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomDropdown(
-                  //           label: "আর এস দাগ নং/প্লট নং",
-                  //           items: _items,
-                  //           hint: "",
-                  //           require: true,
-                  //           onChange: (value) {
-                  //             createLandUseFormPageDoc["rs_plot_no"] = value;
-                  //           }
-                  //           ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(
-                  //   height: 8.0,
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomDropdown(
-                  //           label: "ড্রাফট নং/পে অর্ডার নং",
-                  //           items: _items,
-                  //           hint: "",
-                  //           require: true,
-                  //           onChange: (value) {
-                  //             createLandUseFormPageDoc["draft_no"] = value;
-                  //           }),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 8.0,
-                  //     ),
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomDatePicker(
-                  //         label: 'কাজের তারিখ',
-                  //         hint: 'mm/dd/yyyy',
-                  //         onChange:
-                  //             (value) {
-                  //           createLandUseFormPageDoc["work_date"] = value;
-                  //         },
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(
-                  //   height: 8.0,
-                  // ),
-                  // Row(
-                  //   children: [
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomTextField(
-                  //           label: 'ব্যাংকের নাম/শাখা', hint: '',
-                  //         onChange:
-                  //             (value) {
-                  //           createLandUseFormPageDoc['bank_name'] = value;
-                  //         },
-                  //       ),
-                  //     ),
-                  //     const SizedBox(
-                  //       width: 8.0,
-                  //     ),
-                  //     Expanded(
-                  //       flex: 5,
-                  //       child: CustomDropdown(
-                  //           label: "টাকার পরিমাণ",
-                  //           items: _items,
-                  //           hint: "",
-                  //           require: true,
-                  //         onChange:
-                  //             (value) {
-                  //           createLandUseFormPageDoc['money_amount'] = value;
-                  //         },),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const SizedBox(
-                  //   height: 8.0,
-                  // ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'প্রস্তাবিত ভবনের তালার সংখ্যা',
+                            hint: '',
+                            maxLines: 1,
+                            maxLength: 2,
+                            keyboardType: TextInputType.number,
+                            onChange: (value) {
+                              _controller.addLandUserField(
+                                  'number_of_floor', value);
+                            }),
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'জে, এল, নং',
+                            hint: '',
+                            maxLines: 1,
+                            maxLength: 2,
+                            keyboardType: TextInputType.number,
+                            onChange: (value) {
+                              _controller.addLandUserField('jlno', value);
+                            }),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'আর এস দাগ নং/প্লট নং',
+                            hint: '',
+                            maxLines: 1,
+                            maxLength: 2,
+                            onChange: (value) {
+                              _controller.addLandUserField('rsno', value);
+                            }),
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'আর এস দাগ নং/প্লট নং',
+                            hint: '',
+                            maxLines: 1,
+                            maxLength: 2,
+                            onChange: (value) {
+                              _controller.addLandUserField(
+                                  'rs_account_no', value);
+                            }),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'ড্রাফট নং/পে অর্ডার নং',
+                            hint: '',
+                            maxLines: 1,
+                            maxLength: 2,
+                            keyboardType: TextInputType.number,
+                            onChange: (value) {
+                              _controller.addLandUserField('draft_no', value);
+                            }),
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: CustomDatePicker(
+                            label: 'কাজের তারিখ',
+                            hint: 'সিলেক্ট করুন',
+                            dateMask: "dd-MM-yyyy",
+                            onChange: (value) {
+                              var parts = value!.split('-');
+                              //01-01-1991 Dummy
+                              final date = parts[2].trim() +
+                                  "-" +
+                                  parts[1].trim() +
+                                  "-" +
+                                  parts[0].trim();
+
+                              _controller.addLandUserField("pay_date", date);
+                            }),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'ব্যাংকের নাম/শাখা',
+                            hint: '',
+                            onChange: (value) {
+                              _controller.addLandUserField("bank_name", value);
+                            }),
+                      ),
+                      const SizedBox(
+                        width: 8.0,
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: CustomTextField(
+                            label: 'টাকার পরিমাণ',
+                            hint: '',
+                            maxLines: 1,
+                            maxLength: 2,
+                            keyboardType: TextInputType.number,
+                            onChange: (value) {
+                              _controller.addLandUserField('amount', value);
+                            }),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
                   const Center(
                     child: Text(
                       'হলফনামা',
@@ -402,20 +388,19 @@ final _controller = Get.put(LandUserControl());
                   ),
                   const SizedBox(
                     height: 16.0,
-                //    width: 16,
+                    //    width: 16,
                   ),
                   const SizedBox(
                     height: 8.0,
                   ),
                   CustomButton(
-                      onClick: () {
-                        if (_formKey.currentState!.validate()) {
-                          _controller.landUseFormSubmit();
-                        }
-                      },
-                   title: 'সাবমিট',
+                    onClick: () {
+                      if (_formKey.currentState!.validate()) {
+                        _controller.landUseFormSubmit();
+                      }
+                    },
+                    title: 'সাবমিট',
                     loading: _controller.submitLoading.value,
-
                   )
                 ],
               ),

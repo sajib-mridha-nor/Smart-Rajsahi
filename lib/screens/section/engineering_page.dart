@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/home/menu/engineering_form/contractor_form/contractor_license_renewal_form.dart';
+import 'package:rcc/screens/home/menu/engineering_form/contractor_form/contractor_license_renewal_second_page_form.dart';
 import 'package:rcc/screens/home/menu/engineering_form/land_use_form.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
@@ -58,17 +60,26 @@ class _EngineeringPageState extends State<EngineeringPage> {
                   Get.to(const VehicleAgencyFormPage());
                 },
               ),
-              const CustomCardText(
-                  title: 'ঠিকাদার লাইসেন্স / তালিকাভুক্ত',
-                  icon: 'assets/images/groupicon2.png'),
-              const CustomCardText(
-                  title: 'ঠিকাদার লাইসেন্স / তালিকাভুক্ত',
-                  icon: 'assets/images/groupicon2.png'),
+              CustomCardText(
+                title: 'ঠিকাদার লাইসেন্স / তালিকাভুক্ত',
+                icon: 'assets/images/groupicon2.png',
+                onTap: () {
+                  Get.to(const ContractorLicenseRenewalFormPage());
+                },
+              ),
+              CustomCardText(
+                title: 'ঠিকাদার লাইসেন্স / তালিকাভুক্ত',
+                icon: 'assets/images/groupicon2.png',
+                onTap: () {
+                  Get.to(const ContractorSecondPage());
+                },
+              ),
+
               CustomCardText(
                 title: 'ভূমি ব্যবহার অনাপত্তি ছাড়পত্রের জন্য আবেদন',
                 icon: 'assets/images/groupicon2.png',
                 onTap: () {
-                  Get.to(const LnadUseFormPage());
+                  Get.to(const LandUseFormPage());
                 },
               ),
             ],
