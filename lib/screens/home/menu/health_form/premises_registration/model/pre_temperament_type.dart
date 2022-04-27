@@ -1,9 +1,9 @@
-import 'package:rcc/screens/home/menu/health_form/premises_registration/model/temperament.dart';
+import 'package:rcc/screens/home/menu/health_form/premises_registration/model/pre_temperament.dart';
 
-class TemperamentType {
-  TemperamentType({
+class PreTemperamentType {
+  PreTemperamentType({
       int? id, 
-      Temperament? temperament, 
+      PreTemperament? temperament,
       String? type, 
       String? fee,}){
     _id = id;
@@ -12,19 +12,19 @@ class TemperamentType {
     _fee = fee;
 }
 
-  TemperamentType.fromJson(dynamic json) {
+  PreTemperamentType.fromJson(dynamic json) {
     _id = json['id'];
-    _temperament = json['temperament'] != null ? Temperament.fromJson(json['temperament']) : null;
+    _temperament = json['temperament'] != null ? PreTemperament.fromJson(json['temperament']) : null;
     _type = json['type'];
     _fee = json['fee'];
   }
   int? _id;
-  Temperament? _temperament;
+  PreTemperament? _temperament;
   String? _type;
   String? _fee;
 
   int? get id => _id;
-  Temperament? get temperament => _temperament;
+  PreTemperament? get temperament => _temperament;
   String? get type => _type;
   String? get fee => _fee;
 

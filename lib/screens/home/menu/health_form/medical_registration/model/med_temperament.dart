@@ -1,12 +1,12 @@
-class Temperament {
-  Temperament({
+class MedTemperament {
+  MedTemperament({
       int? id, 
       String? temperament,}){
     _id = id;
     _temperament = temperament;
 }
 
-  Temperament.fromJson(dynamic json) {
+  MedTemperament.fromJson(dynamic json) {
     _id = json['id'];
     _temperament = json['temperament'];
   }

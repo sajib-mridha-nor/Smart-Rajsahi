@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:get/get.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
+import 'package:rcc/screens/home/menu/engineering_form/controller/engineering_controller.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_button.dart';
@@ -9,14 +10,15 @@ import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
 
-class LnadUseFormPage extends StatefulWidget {
-  const LnadUseFormPage({Key? key}) : super(key: key);
+class LandUseFormPage extends StatefulWidget {
+  const LandUseFormPage({Key? key}) : super(key: key);
 
   @override
-  State<LnadUseFormPage> createState() => _LnadUseFormPageState();
+  State<LandUseFormPage> createState() => _LandUseFormPageState();
 }
 
-class _LnadUseFormPageState extends State<LnadUseFormPage> {
+class _LandUseFormPageState extends State<LandUseFormPage> {
+
   final _items = [
     "1",
     "2",
@@ -25,28 +27,10 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
     "5",
   ];
 
-  var createLandUseFormPageDoc = <String, dynamic>{};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NewGradientAppBar(
-          automaticallyImplyLeading: false,
-          titleSpacing: 3.0,
-          elevation: 15.0,
-          leading: const BackButton(),
-          title: const Text('প্রকৌশল বিভাগ'),
-          actions: <Widget>[
-            Padding(
-                padding: const EdgeInsets.only(right: 14.0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    MdiIcons.bellRing,
-                    color: Colors.white,
-                    size: 24.0,
-                  ),
-                )),
-          ],
           gradient:
               LinearGradient(colors: [Palette.mcgrcc, HexColor("#FB9203")])),
       body: SingleChildScrollView(
@@ -58,56 +42,35 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
               const SizedBox(
                 height: 8.0,
               ),
-              GestureDetector(
-                onTap: () {},
-
-                // margin: const EdgeInsets.all(10.0),
-                child: const GradientText(
-                  "ভূমি ব্যবহার অনাপত্তি ছাড়পত্রের জন্য আবেদন",
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+              const GradientText(
+                "ভূমি ব্যবহার অনাপত্তি ছাড়পত্রের জন্য আবেদন",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
               const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
+                color: Colors.black12,
               ),
-              CustomTextField(
-                  label: 'রেজিস্ট্রেশান কারির নাম ',
-                  hint: 'Jannatul Ferdous',
-                  onChange: (value) {
-                    createLandUseFormPageDoc["resister_name"] = value;
-                  }
-
-
-                  ),
+              const SizedBox(
+                height: 8.0,
+              ),
+              const Text("রেজিস্ট্রেশান কারির নাম"),
+              const SizedBox(
+                height: 8,
+              ),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-
-                  label: 'বর্তমান ঠিকানা ', hint: '',  onChange: (value) {
-                createLandUseFormPageDoc["present_address"] = value;
-              } ),
+                  label: 'বর্তমান ঠিকানা ', hint: '', onChange: (value) {}),
               const SizedBox(
                 height: 8,
               ),
               CustomTextField(
-                  label: 'স্থায়ী ঠিকানা', hint: '',
-
-                  onChange: (value) {
-                    createLandUseFormPageDoc["prmanent_address"] = value;
-                  }
-
-              )
-
-              ,
+                  label: 'স্থায়ী ঠিকানা', hint: '', onChange: (value) {}),
               const SizedBox(
-                height: 8,
+                height: 16,
               ),
               const GradientText(
                 "যে জমির জন্য অনাপত্তি ছাড়পত্র পেতে ইচ্ছুক তার তফসিল",
@@ -117,10 +80,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                 ),
               ),
               const Divider(
-                thickness: 1,
-                indent: 1.0,
-                color: Colors.grey,
-                endIndent: 12.0,
+                color: Colors.black12,
               ),
               const SizedBox(
                 height: 8,
@@ -130,28 +90,17 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'রাস্তার নাম/নং', hint: '',
-
-                        onChange: (value) {
-                          createLandUseFormPageDoc["road_no"] = value;
-                        }
-
-
-                    ),
+                        label: 'রাস্তার নাম/নং',
+                        hint: '',
+                        onChange: (value) {}),
                   ),
                   const SizedBox(
                     width: 8,
                   ),
                   Expanded(
                     flex: 5,
-                    child:
-                    CustomTextField(
-                        label: 'মৌজার নাম', hint: '',
-                        onChange: (value) {
-                          createLandUseFormPageDoc["mojar_no"] = value;
-                        }
-
-                    ),
+                    child: CustomTextField(
+                        label: 'মৌজার নাম', hint: '', onChange: (value) {}),
                   ),
                 ],
               ),
@@ -167,11 +116,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["village_name"] = value;
-                        }
-
-                        ),
+                        onChange: (value) {}),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -183,10 +128,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "------",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["village_name"] = value;
-                        }
-                        ),
+                        onChange: (value) {}),
                   ),
                 ],
               ),
@@ -201,13 +143,9 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জেলার নাম', hint: 'রাজশাহী',
-
-                        onChange: (value) {
-                          createLandUseFormPageDoc["district_name"] = value;
-                        }
-
-                    ),
+                        label: 'জেলার নাম',
+                        initialValue: 'রাজশাহী',
+                        onChange: (value) {}, hint: '',),
                   ),
                   const SizedBox(
                     width: 8,
@@ -215,11 +153,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'জমির পরিমাণ', hint: '',
-                        onChange: (value) {
-                          createLandUseFormPageDoc["land_amount"] = value;
-                        }
-                    ),
+                        label: 'জমির পরিমাণ', hint: '', onChange: (value) {}),
                   ),
                 ],
               ),
@@ -235,10 +169,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["proposed_tala"] = value;
-                        }
-                        ),
+                        onChange: (value) {}),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -250,11 +181,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["jl_no"] = value;
-                        }
-
-                        ),
+                        onChange: (value) {}),
                   ),
                 ],
               ),
@@ -270,11 +197,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["rs_no"] = value;
-                        }
-
-                        ),
+                        onChange: (value) {}),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -286,10 +209,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["rs_plot_no"] = value;
-                        }
-                        ),
+                        onChange: (value) {}),
                   ),
                 ],
               ),
@@ -305,9 +225,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                         items: _items,
                         hint: "",
                         require: true,
-                        onChange: (value) {
-                          createLandUseFormPageDoc["draft_no"] = value;
-                        }),
+                        onChange: (value) {}),
                   ),
                   const SizedBox(
                     width: 8.0,
@@ -317,10 +235,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                     child: CustomDatePicker(
                       label: 'কাজের তারিখ',
                       hint: 'mm/dd/yyyy',
-                      onChange:
-                          (value) {
-                        createLandUseFormPageDoc["work_date"] = value;
-                      },
+                      onChange: (value) {},
                     ),
                   ),
                 ],
@@ -333,11 +248,9 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomTextField(
-                        label: 'ব্যাংকের নাম/শাখা', hint: '',
-                      onChange:
-                          (value) {
-                        createLandUseFormPageDoc['bank_name'] = value;
-                      },
+                      label: 'ব্যাংকের নাম/শাখা',
+                      hint: '',
+                      onChange: (value) {},
                     ),
                   ),
                   const SizedBox(
@@ -346,14 +259,12 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
                   Expanded(
                     flex: 5,
                     child: CustomDropdown(
-                        label: "টাকার পরিমাণ",
-                        items: _items,
-                        hint: "",
-                        require: true,
-                      onChange:
-                          (value) {
-                        createLandUseFormPageDoc['money_amount'] = value;
-                      },),
+                      label: "টাকার পরিমাণ",
+                      items: _items,
+                      hint: "",
+                      require: true,
+                      onChange: (value) {},
+                    ),
                   ),
                 ],
               ),
@@ -385,9 +296,7 @@ class _LnadUseFormPageState extends State<LnadUseFormPage> {
               const SizedBox(
                 height: 8.0,
               ),
-              CustomButton(onClick: () {
-                print( createLandUseFormPageDoc.toString());
-              }, title: 'সাবমিট')
+              CustomButton(onClick: () {}, title: 'সাবমিট')
             ],
           ),
         ),

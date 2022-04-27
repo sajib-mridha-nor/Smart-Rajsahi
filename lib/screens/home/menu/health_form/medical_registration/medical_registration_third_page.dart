@@ -1,23 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rcc/screens/home/menu/health_form/premises_registration/controller/premises_controller.dart';
-import 'package:rcc/widgets/custom_button.dart';
+import 'package:rcc/screens/home/menu/health_form/medical_registration/controller/medical_controller.dart';
 import 'package:rcc/widgets/custom_date_picker.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
 import 'package:rcc/widgets/custom_radio_group.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
 import 'package:rcc/widgets/gradient_text.dart';
-import 'dart:io';
 
-class PremisesThirdPageForm extends StatelessWidget {
-  PremisesThirdPageForm({Key? key}) : super(key: key);
+class MedicalRegistrationThirdPage extends StatelessWidget {
+  MedicalRegistrationThirdPage({Key? key}) : super(key: key);
 
   final _bools = ["True", "False"];
-  final _controller = Get.put(PremisesController());
+  final _controller = Get.put(MedicalController());
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -49,7 +48,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                   var parts = value!.split('-');
                   //01-01-1991 Dummy
                   final date = parts[2].trim()+"-"+parts[1].trim()+"-"+parts[0].trim();
-                  _controller.premisesRegistrationDoc["business_start_date"] = date;
+                  _controller.medicalRegistrationDoc["business_start_date"] = date;
                 },
               ),
               const SizedBox(
@@ -59,7 +58,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                   label: 'প্রিমিসেস নিবন্ধিকরন ব্যবহারের উদ্দেশ্য',
                   hint: '',
                   onChange: (value) {
-                    _controller.premisesRegistrationDoc["business_reg_goal"] = value;
+                    _controller.medicalRegistrationDoc["business_reg_goal"] = value;
                   }),
               const SizedBox(
                 height: 8,
@@ -73,7 +72,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                       items: const ["পাকা/ফ্লাট", "আধাপাকা", "কাঁচা/ফাঁকা"],
                       label: "প্রতিষ্ঠান কাঠামো",
                       onChange: (index, value) {
-                        _controller.premisesRegistrationDoc["organization_structure"] = value;
+                        _controller.medicalRegistrationDoc["organization_structure"] = value;
                       },
                     ),
                   ),
@@ -87,7 +86,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                       items: const ["ওয়াসা", "টিউবয়েল", "সাবমার্সিবল"],
                       label: "রপানি সরবরাহের প্রকৃতি",
                       onChange: (index, value) {
-                        _controller.premisesRegistrationDoc["water_supply"] = value;
+                        _controller.medicalRegistrationDoc["water_supply"] = value;
                       },
                     ),
                   ),
@@ -108,7 +107,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                       ],
                       label: "পর্যাপ্ত আলো-বাতাস চলাচল",
                       onChange: (index, value) {
-                        _controller.premisesRegistrationDoc["light_air_circulation"] = _bools[index];
+                        _controller.medicalRegistrationDoc["light_air_circulation"] = _bools[index];
                       },
                     ),
                   ),
@@ -123,9 +122,9 @@ class PremisesThirdPageForm extends StatelessWidget {
                         "হ্যাঁ",
                         "না",
                       ],
-                      label: "দুর্গন্ধ বের হওয়ার ব্যবস্থা আছে",
+                      label: "জরুরি নির্গমন ব্যবস্থা",
                       onChange: (index, value) {
-                        _controller.premisesRegistrationDoc["smell_circulation"] = _bools[index];
+                        _controller.medicalRegistrationDoc["emergency_emissions"] = _bools[index];
                       },
                     ),
                   ),
@@ -138,7 +137,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                   label: 'নিষ্কাশন/আবর্জনা নিয়ন্ত্রণ ব্যবস্থার সার্বিক অবস্থা',
                   hint: '',
                   onChange: (value) {
-                    _controller.premisesRegistrationDoc["waste_disposal_system"] = value;
+                    _controller.medicalRegistrationDoc["waste_disposal_system"] = value;
                   }),
               const SizedBox(
                 height: 8,
@@ -148,7 +147,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                   hint: '',
                   maxLines: 5,
                   onChange: (value) {
-                    _controller.premisesRegistrationDoc["comment"] = value;
+                    _controller.medicalRegistrationDoc["comment"] = value;
                   }),
               const SizedBox(
                 height: 16,
@@ -193,25 +192,12 @@ class PremisesThirdPageForm extends StatelessWidget {
                 height: 8.0,
               ),
               CustomFilePicker(
-                label: "মালিকের জন্ম নিবন্ধন/এনআইডি এর কপি",
+                label: "মালিকের এনআইডি কপি",
                 hint: "Choose File",
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.ownerBirthCertificate(file);
-                },
-                require: true,
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              CustomFilePicker(
-                label: "বিএসটিআই অনুমোদনের কপি (প্রযোজ্য ক্ষেত্রে)",
-                hint: "Choose File",
-                maxFileSize: 1.5,
-                allowedExtensions: const ["png", "jpg", "jpeg"],
-                onChange: (File file) {
-                  _controller.bstiAgreementLetter(file);
+                  _controller.ownerNid(file);
                 },
                 require: true,
               ),
@@ -232,7 +218,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                 height: 8.0,
               ),
               CustomFilePicker(
-                label: "পানি সংযোগের কপি (প্রযোজ্য ক্ষেত্রে)",
+                label: "পরিবেশ অধিদপ্তর কর্তৃক অনুমোদনে কপি",
                 hint: "Choose File",
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
@@ -246,7 +232,7 @@ class PremisesThirdPageForm extends StatelessWidget {
               ),
               CustomFilePicker(
                 label:
-                "পরিবেশ অধিদপ্তর কর্তৃক অনুমোদনে কপি (প্রযোজ্য ক্ষেত্রে)",
+                "স্বাস্থ্য অধিদপ্তরের অনুমোদনের কপি",
                 hint: "Choose File",
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
@@ -260,12 +246,12 @@ class PremisesThirdPageForm extends StatelessWidget {
               ),
               CustomFilePicker(
                 label:
-                "হেলথ সংক্রান্ত কোন জটিলতা থাকলে তার কপি (প্রযোজ্য ক্ষেত্রে)",
+                "হাল নাগাদ হোল্ডিং কর এর ফটোকপি",
                 hint: "Choose File",
                 maxFileSize: 1.5,
                 allowedExtensions: const ["png", "jpg", "jpeg"],
                 onChange: (File file) {
-                  _controller.healthRelatedIssue(file);
+                  _controller.holdingTax(file);
                 },
                 require: true,
               ),

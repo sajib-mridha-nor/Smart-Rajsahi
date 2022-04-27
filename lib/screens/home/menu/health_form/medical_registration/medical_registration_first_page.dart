@@ -1,15 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:rcc/screens/home/menu/health_form/premises_registration/controller/premises_controller.dart';
+import 'package:rcc/screens/home/menu/health_form/medical_registration/controller/medical_controller.dart';
 import 'package:rcc/widgets/custom_dropdown.dart';
 import 'package:rcc/widgets/custom_file_picker.dart';
 import 'package:rcc/widgets/custom_text_field.dart';
-import 'dart:io';
 
-class PremisesRegistrationFirstPage extends StatelessWidget {
-  PremisesRegistrationFirstPage({Key? key}) : super(key: key);
+class MedicalRegistrationFirstPage extends StatelessWidget {
+  MedicalRegistrationFirstPage({Key? key}) : super(key: key);
 
-  final _controller = Get.put(PremisesController());
+  final _controller = Get.put(MedicalController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,7 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                 height: 8.0,
               ),
               const Text(
-                  '২০০৫ সনের ২৭ নং আইন দ্বারা সংশোধিত বাংলাদেশ বিশুদ্ধ খাদ্য অধ্যাদেশ ১৯৫৯ এর ২১(১) ও (২) ধারা অনুযায়ী'),
+                  '২০০৯ সালের ৬০ নং আইনের ধারা নং ১১২ ও ১১৪ বলে'),
               const Divider(
                 color: Colors.black12,
               ),
@@ -33,7 +34,7 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
               ),
               const Text("রেজিস্ট্রেশান কারির নাম"),
               Text(
-                '${_controller.profile?.name}',
+                '${_controller.profile.value?.name}',
                 style: const TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 18,
@@ -46,10 +47,10 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                   label: 'ব্যবসা প্রতিষ্ঠান নাম ',
                   hint: 'ব্যবসা প্রতিষ্ঠান নাম লিখুন',
                   initialValue: _controller
-                      .premisesRegistrationDoc["organization_name"],
+                      .medicalRegistrationDoc["organization_name"],
                   onChange: (value) {
                     _controller
-                        .premisesRegistrationDoc["organization_name"] =
+                        .medicalRegistrationDoc["organization_name"] =
                         value;
                   }),
               const SizedBox(
@@ -61,9 +62,9 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                   hint: "নির্বাচন করুন",
                   require: true,
                   initialValue:
-                  _controller.premisesRegistrationDoc["pr_type_of_reg"],
+                  _controller.medicalRegistrationDoc["med_type_of_reg"],
                   onChange: (String? value) {
-                    _controller.premisesRegistrationDoc["pr_type_of_reg"] =
+                    _controller.medicalRegistrationDoc["med_type_of_reg"] =
                         value;
                   }),
               const SizedBox(
@@ -71,24 +72,23 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
               ),
               CustomDropdown(
                   label: "ব্যবসার ধরন",
-                  items: _controller.temperaments
+                  items: _controller.temperaments.value
                       .map((element) => element.temperament.toString())
                       .toList(),
                   hint: "নির্বাচন করুন",
                   require: true,
-                  initialValue: _controller.temperaments
+                  initialValue: _controller.temperaments.value
                       .firstWhereOrNull((element) =>
                   element.id ==
-                      _controller.premisesRegistrationDoc[
+                      _controller.medicalRegistrationDoc[
                       "business_temperament"])
                       ?.temperament,
                   onChange: (String? value) {
-                    final item = _controller.temperaments.firstWhere(
+                    final item = _controller.temperaments.value.firstWhere(
                             (element) =>
                         element.temperament.toString().trim() ==
                             value.toString().trim());
-                    _controller.premisesRegistrationDoc[
-                    "business_temperament"] = item.id;
+                    _controller.medicalRegistrationDoc["business_temperament"] = item.id;
                     _controller.filterTemperamentType(item.id);
                   }),
               const SizedBox(
@@ -106,13 +106,13 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                       .firstWhereOrNull((element) =>
                   element.id ==
                       _controller
-                          .premisesRegistrationDoc["business_type"])
+                          .medicalRegistrationDoc["business_type"])
                       ?.type,
                   onChange: (String? value) {
                     final item = _controller.filterTemperamentTypes.value
                         .firstWhere((element) =>
                     element.type.toString().trim() == value);
-                    _controller.premisesRegistrationDoc["business_type"] =
+                    _controller.medicalRegistrationDoc["business_type"] =
                         item.id;
                   }),
               const SizedBox(
@@ -122,9 +122,9 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                   label: 'মালিকের নাম',
                   hint: 'মালিকের নাম',
                   initialValue:
-                  _controller.premisesRegistrationDoc["owner_name"],
+                  _controller.medicalRegistrationDoc["owner_name"],
                   onChange: (value) {
-                    _controller.premisesRegistrationDoc["owner_name"] =
+                    _controller.medicalRegistrationDoc["owner_name"] =
                         value;
                   }),
               const SizedBox(
@@ -147,7 +147,7 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                   label: 'মালিকের পিতা/স্বামী/অভিবাবক এর নাম',
                   hint: '',
                   onChange: (value) {
-                    _controller.premisesRegistrationDoc["owner_father_name"] =
+                    _controller.medicalRegistrationDoc["owner_father_name"] =
                         value;
                   }),
               const SizedBox(
@@ -157,7 +157,7 @@ class PremisesRegistrationFirstPage extends StatelessWidget {
                   label: 'মালিকের মাতার নাম',
                   hint: '',
                   onChange: (value) {
-                    _controller.premisesRegistrationDoc["owner_mother_name"] =
+                    _controller.medicalRegistrationDoc["owner_mother_name"] =
                         value;
                   }),
             ],

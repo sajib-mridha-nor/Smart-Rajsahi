@@ -1,11 +1,9 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:rcc/data/local/sqlite_db_provider.dart';
-import 'package:rcc/models/mohalla.dart';
 import 'package:rcc/models/profile.dart';
 import 'package:rcc/models/service_moholla.dart';
 import 'package:rcc/screens/dialog/success_dialog_page.dart';
