@@ -102,7 +102,8 @@ class _ApplicationGarbageRemovalState extends State<ApplicationGarbageRemoval> {
                         ),
                         Expanded(
                           flex: 5,
-                          child: CustomDropdown(
+                          child:
+                          CustomDropdown(
                             label: "এলাকা/মহল্লার নাম",
                             items: _controller.mohollas.value
                                 .map((e) => e!.mohallaBangla.toString())

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';

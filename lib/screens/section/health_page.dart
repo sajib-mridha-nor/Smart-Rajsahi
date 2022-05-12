@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:new_gradient_app_bar/new_gradient_app_bar.dart';
-import 'package:rcc/screens/home/menu/health_form/medical_registration/medical_registration.dart';
 import 'package:rcc/utils/hexcolor.dart';
 import 'package:rcc/utils/palette.dart';
 import 'package:rcc/widgets/custom_banner.dart';
@@ -51,35 +50,35 @@ class _HealthPageState extends State<HealthPage> {
               // Get.to(PremisesRegistrationFormPage());
               CustomCardText(
                   onTap: () {
-                    Get.to(()=> const PremisesRegistrationFormPage());
+                    Get.to(const PremisesRegistrationFormPage());
                   },
                   title: 'প্রিমিসেস নিবন্ধন',
                   icon: 'assets/images/groupicon2.png'),
 
               CustomCardText(
                   onTap: () {
-                    Get.to(()=> const ComplaintsEnvironmentalPollutionForm());
+                    Get.to(const ComplaintsEnvironmentalPollutionForm());
                   },
                   title: 'পরিবেশ দূষণ অভিযোগ',
                   icon: 'assets/images/groupicon2.png'),
 
               CustomCardText(
                   onTap: () {
-                    Get.to(()=> const AnswerEnvironmentalPollutionForm());
+                    Get.to(const AnswerEnvironmentalPollutionForm());
                   },
                   title: 'পরিবেশ দূষণ অভিযোগ এর উত্তর',
                   icon: 'assets/images/groupicon2.png'),
 
               CustomCardText(
                   onTap: () {
-                    Get.to(()=> const MedicalRegistrationForm());
+                   // Get.to(const MedicalRegForm());
                   },
                   title: 'মেডিকেল নিবন্ধনকরণ',
                   icon: 'assets/images/groupicon2.png'),
 
               CustomCardText(
                   onTap: () {
-                    Get.to(()=> const AnimalLicencePageForm());
+                    Get.to(const AnimalLicencePageForm());
                   },
                   title: 'পোষা প্রাণীর লাইসেন্স',
                   icon: 'assets/images/groupicon2.png'),

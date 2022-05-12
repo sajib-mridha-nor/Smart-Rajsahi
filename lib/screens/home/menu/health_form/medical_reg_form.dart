@@ -13,14 +13,14 @@ import 'dart:io';
 
 import '../../../../widgets/custom_dropdown.dart';
 
-class MedicalRegForm extends StatefulWidget {
-  const MedicalRegForm({Key? key}) : super(key: key);
+class MedicalRegFormkaw extends StatefulWidget {
+  const MedicalRegFormkaw({Key? key}) : super(key: key);
 
   @override
-  State<MedicalRegForm> createState() => _MedicalRegFormState();
+  State<MedicalRegFormkaw> createState() => _MedicalRegFormState();
 }
 
-class _MedicalRegFormState extends State<MedicalRegForm> {
+class _MedicalRegFormState extends State<MedicalRegFormkaw> {
   @override
   Widget build(BuildContext context) {
     final _items = [

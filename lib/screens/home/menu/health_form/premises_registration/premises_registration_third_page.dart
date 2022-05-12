@@ -48,6 +48,7 @@ class PremisesThirdPageForm extends StatelessWidget {
                 onChange: (value) {
                   var parts = value!.split('-');
                   //01-01-1991 Dummy
+                  //yyyy-mm-dd
                   final date = parts[2].trim()+"-"+parts[1].trim()+"-"+parts[0].trim();
                   _controller.premisesRegistrationDoc["business_start_date"] = date;
                 },
