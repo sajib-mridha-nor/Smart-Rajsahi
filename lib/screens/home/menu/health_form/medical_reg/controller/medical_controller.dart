@@ -10,8 +10,6 @@ import 'package:rcc/models/service_ward.dart';
 import 'package:rcc/models/ward.dart';
 import 'package:rcc/screens/dialog/success_dialog_page.dart';
 import 'package:rcc/screens/home/menu/health_form/medical_reg/model/TypeBusiness.dart';
-import 'package:rcc/screens/home/menu/health_form/premises_registration/model/temperament.dart';
-import 'package:rcc/screens/home/menu/health_form/premises_registration/model/temperament_type.dart';
 import 'package:rcc/utils/constants.dart';
 import 'package:rcc/utils/extensitons.dart';
 import 'package:rcc/utils/network/dio_client.dart';

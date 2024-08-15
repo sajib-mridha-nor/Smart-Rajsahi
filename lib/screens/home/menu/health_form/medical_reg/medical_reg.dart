@@ -26,7 +26,7 @@ class _MedicalRegFormPageState extends State<MedicalRegFormPage> {
   final _list = <Widget>[
     const PremisesRegistrationFirstPage(),
     PremisesSecondPageForm(),
-    const PremisesThirdPageForm()
+    PremisesThirdPageForm()
   ];
 
   int _currentPage = 0;
